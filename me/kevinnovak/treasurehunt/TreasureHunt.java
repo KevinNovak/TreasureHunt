@@ -87,6 +87,14 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     	this.dontSpawnOn = getConfig().getIntegerList("dontSpawnOn");
     }
     
+    void saveChestsFile() {
+        try {
+            chestsData.save(chestsFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
     void saveChestsToFile() {
     	for (TreasureChest chest : chests) {
     		if (!chest.isOpened()) {
@@ -100,11 +108,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     			chest.despawn();
     		}
     	}
-        try {
-            chestsData.save(chestsFile);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    	saveChestsFile();
     }
     
     void loadChestsFromFile() {
@@ -123,6 +127,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
         		chests.add(treasureChest);
         		chestsData.set(key, null);
         	}
+        	saveChestsFile();
         }
     }
     
