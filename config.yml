@@ -1,2 +1,13 @@
 # Configuration file for TreasureHunt
 # Created by KevinNovak
+
+world: 'world'
+
+minX: -100
+maxX: 100
+
+minY: 0
+maxY: 200
+
+minZ: -100
+maxZ: 100
