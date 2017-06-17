@@ -32,7 +32,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
 	private World world;
 	private int minX, maxX, minY, maxY, minZ, maxZ;
 	private int spawnInterval, chestDuration, openedChestDuration, maxSpawnAttempts;
-	private int minimumPlayersOnline;
+	private int minPlayersOnline, maxChests;
 	
 	// Plugin
 	private List <TreasureChest> chests = new ArrayList<TreasureChest>();
@@ -80,7 +80,8 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     	this.chestDuration = getConfig().getInt("chestDuration");
     	this.openedChestDuration = getConfig().getInt("openedChestDuration");
     	this.maxSpawnAttempts = getConfig().getInt("maxSpawnAttempts");
-    	this.minimumPlayersOnline = getConfig().getInt("minimumPlayersOnline");
+    	this.minPlayersOnline = getConfig().getInt("minPlayersOnline");
+    	this.maxChests = getConfig().getInt("maxChests");
     }
     
     void saveChestsToFile() {
@@ -123,18 +124,20 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     }
     
     void startHunt() {
-    	Location treasureLocation = getTreasureLocation();
-    	if (treasureLocation.getBlockX() == -1 && treasureLocation.getBlockY() == -1 && treasureLocation.getBlockZ() == -1) {
-    		// TO-DO: Annouce to only admins
-    		Bukkit.getServer().getLogger().info("[TreasureHunt] Failed to spawn a treasure chest after max attempts.");
-    	} else {
-    		// TO-DO: get random loot
-    		UUID id = UUID.randomUUID();
-    		TreasureChest treasureChest = new TreasureChest(id, treasureLocation);
-    		treasureChest.spawn();
-    		chests.add(treasureChest);
-    		Bukkit.getServer().getLogger().info("[TreasureHunt] Chest spawned at " + treasureLocation.getBlockX() + ", " + treasureLocation.getBlockY() + ", " + treasureLocation.getBlockZ());
-    	}
+		if (chests.size() < maxChests) {
+	    	Location treasureLocation = getTreasureLocation();
+	    	if (treasureLocation.getBlockX() == -1 && treasureLocation.getBlockY() == -1 && treasureLocation.getBlockZ() == -1) {
+	    		// TO-DO: Annouce to only admins
+	    		Bukkit.getServer().getLogger().info("[TreasureHunt] Failed to spawn a treasure chest after max attempts.");
+	    	} else {
+	    		// TO-DO: get random loot
+	    		UUID id = UUID.randomUUID();
+	    		TreasureChest treasureChest = new TreasureChest(id, treasureLocation);
+	    		treasureChest.spawn();
+	    		chests.add(treasureChest);
+	    		Bukkit.getServer().getLogger().info("[TreasureHunt] Chest spawned at " + treasureLocation.getBlockX() + ", " + treasureLocation.getBlockY() + ", " + treasureLocation.getBlockZ());
+	    	}
+		}
     }
     
     Location getTreasureLocation() {
@@ -206,7 +209,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
                 incrementChestTimes();
                 spawnTimer++;
                 if (spawnTimer > spawnInterval) {
-                	if (getServer().getOnlinePlayers().size() >= minimumPlayersOnline) {
+                	if (getServer().getOnlinePlayers().size() >= minPlayersOnline) {
                     	startHunt();
                 	}
                 	spawnTimer=0;
