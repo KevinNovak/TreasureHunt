@@ -10,14 +10,17 @@ import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.inventory.InventoryOpenEvent;
+import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitScheduler;
 
 public class TreasureHunt extends JavaPlugin implements Listener{
 	private World world;
 	private int minX, maxX, minY, maxY, minZ, maxZ;
-	private int chestDuration, maxSpawnAttempts;
+	private int chestDuration, openedChestDuration, maxSpawnAttempts;
 	
 	private List <TreasureChest> chests = new ArrayList<TreasureChest>();
 	
@@ -55,6 +58,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     	this.maxZ = getConfig().getInt("huntArea.z.max");
     	
     	this.chestDuration = getConfig().getInt("chestDuration");
+    	this.openedChestDuration = getConfig().getInt("openedChestDuration");
     	this.maxSpawnAttempts = getConfig().getInt("maxSpawnAttempts");
     }
     
@@ -116,10 +120,18 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     	List<TreasureChest> toRemove = new ArrayList<TreasureChest>();
     	for (int i=0; i<chests.size(); i++) {
     		TreasureChest chest = chests.get(i);
-    		chest.setTimeAlive(chest.getTimeAlive()+1);
-    		if (chest.getTimeAlive() > chestDuration) {
-    			chest.despawn();
-    			toRemove.add(chest);
+    		if (chest.isOpened()) {
+    			chest.setTimeSinceOpened(chest.getTimeSinceOpened()+1);
+    			if (chest.getTimeSinceOpened() > openedChestDuration) {
+    				chest.despawn();
+    				toRemove.add(chest);
+    			}
+    		} else {
+        		chest.setTimeAlive(chest.getTimeAlive()+1);
+        		if (chest.getTimeAlive() > chestDuration) {
+        			chest.despawn();
+        			toRemove.add(chest);
+        		}
     		}
     	}
     	chests.removeAll(toRemove);
@@ -133,6 +145,21 @@ public class TreasureHunt extends JavaPlugin implements Listener{
                 incrementChestTimes();
             }
         }, 0L, 20 * 1);
+    }
+    
+    
+    @EventHandler
+    public void onInventoryOpen(InventoryOpenEvent e) {
+    	Player player = (Player) e.getPlayer();
+    	if (player != null) {
+    		if (e.getInventory().getType() == InventoryType.CHEST) {
+    			for (TreasureChest chest : chests) {
+    				if (chest.getLocation().equals(e.getInventory().getLocation())) {
+    					chest.setOpened(true);
+    				}
+    			}
+    		}
+    	}
     }
     
     // ======================
