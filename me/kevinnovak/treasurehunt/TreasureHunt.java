@@ -3,13 +3,16 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class TreasureHunt extends JavaPlugin implements Listener{
-	private Integer minX, maxX, minY, maxY, minZ, maxZ;
 	private World world;
+	private int minX, maxX, minY, maxY, minZ, maxZ;
+	private int maxAttempts;
+
 	
     // ======================
     // Enable
@@ -41,6 +44,44 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     	
     	String worldString = getConfig().getString("world");
     	this.world = getServer().getWorld(worldString);
+    	
+    	this.maxAttempts = getConfig().getInt("maxAttempts");
+    }
+    
+    void startHunt() {
+    	Location treasureLocation = getTreasureLocation();
+    	if (treasureLocation.getBlockX() == -1 && treasureLocation.getBlockY() == -1 && treasureLocation.getBlockZ() == -1) {
+    		// TO-DO: Annouce to only admins
+    		Bukkit.getServer().getLogger().warning("[TreasureHunt] Failed to spawn a treasure chest after max attempts.");
+    	} else {
+    		// TO-DO: get random loot
+    		TreasureChest treasureChest = new TreasureChest(treasureLocation);
+    		treasureChest.spawn();
+    		Bukkit.getServer().getLogger().warning("[TreasureHunt] Chest spawned at" + treasureLocation.getBlockX() + ", " + treasureLocation.getBlockY() + ", " + treasureLocation.getBlockZ());
+    	}
+    }
+    
+    Location getTreasureLocation() {
+    	Location randLocation;
+    	
+    	int attempt = 1;
+    	while (attempt <= maxAttempts) {
+    		randLocation = getRandomLocation();
+    		while (attempt <= maxAttempts && randLocation.getBlockY() >= minY) {
+    			if (randLocation.getBlock().getType() == Material.AIR) {
+    				if (randLocation.add(0, 1, 0).getBlock().getType() == Material.AIR) {
+    					// TO-DO: Or other forbidden blocks
+    					if (randLocation.subtract(0, 1, 0).getBlock().getType() != Material.AIR) {
+    						return randLocation;
+    					}
+    				}
+    			}
+    			randLocation = randLocation.subtract(0, 1, 0);
+    			attempt++;
+    		}
+    	}
+    	
+    	return new Location(world, -1, -1, -1);
     }
     
     Location getRandomLocation() {

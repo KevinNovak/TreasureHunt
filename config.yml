@@ -11,3 +11,5 @@ maxY: 200
 
 minZ: -100
 maxZ: 100
+
+maxAttempts: 3000

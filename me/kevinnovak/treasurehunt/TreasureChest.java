@@ -5,16 +5,13 @@ import org.bukkit.Material;
 import org.bukkit.inventory.Inventory;
 
 public class TreasureChest {
-	private TreasureChest plugin;
 	private Location location;
 	private Inventory contents;
 	private double startTime;
 	
-	TreasureChest(TreasureChest plugin, Location location, Inventory contents, double startTime) {
-        this.plugin = plugin;
+	TreasureChest(Location location) {
         this.location = location;
-        this.contents = contents;
-        this.startTime = startTime;
+        //this.contents = contents;
     }
 	
 	void spawn() {
