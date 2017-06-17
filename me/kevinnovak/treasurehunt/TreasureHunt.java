@@ -5,6 +5,9 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -62,23 +65,43 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     }
     
     Location getTreasureLocation() {
-    	Location randLocation;
+    	Location randStartLocation;
     	
     	int attempt = 1;
     	while (attempt <= maxAttempts) {
-    		randLocation = getRandomLocation();
-    		while (attempt <= maxAttempts && randLocation.getBlockY() >= minY) {
+    		randStartLocation = getRandomLocation();
+ 
+    		for (int i=randStartLocation.getBlockY(); i>0; i--, attempt++) {
+    			Location randLocation = new Location(world, randStartLocation.getBlockX(), i, randStartLocation.getBlockZ());
+    			//Bukkit.getServer().getLogger().info("[TreasureHunt] Tried at" + randLocation.getBlockX() + ", " + randLocation.getBlockY() + ", " + randLocation.getBlockZ());
     			if (randLocation.getBlock().getType() == Material.AIR) {
-    				if (randLocation.add(0, 1, 0).getBlock().getType() == Material.AIR) {
-    					// TO-DO: Or other forbidden blocks
-    					if (randLocation.subtract(0, 1, 0).getBlock().getType() != Material.AIR) {
-    						return randLocation;
-    					}
-    				}
+    				Bukkit.getServer().getLogger().info("1");
+    				Location blockAbove = new Location(world, randLocation.getBlockX(), i+1, randLocation.getBlockZ());
+    				if (blockAbove.getBlock().getType() == Material.AIR) {
+    					Bukkit.getServer().getLogger().info("2");
+						// TO-DO: Or other forbidden blocks
+    					Location blockBelow = new Location(world, randLocation.getBlockX(), i-1, randLocation.getBlockZ());
+						if (blockBelow.getBlock().getType() != Material.AIR) {
+							Bukkit.getServer().getLogger().info("3");
+							return randLocation;
+						}
+					}
     			}
-    			randLocation = randLocation.subtract(0, 1, 0);
-    			attempt++;
     		}
+    		
+//    		while (attempt <= maxAttempts && randLocation.getBlockY() >= minY) {
+//    			if (randLocation.getBlock().getType() == Material.AIR) {
+//    				if (randLocation.add(0, 1, 0).getBlock().getType() == Material.AIR) {
+//    					// TO-DO: Or other forbidden blocks
+//    					if (randLocation.subtract(0, 1, 0).getBlock().getType() != Material.AIR) {
+//    						return randLocation;
+//    					}
+//    				}
+//    			}
+//    			Bukkit.getServer().getLogger().warning("[TreasureHunt] Tried at" + randLocation.getBlockX() + ", " + randLocation.getBlockY() + ", " + randLocation.getBlockZ());
+//    			randLocation = randLocation.subtract(0, 1, 0);
+//    			attempt++;
+//    		}
     	}
     	
     	return new Location(world, -1, -1, -1);
@@ -92,5 +115,33 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     	Location randLocation = new Location(this.world, randX, randY, randZ);
     	
     	return randLocation;
+    }
+    
+    // ======================
+    // Commands
+    // ======================
+    public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
+        // ======================
+        // Console
+        // ======================
+        // if command sender is the console, let them know, cancel command
+        if (!(sender instanceof Player)) {
+            // TO-DO: send message to console
+            return true;
+        }
+        
+        // otherwise the command sender is a player
+        //final Player player = (Player) sender;
+        //final String playername = player.getName();
+        
+        // ======================
+        // /mt
+        // ======================
+        if(cmd.getName().equalsIgnoreCase("th")) {
+        	startHunt();
+            return true;
+        }
+        
+		return false;
     }
 }

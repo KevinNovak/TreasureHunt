@@ -2,12 +2,11 @@ package me.kevinnovak.treasurehunt;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.inventory.Inventory;
 
 public class TreasureChest {
 	private Location location;
-	private Inventory contents;
-	private double startTime;
+	//private Inventory contents;
+	//private double startTime;
 	
 	TreasureChest(Location location) {
         this.location = location;
