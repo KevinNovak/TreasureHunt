@@ -3,13 +3,13 @@
 
 world: 'world'
 
-minX: -100
-maxX: 100
+minX: -500
+maxX: 500
 
 minY: 0
-maxY: 200
+maxY: 70
 
-minZ: -100
-maxZ: 100
+minZ: -500
+maxZ: 500
 
 maxAttempts: 3000
