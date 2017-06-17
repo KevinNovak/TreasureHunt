@@ -33,6 +33,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
 	private int minX, maxX, minY, maxY, minZ, maxZ;
 	private int spawnInterval, chestDuration, openedChestDuration, maxSpawnAttempts;
 	private int minPlayersOnline, maxChests;
+	private List<Integer> dontSpawnOn;
 	
 	// Plugin
 	private List <TreasureChest> chests = new ArrayList<TreasureChest>();
@@ -82,6 +83,8 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     	this.maxSpawnAttempts = getConfig().getInt("maxSpawnAttempts");
     	this.minPlayersOnline = getConfig().getInt("minPlayersOnline");
     	this.maxChests = getConfig().getInt("maxChests");
+    	
+    	this.dontSpawnOn = getConfig().getIntegerList("dontSpawnOn");
     }
     
     void saveChestsToFile() {
