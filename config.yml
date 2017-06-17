@@ -13,4 +13,6 @@ huntArea:
     min: -500
     max: 500
 
+chestDuration: 300
 maxSpawnAttempts: 3000
+

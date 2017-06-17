@@ -16,4 +16,8 @@ public class TreasureChest {
 	void spawn() {
 		this.location.getBlock().setType(Material.CHEST);
 	}
+	
+	void despawn() {
+		this.location.getBlock().setType(Material.AIR);
+	}
 }

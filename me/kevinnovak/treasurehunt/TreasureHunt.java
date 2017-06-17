@@ -14,8 +14,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class TreasureHunt extends JavaPlugin implements Listener{
 	private World world;
 	private int minX, maxX, minY, maxY, minZ, maxZ;
-	private int maxSpawnAttempts;
-
+	private int chestDuration, maxSpawnAttempts;
 	
     // ======================
     // Enable
@@ -48,6 +47,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     	this.minZ = getConfig().getInt("huntArea.z.min");
     	this.maxZ = getConfig().getInt("huntArea.z.max");
     	
+    	this.chestDuration = getConfig().getInt("chestDuration");
     	this.maxSpawnAttempts = getConfig().getInt("maxSpawnAttempts");
     }
     
@@ -55,12 +55,12 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     	Location treasureLocation = getTreasureLocation();
     	if (treasureLocation.getBlockX() == -1 && treasureLocation.getBlockY() == -1 && treasureLocation.getBlockZ() == -1) {
     		// TO-DO: Annouce to only admins
-    		Bukkit.getServer().getLogger().warning("[TreasureHunt] Failed to spawn a treasure chest after max attempts.");
+    		Bukkit.getServer().getLogger().info("[TreasureHunt] Failed to spawn a treasure chest after max attempts.");
     	} else {
     		// TO-DO: get random loot
     		TreasureChest treasureChest = new TreasureChest(treasureLocation);
     		treasureChest.spawn();
-    		Bukkit.getServer().getLogger().warning("[TreasureHunt] Chest spawned at " + treasureLocation.getBlockX() + ", " + treasureLocation.getBlockY() + ", " + treasureLocation.getBlockZ());
+    		Bukkit.getServer().getLogger().info("[TreasureHunt] Chest spawned at " + treasureLocation.getBlockX() + ", " + treasureLocation.getBlockY() + ", " + treasureLocation.getBlockZ());
     	}
     }
     
