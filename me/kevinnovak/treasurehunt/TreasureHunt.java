@@ -115,6 +115,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
         		Location location = new Location(world, xPos, yPos, zPos);
         		TreasureChest treasureChest = new TreasureChest(id, location, timeAlive);
         		chests.add(treasureChest);
+        		chestsData.set(key, null);
         	}
         }
     }
