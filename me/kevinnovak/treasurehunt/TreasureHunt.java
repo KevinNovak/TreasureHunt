@@ -60,50 +60,37 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     		// TO-DO: get random loot
     		TreasureChest treasureChest = new TreasureChest(treasureLocation);
     		treasureChest.spawn();
-    		Bukkit.getServer().getLogger().warning("[TreasureHunt] Chest spawned at" + treasureLocation.getBlockX() + ", " + treasureLocation.getBlockY() + ", " + treasureLocation.getBlockZ());
+    		Bukkit.getServer().getLogger().warning("[TreasureHunt] Chest spawned at " + treasureLocation.getBlockX() + ", " + treasureLocation.getBlockY() + ", " + treasureLocation.getBlockZ());
     	}
     }
     
     Location getTreasureLocation() {
-    	Location randStartLocation;
+    	Location randLocation;
     	
     	int attempt = 1;
     	while (attempt <= maxAttempts) {
-    		randStartLocation = getRandomLocation();
- 
-    		for (int i=randStartLocation.getBlockY(); i>0; i--, attempt++) {
-    			Location randLocation = new Location(world, randStartLocation.getBlockX(), i, randStartLocation.getBlockZ());
-    			//Bukkit.getServer().getLogger().info("[TreasureHunt] Tried at" + randLocation.getBlockX() + ", " + randLocation.getBlockY() + ", " + randLocation.getBlockZ());
+    		randLocation = getRandomLocation();
+
+    		while (attempt <= maxAttempts && randLocation.getBlockY() >= minY) {
+        		int randX = randLocation.getBlockX();
+        		int randY = randLocation.getBlockY();
+        		int randZ = randLocation.getBlockZ();
+        		
+        		Location blockAbove = new Location(world, randX, randY+1, randZ);
+        		Location blockBelow = new Location(world, randX, randY-1, randZ);
+    			
     			if (randLocation.getBlock().getType() == Material.AIR) {
-    				Bukkit.getServer().getLogger().info("1");
-    				Location blockAbove = new Location(world, randLocation.getBlockX(), i+1, randLocation.getBlockZ());
     				if (blockAbove.getBlock().getType() == Material.AIR) {
-    					Bukkit.getServer().getLogger().info("2");
-						// TO-DO: Or other forbidden blocks
-    					Location blockBelow = new Location(world, randLocation.getBlockX(), i-1, randLocation.getBlockZ());
-						if (blockBelow.getBlock().getType() != Material.AIR) {
-							Bukkit.getServer().getLogger().info("3");
-							return randLocation;
-						}
-					}
+    					// TO-DO: Or other forbidden blocks
+    					if (blockBelow.getBlock().getType() != Material.AIR) {
+    						return randLocation;
+    					}
+    				}
     			}
+    			randLocation.subtract(0, 1, 0);
+    			attempt++;
     		}
-    		
-//    		while (attempt <= maxAttempts && randLocation.getBlockY() >= minY) {
-//    			if (randLocation.getBlock().getType() == Material.AIR) {
-//    				if (randLocation.add(0, 1, 0).getBlock().getType() == Material.AIR) {
-//    					// TO-DO: Or other forbidden blocks
-//    					if (randLocation.subtract(0, 1, 0).getBlock().getType() != Material.AIR) {
-//    						return randLocation;
-//    					}
-//    				}
-//    			}
-//    			Bukkit.getServer().getLogger().warning("[TreasureHunt] Tried at" + randLocation.getBlockX() + ", " + randLocation.getBlockY() + ", " + randLocation.getBlockZ());
-//    			randLocation = randLocation.subtract(0, 1, 0);
-//    			attempt++;
-//    		}
     	}
-    	
     	return new Location(world, -1, -1, -1);
     }
     
