@@ -14,7 +14,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class TreasureHunt extends JavaPlugin implements Listener{
 	private World world;
 	private int minX, maxX, minY, maxY, minZ, maxZ;
-	private int maxAttempts;
+	private int maxSpawnAttempts;
 
 	
     // ======================
@@ -38,17 +38,17 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     }
     
     void loadConfig() {
-    	this.minX = getConfig().getInt("minX");
-    	this.maxX = getConfig().getInt("maxX");
-    	this.minY = getConfig().getInt("minY");
-    	this.maxY = getConfig().getInt("maxY");
-    	this.minZ = getConfig().getInt("minZ");
-    	this.maxZ = getConfig().getInt("maxZ");
-    	
-    	String worldString = getConfig().getString("world");
+    	String worldString = getConfig().getString("huntArea.world");
     	this.world = getServer().getWorld(worldString);
     	
-    	this.maxAttempts = getConfig().getInt("maxAttempts");
+    	this.minX = getConfig().getInt("huntArea.x.min");
+    	this.maxX = getConfig().getInt("huntArea.x.max");
+    	this.minY = getConfig().getInt("huntArea.y.min");
+    	this.maxY = getConfig().getInt("huntArea.y.max");
+    	this.minZ = getConfig().getInt("huntArea.z.min");
+    	this.maxZ = getConfig().getInt("huntArea.z.max");
+    	
+    	this.maxSpawnAttempts = getConfig().getInt("maxSpawnAttempts");
     }
     
     void startHunt() {
@@ -68,10 +68,10 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     	Location randLocation;
     	
     	int attempt = 1;
-    	while (attempt <= maxAttempts) {
+    	while (attempt <= maxSpawnAttempts) {
     		randLocation = getRandomLocation();
 
-    		while (attempt <= maxAttempts && randLocation.getBlockY() >= minY) {
+    		while (attempt <= maxSpawnAttempts && randLocation.getBlockY() >= minY) {
         		int randX = randLocation.getBlockX();
         		int randY = randLocation.getBlockY();
         		int randZ = randLocation.getBlockZ();
