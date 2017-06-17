@@ -1,4 +1,6 @@
 package me.kevinnovak.treasurehunt;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 import org.bukkit.Bukkit;
@@ -10,11 +12,14 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitScheduler;
 
 public class TreasureHunt extends JavaPlugin implements Listener{
 	private World world;
 	private int minX, maxX, minY, maxY, minZ, maxZ;
 	private int chestDuration, maxSpawnAttempts;
+	
+	private List <TreasureChest> chests = new ArrayList<TreasureChest>();
 	
     // ======================
     // Enable
@@ -25,6 +30,8 @@ public class TreasureHunt extends JavaPlugin implements Listener{
         
         loadConfig();
         Bukkit.getServer().getLogger().info("[TreasureHunt] Config loaded.");
+        
+        startTimerThread();
         
         Bukkit.getServer().getLogger().info("[TreasureHunt] Plugin Enabled!");
     }
@@ -60,6 +67,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     		// TO-DO: get random loot
     		TreasureChest treasureChest = new TreasureChest(treasureLocation);
     		treasureChest.spawn();
+    		chests.add(treasureChest);
     		Bukkit.getServer().getLogger().info("[TreasureHunt] Chest spawned at " + treasureLocation.getBlockX() + ", " + treasureLocation.getBlockY() + ", " + treasureLocation.getBlockZ());
     	}
     }
@@ -102,6 +110,29 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     	Location randLocation = new Location(this.world, randX, randY, randZ);
     	
     	return randLocation;
+    }
+    
+    void incrementChestTimes() {
+    	List<TreasureChest> toRemove = new ArrayList<TreasureChest>();
+    	for (int i=0; i<chests.size(); i++) {
+    		TreasureChest chest = chests.get(i);
+    		chest.setTimeAlive(chest.getTimeAlive()+1);
+    		if (chest.getTimeAlive() > chestDuration) {
+    			chest.despawn();
+    			toRemove.add(chest);
+    		}
+    	}
+    	chests.removeAll(toRemove);
+    }
+    
+    public void startTimerThread() {
+        BukkitScheduler scheduler = getServer().getScheduler();
+        scheduler.scheduleSyncRepeatingTask(this, new Runnable() {
+        	@Override
+            public void run() {
+                incrementChestTimes();
+            }
+        }, 0L, 20 * 1);
     }
     
     // ======================
