@@ -3,17 +3,19 @@
 
 huntArea:
   world: 'world'
-  x:
+  x-Range:
     min: -500
     max: 500
-  y:
+  y-Range:
     min: 2
     max: 70
-  z:
+  z-Range:
     min: -500
     max: 500
 
-chestDuration: 3600
+spawnInterval: 3600
+chestDuration: 1800
 openedChestDuration: 300
+
 maxSpawnAttempts: 3000
 

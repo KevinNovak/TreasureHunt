@@ -20,9 +20,10 @@ import org.bukkit.scheduler.BukkitScheduler;
 public class TreasureHunt extends JavaPlugin implements Listener{
 	private World world;
 	private int minX, maxX, minY, maxY, minZ, maxZ;
-	private int chestDuration, openedChestDuration, maxSpawnAttempts;
+	private int spawnInterval, chestDuration, openedChestDuration, maxSpawnAttempts;
 	
 	private List <TreasureChest> chests = new ArrayList<TreasureChest>();
+	private int spawnTimer;
 	
     // ======================
     // Enable
@@ -50,13 +51,14 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     	String worldString = getConfig().getString("huntArea.world");
     	this.world = getServer().getWorld(worldString);
     	
-    	this.minX = getConfig().getInt("huntArea.x.min");
-    	this.maxX = getConfig().getInt("huntArea.x.max");
-    	this.minY = getConfig().getInt("huntArea.y.min");
-    	this.maxY = getConfig().getInt("huntArea.y.max");
-    	this.minZ = getConfig().getInt("huntArea.z.min");
-    	this.maxZ = getConfig().getInt("huntArea.z.max");
+    	this.minX = getConfig().getInt("huntArea.x-Range.min");
+    	this.maxX = getConfig().getInt("huntArea.x-Range.max");
+    	this.minY = getConfig().getInt("huntArea.y-Range.min");
+    	this.maxY = getConfig().getInt("huntArea.y-Range.max");
+    	this.minZ = getConfig().getInt("huntArea.z-Range.min");
+    	this.maxZ = getConfig().getInt("huntArea.z-Range.max");
     	
+    	this.spawnInterval = getConfig().getInt("spawnInterval");
     	this.chestDuration = getConfig().getInt("chestDuration");
     	this.openedChestDuration = getConfig().getInt("openedChestDuration");
     	this.maxSpawnAttempts = getConfig().getInt("maxSpawnAttempts");
@@ -143,6 +145,11 @@ public class TreasureHunt extends JavaPlugin implements Listener{
         	@Override
             public void run() {
                 incrementChestTimes();
+                spawnTimer++;
+                if (spawnTimer > spawnInterval) {
+                	startHunt();
+                	spawnTimer=0;
+                }
             }
         }, 0L, 20 * 1);
     }
