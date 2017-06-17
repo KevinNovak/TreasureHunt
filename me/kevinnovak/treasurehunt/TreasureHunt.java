@@ -143,7 +143,8 @@ public class TreasureHunt extends JavaPlugin implements Listener{
 		}
     }
     
-    Location getTreasureLocation() {
+    @SuppressWarnings("deprecation")
+	Location getTreasureLocation() {
     	Location randLocation;
     	
     	int attempt = 1;
@@ -161,8 +162,17 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     			if (randLocation.getBlock().getType() == Material.AIR) {
     				if (blockAbove.getBlock().getType() == Material.AIR) {
     					// TO-DO: Or other forbidden blocks
-    					if (blockBelow.getBlock().getType() != Material.AIR) {
-    						return randLocation;
+    					Material blockBelowMaterial = blockBelow.getBlock().getType();
+    					if (blockBelowMaterial != Material.AIR) {
+    						boolean forbidden = false;
+    						for (Integer itemID : dontSpawnOn) {
+    							if (blockBelowMaterial == Material.getMaterial(itemID)) {
+    								forbidden = true;
+    							}
+    						}
+    						if (!forbidden) {
+        						return randLocation;
+    						}
     					}
     				}
     			}
