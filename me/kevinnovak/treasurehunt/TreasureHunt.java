@@ -47,6 +47,9 @@ public class TreasureHunt extends JavaPlugin implements Listener{
         loadConfig();
         Bukkit.getServer().getLogger().info("[TreasureHunt] Config loaded.");
         
+        Bukkit.getServer().getLogger().info("[TreasureHunt] Loading treasure chests.");
+        loadChestsFromFile();
+        
         startTimerThread();
         
         Bukkit.getServer().getLogger().info("[TreasureHunt] Plugin Enabled!");
