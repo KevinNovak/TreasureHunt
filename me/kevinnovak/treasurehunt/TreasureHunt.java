@@ -1,6 +1,10 @@
 package me.kevinnovak.treasurehunt;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
 
 import org.bukkit.Bukkit;
@@ -9,6 +13,8 @@ import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -18,10 +24,16 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitScheduler;
 
 public class TreasureHunt extends JavaPlugin implements Listener{
+	// Files
+    File chestsFile = new File(getDataFolder() + "/chests.yml");
+    FileConfiguration chestsData = YamlConfiguration.loadConfiguration(chestsFile);
+	
+	// Config
 	private World world;
 	private int minX, maxX, minY, maxY, minZ, maxZ;
 	private int spawnInterval, chestDuration, openedChestDuration, maxSpawnAttempts;
 	
+	// Plugin
 	private List <TreasureChest> chests = new ArrayList<TreasureChest>();
 	private int spawnTimer;
 	
@@ -44,6 +56,8 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     // Disable
     // ======================
     public void onDisable() {
+    	Bukkit.getServer().getLogger().info("[TreasureHunt] Saving treasure chests.");
+    	saveChestsToFile();
         Bukkit.getServer().getLogger().info("[TreasureHunt] Plugin Disabled!");
     }
     
@@ -64,6 +78,45 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     	this.maxSpawnAttempts = getConfig().getInt("maxSpawnAttempts");
     }
     
+    void saveChestsToFile() {
+    	for (TreasureChest chest : chests) {
+    		if (!chest.isOpened()) {
+    			String id = chest.getID().toString();
+        		chestsData.set(id + ".location.world", chest.getLocation().getWorld().getName());
+        		chestsData.set(id + ".location.xPos", chest.getLocation().getBlockX());
+        		chestsData.set(id + ".location.yPos", chest.getLocation().getBlockY());
+        		chestsData.set(id + ".location.zPos", chest.getLocation().getBlockZ());
+        		chestsData.set(id + ".timeAlive", chest.getTimeAlive());
+    		} else {
+    			chest.despawn();
+    		}
+    	}
+        try {
+            chestsData.save(chestsFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    void loadChestsFromFile() {
+        if (chestsFile.exists()) {
+        	Set<String> keys = chestsData.getKeys(false);
+        	for (String key : keys) {
+        		String worldString = chestsData.getString(key + ".location.world");
+        		int xPos = chestsData.getInt(key + ".location.xPos");
+        		int yPos = chestsData.getInt(key + ".location.yPos");
+        		int zPos = chestsData.getInt(key + ".location.zPos");
+        		int timeAlive = chestsData.getInt(key + ".timeAlive");
+        		UUID id = UUID.fromString(key);
+        		World world = getServer().getWorld(worldString);
+        		Location location = new Location(world, xPos, yPos, zPos);
+        		TreasureChest treasureChest = new TreasureChest(id, location, timeAlive);
+        		treasureChest.spawn();
+        		chests.add(treasureChest);
+        	}
+        }
+    }
+    
     void startHunt() {
     	Location treasureLocation = getTreasureLocation();
     	if (treasureLocation.getBlockX() == -1 && treasureLocation.getBlockY() == -1 && treasureLocation.getBlockZ() == -1) {
@@ -71,7 +124,8 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     		Bukkit.getServer().getLogger().info("[TreasureHunt] Failed to spawn a treasure chest after max attempts.");
     	} else {
     		// TO-DO: get random loot
-    		TreasureChest treasureChest = new TreasureChest(treasureLocation);
+    		UUID id = UUID.randomUUID();
+    		TreasureChest treasureChest = new TreasureChest(id, treasureLocation);
     		treasureChest.spawn();
     		chests.add(treasureChest);
     		Bukkit.getServer().getLogger().info("[TreasureHunt] Chest spawned at " + treasureLocation.getBlockX() + ", " + treasureLocation.getBlockY() + ", " + treasureLocation.getBlockZ());

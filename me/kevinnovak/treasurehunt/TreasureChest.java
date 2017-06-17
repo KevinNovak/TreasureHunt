@@ -1,19 +1,35 @@
 package me.kevinnovak.treasurehunt;
 
+import java.util.UUID;
+
 import org.bukkit.Location;
 import org.bukkit.Material;
 
 public class TreasureChest {
+	private UUID id;
 	private Location location;
-	//private Inventory contents;
 	private int timeAlive = 0;
 	private int timeSinceOpened = 0;
 	private boolean opened = false;
 	
-	TreasureChest(Location location) {
+	TreasureChest(UUID id, Location location) {
+        this.id = id;
         this.location = location;
-        //this.contents = contents;
     }
+	
+	TreasureChest(UUID id, Location location, int timeAlive) {
+		this.id = id;
+        this.location = location;
+        this.timeAlive = timeAlive;
+    }
+	
+	UUID getID() {
+		return this.id;
+	}
+	
+	void setID(UUID id) {
+		this.id = id;
+	}
 	
 	Location getLocation() {
 		return this.location;
