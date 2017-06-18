@@ -34,7 +34,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
 	private int spawnInterval, chestDuration, openedChestDuration, maxSpawnAttempts;
 	private int minPlayersOnline, maxChests;
 	private List<Integer> dontSpawnOn;
-	private String chestSpawned, chestDespawned, chestFound, alreadyFound;
+	private String chestSpawned, chestDespawned, chestFound, alreadyFound, tooManyChests;
 	
 	// Plugin
 	private List <TreasureChest> chests = new ArrayList<TreasureChest>();
@@ -93,6 +93,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     	this.chestDespawned = colorConv.convert(getConfig().getString("language.chestDespawned"));
     	this.chestFound = colorConv.convert(getConfig().getString("language.chestFound"));
     	this.alreadyFound = colorConv.convert(getConfig().getString("language.alreadyFound"));
+    	this.tooManyChests = colorConv.convert(getConfig().getString("language.tooManyChests"));
     }
     
     void saveChestsFile() {
@@ -242,7 +243,9 @@ public class TreasureHunt extends JavaPlugin implements Listener{
                 spawnTimer++;
                 if (spawnTimer > spawnInterval) {
                 	if (getServer().getOnlinePlayers().size() >= minPlayersOnline) {
-                    	startHunt();
+                		if (chests.size() < maxChests) {
+                			startHunt();
+                		}
                 	}
                 	spawnTimer=0;
                 }
@@ -289,6 +292,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
             // TO-DO: send message to console
             return true;
         }
+        Player player = (Player) sender;
         
         // otherwise the command sender is a player
         //final Player player = (Player) sender;
@@ -298,7 +302,11 @@ public class TreasureHunt extends JavaPlugin implements Listener{
         // /mt
         // ======================
         if(cmd.getName().equalsIgnoreCase("th")) {
-        	startHunt();
+        	if (chests.size() < maxChests) {
+            	startHunt();
+        	} else {
+        		player.sendMessage(this.tooManyChests);
+        	}
             return true;
         }
         

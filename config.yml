@@ -69,3 +69,4 @@ language:
   chestDespawned: '&e[&6TreasureHunt&e] &fA chest has faded without being found!'
   chestFound: '&e[&6TreasureHunt&e] &b{PLAYER} &fhas struck treasure!'
   alreadyFound: '&e[&6TreasureHunt&e] &7This chest has already been found by &b{PLAYER}&7!'
+  tooManyChests: '&e[&6TreasureHunt&e] &7The maximum number of chests are already spawned!'
