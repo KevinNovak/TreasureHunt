@@ -65,6 +65,6 @@ dontSpawnOn:
 - 209
 
 language:
-  chestSpawned: '&bA chest has spawned!'
-  chestDespawned: '&cA chest disappeared!'
-  chestFound: '&b{PLAYER} &6found a chest!'
+  chestSpawned: '&e[&6TreasureHunt&e] &fWord of treasure spreads across the land!'
+  chestDespawned: '&e[&6TreasureHunt&e] &fA chest has faded without being found!'
+  chestFound: '&e[&6TreasureHunt&e] &b{PLAYER} &fhas struck treasure!'
