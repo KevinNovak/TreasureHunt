@@ -34,10 +34,12 @@ public class TreasureHunt extends JavaPlugin implements Listener{
 	private int spawnInterval, chestDuration, openedChestDuration, maxSpawnAttempts;
 	private int minPlayersOnline, maxChests;
 	private List<Integer> dontSpawnOn;
+	private String chestSpawned, chestDespawned, chestFound;
 	
 	// Plugin
 	private List <TreasureChest> chests = new ArrayList<TreasureChest>();
 	private int spawnTimer;
+	private ColorConverter colorConv = new ColorConverter();
 	
     // ======================
     // Enable
@@ -85,6 +87,11 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     	this.maxChests = getConfig().getInt("maxChests");
     	
     	this.dontSpawnOn = getConfig().getIntegerList("dontSpawnOn");
+    	
+    	// language
+    	this.chestSpawned = colorConv.convert(getConfig().getString("language.chestSpawned"));
+    	this.chestDespawned = colorConv.convert(getConfig().getString("language.chestDespawned"));
+    	this.chestFound = colorConv.convert(getConfig().getString("language.chestFound"));
     }
     
     void saveChestsFile() {
@@ -143,6 +150,9 @@ public class TreasureHunt extends JavaPlugin implements Listener{
 	    		TreasureChest treasureChest = new TreasureChest(id, treasureLocation);
 	    		treasureChest.spawn();
 	    		chests.add(treasureChest);
+	    		for (Player player : Bukkit.getOnlinePlayers()) {
+	    			player.sendMessage(this.chestSpawned);
+	    		}
 	    		Bukkit.getServer().getLogger().info("[TreasureHunt] Chest spawned at " + treasureLocation.getBlockX() + ", " + treasureLocation.getBlockY() + ", " + treasureLocation.getBlockZ());
 	    	}
 		}
@@ -213,6 +223,9 @@ public class TreasureHunt extends JavaPlugin implements Listener{
         		if (chest.getTimeAlive() > chestDuration) {
         			chest.despawn();
         			toRemove.add(chest);
+        			for (Player player : Bukkit.getOnlinePlayers()) {
+        				player.sendMessage(this.chestDespawned);
+        			}
         		}
     		}
     	}
@@ -244,7 +257,12 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     		if (e.getInventory().getType() == InventoryType.CHEST) {
     			for (TreasureChest chest : chests) {
     				if (chest.getLocation().equals(e.getInventory().getLocation())) {
-    					chest.setOpened(true);
+    					if (!chest.isOpened()) {
+        					chest.setOpened(true);
+        					for (Player p : Bukkit.getOnlinePlayers()) {
+        						p.sendMessage(this.chestFound.replace("{PLAYER}", e.getPlayer().getName()));
+        					}
+    					}
     				}
     			}
     		}

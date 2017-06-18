@@ -63,3 +63,8 @@ dontSpawnOn:
 - 143
 - 175
 - 209
+
+language:
+  chestSpawned: '&bA chest has spawned!'
+  chestDespawned: '&cA chest disappeared!'
+  chestFound: '&b{PLAYER} &6found a chest!'
