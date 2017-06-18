@@ -68,3 +68,4 @@ language:
   chestSpawned: '&e[&6TreasureHunt&e] &fWord of treasure spreads across the land!'
   chestDespawned: '&e[&6TreasureHunt&e] &fA chest has faded without being found!'
   chestFound: '&e[&6TreasureHunt&e] &b{PLAYER} &fhas struck treasure!'
+  alreadyFound: '&e[&6TreasureHunt&e] &7This chest has already been found by &b{PLAYER}&7!'

@@ -34,7 +34,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
 	private int spawnInterval, chestDuration, openedChestDuration, maxSpawnAttempts;
 	private int minPlayersOnline, maxChests;
 	private List<Integer> dontSpawnOn;
-	private String chestSpawned, chestDespawned, chestFound;
+	private String chestSpawned, chestDespawned, chestFound, alreadyFound;
 	
 	// Plugin
 	private List <TreasureChest> chests = new ArrayList<TreasureChest>();
@@ -92,6 +92,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     	this.chestSpawned = colorConv.convert(getConfig().getString("language.chestSpawned"));
     	this.chestDespawned = colorConv.convert(getConfig().getString("language.chestDespawned"));
     	this.chestFound = colorConv.convert(getConfig().getString("language.chestFound"));
+    	this.alreadyFound = colorConv.convert(getConfig().getString("language.alreadyFound"));
     }
     
     void saveChestsFile() {
@@ -259,9 +260,16 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     				if (chest.getLocation().equals(e.getInventory().getLocation())) {
     					if (!chest.isOpened()) {
         					chest.setOpened(true);
+        					chest.setFoundBy(player.getName());
         					for (Player p : Bukkit.getOnlinePlayers()) {
-        						p.sendMessage(this.chestFound.replace("{PLAYER}", e.getPlayer().getName()));
+        						p.sendMessage(this.chestFound.replace("{PLAYER}", player.getName()));
         					}
+    					} else {
+    						String foundBy = chest.getFoundBy();
+    						if (player.getName() != foundBy) {
+    							e.setCancelled(true);
+    							player.sendMessage(this.alreadyFound.replace("{PLAYER}", foundBy));
+    						}
     					}
     				}
     			}

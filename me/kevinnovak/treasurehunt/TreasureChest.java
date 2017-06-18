@@ -11,6 +11,7 @@ public class TreasureChest {
 	private int timeAlive = 0;
 	private int timeSinceOpened = 0;
 	private boolean opened = false;
+	private String foundBy = "None"; 
 	
 	TreasureChest(UUID id, Location location) {
         this.id = id;
@@ -61,6 +62,14 @@ public class TreasureChest {
 	
 	void setOpened(boolean opened) {
 		this.opened = opened;
+	}
+	
+	String getFoundBy() {
+		return this.foundBy;
+	}
+	
+	void setFoundBy(String foundBy) {
+		this.foundBy = foundBy;
 	}
 	
 	void spawn() {
