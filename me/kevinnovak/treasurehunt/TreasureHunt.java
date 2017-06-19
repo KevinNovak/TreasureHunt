@@ -115,6 +115,14 @@ public class TreasureHunt extends JavaPlugin implements Listener{
         }
     }
     
+    void saveHunterToFile() {
+
+    }
+    
+    void loadHuntersFromFile() {
+    	
+    }
+    
     void saveChestsToFile() {
     	for (TreasureChest chest : chests) {
     		if (!chest.isOpened()) {
@@ -221,14 +229,13 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     	return randLocation;
     }
     
-   
-    boolean hunterExists(UUID id) {
-    	for (TreasureHunter hunter : this.hunters) {
-    		if (hunter.getID().equals(id)) {
-    			return true;
+    int getHunterPos(UUID id) {
+    	for (int i=0; i<this.hunters.size(); i++) {
+    		if (this.hunters.get(i).getID().equals(id)) {
+    			return i;
     		}
     	}
-    	return false;
+		return -1;
     }
     
     void incrementChestTimes() {
@@ -284,6 +291,15 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     				if (chest.getLocation().equals(e.getInventory().getLocation())) {
     					if (!chest.isOpened()) {
         					chest.setOpened(true);
+        					UUID id = player.getUniqueId();
+        					int hunterPos = getHunterPos(id);
+        					if (hunterPos != -1) {
+        						this.hunters.get(hunterPos).foundAChest();
+        					} else {
+        						TreasureHunter hunter = new TreasureHunter(id);
+        						hunter.foundAChest();
+        						this.hunters.add(hunter);
+        					}
         					chest.setFoundBy(player.getName());
         					for (Player p : Bukkit.getOnlinePlayers()) {
         						p.sendMessage(this.chestFound.replace("{PLAYER}", player.getName()));
