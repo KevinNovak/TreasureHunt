@@ -2,15 +2,15 @@ package me.kevinnovak.treasurehunt;
 
 import java.util.UUID;
 
-public class Players {
+public class TreasureHunter {
 	private UUID id;
 	private int chestsFound = 0;
 	
-	Players(UUID id) {
+	TreasureHunter(UUID id) {
         this.id = id;
     }
 	
-	Players(UUID id, int chestsFound) {
+	TreasureHunter(UUID id, int chestsFound) {
 		this.id = id;
 		this.chestsFound = chestsFound;
     }

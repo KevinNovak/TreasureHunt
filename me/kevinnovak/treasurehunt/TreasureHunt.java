@@ -40,6 +40,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
 	
 	// Plugin
 	private List <TreasureChest> chests = new ArrayList<TreasureChest>();
+	private List <TreasureHunter> hunters = new ArrayList<TreasureHunter>();
 	private int spawnTimer;
 	private ColorConverter colorConv = new ColorConverter();
 	
@@ -218,6 +219,16 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     	Location randLocation = new Location(this.world, randX, randY, randZ);
     	
     	return randLocation;
+    }
+    
+   
+    boolean hunterExists(UUID id) {
+    	for (TreasureHunter hunter : this.hunters) {
+    		if (hunter.getID().equals(id)) {
+    			return true;
+    		}
+    	}
+    	return false;
     }
     
     void incrementChestTimes() {
