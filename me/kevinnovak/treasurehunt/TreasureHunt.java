@@ -27,8 +27,8 @@ public class TreasureHunt extends JavaPlugin implements Listener{
 	// Files
     File chestsFile = new File(getDataFolder() + "/data/chests.yml");
     FileConfiguration chestsData = YamlConfiguration.loadConfiguration(chestsFile);
-    File playersFile = new File(getDataFolder() + "/data/players.yml");
-    FileConfiguration playersData = YamlConfiguration.loadConfiguration(playersFile);
+    File huntersFile = new File(getDataFolder() + "/data/hunters.yml");
+    FileConfiguration huntersData = YamlConfiguration.loadConfiguration(huntersFile);
 	
 	// Config
 	private World world;
@@ -57,6 +57,9 @@ public class TreasureHunt extends JavaPlugin implements Listener{
         Bukkit.getServer().getLogger().info("[TreasureHunt] Loading treasure chests.");
         loadChestsFromFile();
         
+        Bukkit.getServer().getLogger().info("[TreasureHunt] Loading treasure hunters.");
+        loadHuntersFromFile();
+        
         startTimerThread();
         
         Bukkit.getServer().getLogger().info("[TreasureHunt] Plugin Enabled!");
@@ -68,6 +71,8 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     public void onDisable() {
     	Bukkit.getServer().getLogger().info("[TreasureHunt] Saving treasure chests.");
     	saveChestsToFile();
+    	Bukkit.getServer().getLogger().info("[TreasureHunt] Saving treasure hunters.");
+    	saveHuntersToFile();
         Bukkit.getServer().getLogger().info("[TreasureHunt] Plugin Disabled!");
     }
     
@@ -99,9 +104,9 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     	this.tooManyChests = colorConv.convert(getConfig().getString("language.tooManyChests"));
     }
     
-    void savePlayersFile() {
+    void saveHuntersFile() {
         try {
-            playersData.save(this.playersFile);
+            huntersData.save(this.huntersFile);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -115,12 +120,24 @@ public class TreasureHunt extends JavaPlugin implements Listener{
         }
     }
     
-    void saveHunterToFile() {
-
+    void saveHuntersToFile() {
+    	for (TreasureHunter hunter : this.hunters) {
+    		String id = hunter.getID().toString();
+    		huntersData.set(id + ".chestsFound", hunter.getChestsFound());
+    	}
+    	saveHuntersFile();
     }
     
     void loadHuntersFromFile() {
-    	
+    	if (huntersFile.exists()) {
+    		Set<String> keys = huntersData.getKeys(false);
+    		for (String key : keys) {
+    			UUID id = UUID.fromString(key);
+    			int chestsFound = huntersData.getInt(key + ".chestsFound");
+    			TreasureHunter hunter = new TreasureHunter(id, chestsFound);
+    			hunters.add(hunter);
+    		}
+    	}
     }
     
     void saveChestsToFile() {
