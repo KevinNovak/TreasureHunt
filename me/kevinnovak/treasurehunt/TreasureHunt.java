@@ -27,6 +27,8 @@ public class TreasureHunt extends JavaPlugin implements Listener{
 	// Files
     File chestsFile = new File(getDataFolder() + "/data/chests.yml");
     FileConfiguration chestsData = YamlConfiguration.loadConfiguration(chestsFile);
+    File playersFile = new File(getDataFolder() + "/data/players.yml");
+    FileConfiguration playersData = YamlConfiguration.loadConfiguration(playersFile);
 	
 	// Config
 	private World world;
@@ -96,9 +98,17 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     	this.tooManyChests = colorConv.convert(getConfig().getString("language.tooManyChests"));
     }
     
+    void savePlayersFile() {
+        try {
+            playersData.save(this.playersFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
     void saveChestsFile() {
         try {
-            chestsData.save(chestsFile);
+            chestsData.save(this.chestsFile);
         } catch (IOException e) {
             e.printStackTrace();
         }
