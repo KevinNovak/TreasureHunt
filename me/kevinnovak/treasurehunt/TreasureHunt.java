@@ -25,7 +25,7 @@ import org.bukkit.scheduler.BukkitScheduler;
 
 public class TreasureHunt extends JavaPlugin implements Listener{
 	// Files
-    File chestsFile = new File(getDataFolder() + "/chests.yml");
+    File chestsFile = new File(getDataFolder() + "/data/chests.yml");
     FileConfiguration chestsData = YamlConfiguration.loadConfiguration(chestsFile);
 	
 	// Config
