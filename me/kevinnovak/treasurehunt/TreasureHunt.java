@@ -2,6 +2,8 @@ package me.kevinnovak.treasurehunt;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
@@ -103,10 +105,10 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     	this.chestFound = colorConv.convert(getConfig().getString("language.chestFound"));
     	this.alreadyFound = colorConv.convert(getConfig().getString("language.alreadyFound"));
     	this.tooManyChests = colorConv.convert(getConfig().getString("language.tooManyChests"));
-    	this.topHuntersHeader = colorConv.convert(getConfig().getString("topHunters.header"));
-    	this.topHuntersHunterLine = colorConv.convert(getConfig().getString("topHunters.hunterLine"));
-    	this.topHuntersMorePages = colorConv.convert(getConfig().getString("topHunters.morePages"));
-    	this.topHuntersFooter = colorConv.convert(getConfig().getString("topHunters.footer"));
+    	this.topHuntersHeader = colorConv.convert(getConfig().getString("language.topHunters.header"));
+    	this.topHuntersHunterLine = colorConv.convert(getConfig().getString("language.topHunters.hunterLine"));
+    	this.topHuntersMorePages = colorConv.convert(getConfig().getString("language.topHunters.morePages"));
+    	this.topHuntersFooter = colorConv.convert(getConfig().getString("language.topHunters.footer"));
     }
     
     void saveHuntersFile() {
@@ -181,6 +183,14 @@ public class TreasureHunt extends JavaPlugin implements Listener{
         }
     }
     
+    void sortHunters() {
+    	Collections.sort(hunters, new Comparator<TreasureHunter>() {
+    	    public int compare(TreasureHunter left, TreasureHunter right)  {
+    	        return left.getChestsFound() - right.getChestsFound(); // The order depends on the direction of sorting.
+    	    }
+    	});
+    }
+    
     void startHunt() {
 		if (chests.size() < maxChests) {
 	    	Location treasureLocation = getTreasureLocation();
@@ -252,6 +262,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     }
     
     void printTopHunters(Player player) {
+    	sortHunters();
     	player.sendMessage(topHuntersHeader);
     	player.sendMessage(topHuntersFooter);
     }
@@ -366,12 +377,19 @@ public class TreasureHunt extends JavaPlugin implements Listener{
         // /mt
         // ======================
         if(cmd.getName().equalsIgnoreCase("th")) {
-        	if (chests.size() < maxChests) {
-            	startHunt();
-        	} else {
-        		player.sendMessage(this.tooManyChests);
-        	}
-            return true;
+            if (args.length == 0) {
+            	if (chests.size() < maxChests) {
+                	startHunt();
+            	} else {
+            		player.sendMessage(this.tooManyChests);
+            	}
+                return true;
+            } else if (args.length == 1) {
+            	if (args[0].equalsIgnoreCase("top")) {
+            		printTopHunters(player);
+            		return true;
+            	}
+            }
         }
         
 		return false;
