@@ -70,3 +70,8 @@ language:
   chestFound: '&e[&6TreasureHunt&e] &b{PLAYER} &fhas struck treasure!'
   alreadyFound: '&e[&6TreasureHunt&e] &7This chest has already been found by &b{PLAYER}&7!'
   tooManyChests: '&e[&6TreasureHunt&e] &7The maximum number of chests are already spawned!'
+  topHunters:
+    header: ' &e------------- &6Treasure Hunt &e-------------'
+    hunterLine: ' &b{PLAYER} &8- &7{CHESTS}'
+    morePages: ' &7Type &6/th top {PAGE} &7for more.'
+    footer: ' &e----------------------------------------'
