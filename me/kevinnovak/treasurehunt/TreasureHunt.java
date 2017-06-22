@@ -37,6 +37,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
 	private int minPlayersOnline, maxChests;
 	private List<Integer> dontSpawnOn;
 	private String chestSpawned, chestDespawned, chestFound, alreadyFound, tooManyChests;
+	private String topHuntersHeader, topHuntersHunterLine, topHuntersMorePages, topHuntersFooter;
 	
 	// Plugin
 	private List <TreasureChest> chests = new ArrayList<TreasureChest>();
@@ -102,6 +103,10 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     	this.chestFound = colorConv.convert(getConfig().getString("language.chestFound"));
     	this.alreadyFound = colorConv.convert(getConfig().getString("language.alreadyFound"));
     	this.tooManyChests = colorConv.convert(getConfig().getString("language.tooManyChests"));
+    	this.topHuntersHeader = colorConv.convert(getConfig().getString("topHunters.header"));
+    	this.topHuntersHunterLine = colorConv.convert(getConfig().getString("topHunters.hunterLine"));
+    	this.topHuntersMorePages = colorConv.convert(getConfig().getString("topHunters.morePages"));
+    	this.topHuntersFooter = colorConv.convert(getConfig().getString("topHunters.footer"));
     }
     
     void saveHuntersFile() {
@@ -244,6 +249,11 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     	Location randLocation = new Location(this.world, randX, randY, randZ);
     	
     	return randLocation;
+    }
+    
+    void printTopHunters(Player player) {
+    	player.sendMessage(topHuntersHeader);
+    	player.sendMessage(topHuntersFooter);
     }
     
     int getHunterPos(UUID id) {
