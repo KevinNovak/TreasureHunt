@@ -39,7 +39,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
 	private int minPlayersOnline, maxChests;
 	private List<Integer> dontSpawnOn;
 	private String chestSpawned, chestDespawned, chestFound, alreadyFound, tooManyChests;
-	private String topHuntersHeader, topHuntersHunterLine, topHuntersMorePages, topHuntersFooter;
+	private String topHuntersHeader, topHuntersHunterLine, topHuntersMorePages, topHuntersNoHunters, topHuntersFooter;
 	
 	// Plugin
 	private List <TreasureChest> chests = new ArrayList<TreasureChest>();
@@ -109,6 +109,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     	this.topHuntersHunterLine = colorConv.convert(getConfig().getString("language.topHunters.hunterLine"));
     	this.topHuntersMorePages = colorConv.convert(getConfig().getString("language.topHunters.morePages"));
     	this.topHuntersFooter = colorConv.convert(getConfig().getString("language.topHunters.footer"));
+    	this.topHuntersNoHunters = colorConv.convert(getConfig().getString("language.topHunters.noHunters"));
     }
     
     void saveHuntersFile() {
@@ -262,8 +263,17 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     }
     
     void printTopHunters(Player player) {
-    	sortHunters();
     	player.sendMessage(topHuntersHeader);
+    	if (hunters.size() > 0) {
+        	sortHunters();
+        	for (int i=0; i<hunters.size(); i++) {
+        		String name = hunters.get(i).getID().toString();
+        		String chestsFound = String.valueOf(hunters.get(i).getChestsFound());
+        		player.sendMessage(topHuntersHunterLine.replace("{PLAYER}", name).replace("{CHESTS}", chestsFound));
+        	}
+    	} else {
+    		player.sendMessage(topHuntersNoHunters);
+    	}
     	player.sendMessage(topHuntersFooter);
     }
     
