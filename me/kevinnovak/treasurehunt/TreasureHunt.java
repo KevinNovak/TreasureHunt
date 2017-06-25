@@ -187,7 +187,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     void sortHunters() {
     	Collections.sort(hunters, new Comparator<TreasureHunter>() {
     	    public int compare(TreasureHunter left, TreasureHunter right)  {
-    	        return left.getChestsFound() - right.getChestsFound(); // The order depends on the direction of sorting.
+    	        return right.getChestsFound() - left.getChestsFound(); // The order depends on the direction of sorting.
     	    }
     	});
     }
@@ -267,7 +267,10 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     	if (hunters.size() > 0) {
         	sortHunters();
         	for (int i=0; i<hunters.size(); i++) {
-        		String name = getServer().getOfflinePlayer(hunters.get(i).getID()).getName();
+        		String name = "Unknown";
+        		if (getServer().getOfflinePlayer(hunters.get(i).getID()).getName() != null) {
+            		name = getServer().getOfflinePlayer(hunters.get(i).getID()).getName();
+        		}
         		String chestsFound = String.valueOf(hunters.get(i).getChestsFound());
         		player.sendMessage(topHuntersHunterLine.replace("{PLAYER}", name).replace("{CHESTS}", chestsFound));
         	}
