@@ -267,7 +267,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     	if (hunters.size() > 0) {
         	sortHunters();
         	for (int i=0; i<hunters.size(); i++) {
-        		String name = hunters.get(i).getID().toString();
+        		String name = getServer().getOfflinePlayer(hunters.get(i).getID()).getName();
         		String chestsFound = String.valueOf(hunters.get(i).getChestsFound());
         		player.sendMessage(topHuntersHunterLine.replace("{PLAYER}", name).replace("{CHESTS}", chestsFound));
         	}
