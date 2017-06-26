@@ -40,15 +40,12 @@ public class TreasureHunt extends JavaPlugin implements Listener{
 	private int spawnInterval, chestDuration, openedChestDuration, maxSpawnAttempts;
 	private int minPlayersOnline, maxChests;
 	private List<Integer> dontSpawnOn;
-	private String chestSpawned, chestDespawned, chestFound, alreadyFound, tooManyChests;
-	private String spawnedChestsHeader, spawnedChestsChestLine, spawnedChestsMorePages, spawnedChestsNoChests, spawnedChestsFooter;
-	private String topHuntersHeader, topHuntersHunterLine, topHuntersMorePages, topHuntersNoHunters, topHuntersFooter;
 	
 	// Plugin
 	private List <TreasureChest> chests = new ArrayList<TreasureChest>();
 	private List <TreasureHunter> hunters = new ArrayList<TreasureHunter>();
 	private int spawnTimer;
-	private ColorConverter colorConv = new ColorConverter();
+	private LanguageManager langMan = new LanguageManager(this);
 	private TimeConverter timeConv;
 	
     // ======================
@@ -118,34 +115,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     	
     	this.dontSpawnOn = getConfig().getIntegerList("dontSpawnOn");
     	
-    	// language
-    	this.chestSpawned = colorConv.convert(languageData.getString("chestSpawned"));
-    	this.chestDespawned = colorConv.convert(languageData.getString("chestDespawned"));
-    	this.chestFound = colorConv.convert(languageData.getString("chestFound"));
-    	this.alreadyFound = colorConv.convert(languageData.getString("alreadyFound"));
-    	this.tooManyChests = colorConv.convert(languageData.getString("tooManyChests"));
-    	
-    	this.spawnedChestsHeader = colorConv.convert(languageData.getString("spawnedChests.header"));
-    	this.spawnedChestsChestLine = colorConv.convert(languageData.getString("spawnedChests.chestLine"));
-    	this.spawnedChestsMorePages = colorConv.convert(languageData.getString("spawnedChests.morePages"));
-    	this.spawnedChestsFooter = colorConv.convert(languageData.getString("spawnedChests.footer"));
-    	this.spawnedChestsNoChests = colorConv.convert(languageData.getString("spawnedChests.noChests"));
-    	
-    	this.topHuntersHeader = colorConv.convert(languageData.getString("topHunters.header"));
-    	this.topHuntersHunterLine = colorConv.convert(languageData.getString("topHunters.hunterLine"));
-    	this.topHuntersMorePages = colorConv.convert(languageData.getString("topHunters.morePages"));
-    	this.topHuntersFooter = colorConv.convert(languageData.getString("topHunters.footer"));
-    	this.topHuntersNoHunters = colorConv.convert(languageData.getString("topHunters.noHunters"));
-    	
-    	String day = languageData.getString("time.day");
-    	String days = languageData.getString("time.days");
-    	String hour = languageData.getString("time.hour");
-    	String hours = languageData.getString("time.hours");
-    	String minute = languageData.getString("time.minute");
-    	String minutes = languageData.getString("time.minutes");
-    	String second = languageData.getString("time.second");
-    	String seconds = languageData.getString("time.seconds");
-    	timeConv = new TimeConverter(day, days, hour, hours, minute, minutes, second, seconds);
+    	timeConv = new TimeConverter(langMan.day, langMan.days, langMan.hour, langMan.hours, langMan.minute, langMan.minutes, langMan.second, langMan.seconds);
     }
     
     void saveHuntersFile() {
@@ -260,7 +230,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
 	    		treasureChest.spawn();
 	    		chests.add(treasureChest);
 	    		for (Player player : Bukkit.getOnlinePlayers()) {
-	    			player.sendMessage(this.chestSpawned);
+	    			player.sendMessage(langMan.chestSpawned);
 	    		}
 	    		Bukkit.getServer().getLogger().info("[TreasureHunt] Chest spawned at " + treasureLocation.getBlockX() + ", " + treasureLocation.getBlockY() + ", " + treasureLocation.getBlockZ());
 	    	}
@@ -328,20 +298,20 @@ public class TreasureHunt extends JavaPlugin implements Listener{
 		
 		List<TreasureChest> availableChests = getAvailableChests();
 		
-    	player.sendMessage(spawnedChestsHeader);
+    	player.sendMessage(langMan.spawnedChestsHeader);
     	if (availableChests.size() > 0) {
         	for (int i=5*(pageNum-1); i<availableChests.size() && i<(5*pageNum); i++) {
         		String time = timeConv.friendlyTime(getRemainingTime(availableChests.get(i)));
-        		player.sendMessage(spawnedChestsChestLine.replace("{RANK}", Integer.toString(i+1)).replace("{TIME}", time));
+        		player.sendMessage(langMan.spawnedChestsChestLine.replace("{RANK}", Integer.toString(i+1)).replace("{TIME}", time));
         	}
 			if (availableChests.size() > 5*pageNum) {
 				int nextPageNum = pageNum + 1;
-				player.sendMessage(spawnedChestsMorePages.replace("{PAGE}", Integer.toString(nextPageNum)));
+				player.sendMessage(langMan.spawnedChestsMorePages.replace("{PAGE}", Integer.toString(nextPageNum)));
 			}
     	} else {
-    		player.sendMessage(spawnedChestsNoChests);
+    		player.sendMessage(langMan.spawnedChestsNoChests);
     	}
-    	player.sendMessage(spawnedChestsFooter);
+    	player.sendMessage(langMan.spawnedChestsFooter);
     }
     
     void printTopHunters(Player player, int pageNum) {
@@ -349,7 +319,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
 			pageNum = 1;
 		}
     	
-    	player.sendMessage(topHuntersHeader);
+    	player.sendMessage(langMan.topHuntersHeader);
     	if (hunters.size() > 0) {
         	sortHunters();
         	for (int i=5*(pageNum-1); i<hunters.size() && i<(5*pageNum); i++) {
@@ -358,16 +328,16 @@ public class TreasureHunt extends JavaPlugin implements Listener{
             		name = getServer().getOfflinePlayer(hunters.get(i).getID()).getName();
         		}
         		String chestsFound = String.valueOf(hunters.get(i).getChestsFound());
-        		player.sendMessage(topHuntersHunterLine.replace("{RANK}", Integer.toString(i+1)).replace("{PLAYER}", name).replace("{CHESTS}", chestsFound));
+        		player.sendMessage(langMan.topHuntersHunterLine.replace("{RANK}", Integer.toString(i+1)).replace("{PLAYER}", name).replace("{CHESTS}", chestsFound));
         	}
 			if (hunters.size() > 5*pageNum) {
 				int nextPageNum = pageNum + 1;
-				player.sendMessage(topHuntersMorePages.replace("{PAGE}", Integer.toString(nextPageNum)));
+				player.sendMessage(langMan.topHuntersMorePages.replace("{PAGE}", Integer.toString(nextPageNum)));
 			}
     	} else {
-    		player.sendMessage(topHuntersNoHunters);
+    		player.sendMessage(langMan.topHuntersNoHunters);
     	}
-    	player.sendMessage(topHuntersFooter);
+    	player.sendMessage(langMan.topHuntersFooter);
     }
     
     int getHunterPos(UUID id) {
@@ -395,7 +365,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
         			chest.despawn();
         			toRemove.add(chest);
         			for (Player player : Bukkit.getOnlinePlayers()) {
-        				player.sendMessage(this.chestDespawned);
+        				player.sendMessage(langMan.chestDespawned);
         			}
         		}
     		}
@@ -443,13 +413,13 @@ public class TreasureHunt extends JavaPlugin implements Listener{
         					}
         					chest.setFoundBy(player.getName());
         					for (Player p : Bukkit.getOnlinePlayers()) {
-        						p.sendMessage(this.chestFound.replace("{PLAYER}", player.getName()));
+        						p.sendMessage(langMan.chestFound.replace("{PLAYER}", player.getName()));
         					}
     					} else {
     						String foundBy = chest.getFoundBy();
     						if (player.getName() != foundBy) {
     							e.setCancelled(true);
-    							player.sendMessage(this.alreadyFound.replace("{PLAYER}", foundBy));
+    							player.sendMessage(langMan.alreadyFound.replace("{PLAYER}", foundBy));
     						}
     					}
     				}
@@ -490,7 +460,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
                 	if (chests.size() < maxChests) {
                     	startHunt();
                 	} else {
-                		player.sendMessage(this.tooManyChests);
+                		player.sendMessage(langMan.tooManyChests);
                 	}
                 	return true;
             	}
