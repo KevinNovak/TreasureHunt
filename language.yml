@@ -1,0 +1,12 @@
+chestSpawned: '&e[&6TreasureHunt&e] &fWord of treasure spreads across the land!'
+chestDespawned: '&e[&6TreasureHunt&e] &fA chest has faded without being found!'
+chestFound: '&e[&6TreasureHunt&e] &b{PLAYER} &fhas struck treasure!'
+alreadyFound: '&e[&6TreasureHunt&e] &7This chest has already been found by &b{PLAYER}&7!'
+tooManyChests: '&e[&6TreasureHunt&e] &7The maximum number of chests are already spawned!'
+topHunters:
+  header: ' &e------- &6Treasure Hunt &e- &6Top Hunters &e-------'
+  hunterLine: ' &8{RANK}. &b{PLAYER} &8- &7{CHESTS} chests'
+  morePages: ' &7Type &6/th top {PAGE} &7for more.'
+  noHunters: '&7 No one has found a treasure!'
+  footer: ' &e----------------------------------------'
+  

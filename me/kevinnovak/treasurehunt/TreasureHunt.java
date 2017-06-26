@@ -31,8 +31,8 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     FileConfiguration chestsData = YamlConfiguration.loadConfiguration(chestsFile);
     File huntersFile = new File(getDataFolder() + "/data/hunters.yml");
     FileConfiguration huntersData = YamlConfiguration.loadConfiguration(huntersFile);
-    File treasureFile;
-    FileConfiguration treasureData;
+    File languageFile, treasureFile;
+    FileConfiguration languageData, treasureData;
 	
 	// Config
 	private World world;
@@ -54,6 +54,11 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     // ======================
     public void onEnable() {
         saveDefaultConfig();
+        
+        // get language file
+        saveResource("language.yml", false);
+        languageFile = new File(getDataFolder() + "/language.yml");
+        languageData = YamlConfiguration.loadConfiguration(languageFile);
         
         // get treasure file
         saveResource("treasure.yml", false);
@@ -108,16 +113,16 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     	this.dontSpawnOn = getConfig().getIntegerList("dontSpawnOn");
     	
     	// language
-    	this.chestSpawned = colorConv.convert(getConfig().getString("language.chestSpawned"));
-    	this.chestDespawned = colorConv.convert(getConfig().getString("language.chestDespawned"));
-    	this.chestFound = colorConv.convert(getConfig().getString("language.chestFound"));
-    	this.alreadyFound = colorConv.convert(getConfig().getString("language.alreadyFound"));
-    	this.tooManyChests = colorConv.convert(getConfig().getString("language.tooManyChests"));
-    	this.topHuntersHeader = colorConv.convert(getConfig().getString("language.topHunters.header"));
-    	this.topHuntersHunterLine = colorConv.convert(getConfig().getString("language.topHunters.hunterLine"));
-    	this.topHuntersMorePages = colorConv.convert(getConfig().getString("language.topHunters.morePages"));
-    	this.topHuntersFooter = colorConv.convert(getConfig().getString("language.topHunters.footer"));
-    	this.topHuntersNoHunters = colorConv.convert(getConfig().getString("language.topHunters.noHunters"));
+    	this.chestSpawned = colorConv.convert(languageData.getString("chestSpawned"));
+    	this.chestDespawned = colorConv.convert(languageData.getString("chestDespawned"));
+    	this.chestFound = colorConv.convert(languageData.getString("chestFound"));
+    	this.alreadyFound = colorConv.convert(languageData.getString("alreadyFound"));
+    	this.tooManyChests = colorConv.convert(languageData.getString("tooManyChests"));
+    	this.topHuntersHeader = colorConv.convert(languageData.getString("topHunters.header"));
+    	this.topHuntersHunterLine = colorConv.convert(languageData.getString("topHunters.hunterLine"));
+    	this.topHuntersMorePages = colorConv.convert(languageData.getString("topHunters.morePages"));
+    	this.topHuntersFooter = colorConv.convert(languageData.getString("topHunters.footer"));
+    	this.topHuntersNoHunters = colorConv.convert(languageData.getString("topHunters.noHunters"));
     }
     
     void saveHuntersFile() {
