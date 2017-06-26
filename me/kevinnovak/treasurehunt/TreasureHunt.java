@@ -41,6 +41,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
 	private int minPlayersOnline, maxChests;
 	private List<Integer> dontSpawnOn;
 	private String chestSpawned, chestDespawned, chestFound, alreadyFound, tooManyChests;
+	private String spawnedChestsHeader, spawnedChestsChestLine, spawnedChestsMorePages, spawnedChestsNoChests, spawnedChestsFooter;
 	private String topHuntersHeader, topHuntersHunterLine, topHuntersMorePages, topHuntersNoHunters, topHuntersFooter;
 	
 	// Plugin
@@ -118,6 +119,13 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     	this.chestFound = colorConv.convert(languageData.getString("chestFound"));
     	this.alreadyFound = colorConv.convert(languageData.getString("alreadyFound"));
     	this.tooManyChests = colorConv.convert(languageData.getString("tooManyChests"));
+    	
+    	this.spawnedChestsHeader = colorConv.convert(languageData.getString("spawnedChests.header"));
+    	this.spawnedChestsChestLine = colorConv.convert(languageData.getString("spawnedChests.chestLine"));
+    	this.spawnedChestsMorePages = colorConv.convert(languageData.getString("spawnedChests.morePages"));
+    	this.spawnedChestsFooter = colorConv.convert(languageData.getString("spawnedChests.footer"));
+    	this.spawnedChestsNoChests = colorConv.convert(languageData.getString("spawnedChests.noChests"));
+    	
     	this.topHuntersHeader = colorConv.convert(languageData.getString("topHunters.header"));
     	this.topHuntersHunterLine = colorConv.convert(languageData.getString("topHunters.hunterLine"));
     	this.topHuntersMorePages = colorConv.convert(languageData.getString("topHunters.morePages"));
@@ -277,6 +285,14 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     
     void printHelp(Player player) {
     	player.sendMessage("Treasure Hunt Help");
+    }
+    
+    void printChests(Player player, int pageNum) {
+		if (pageNum < 1 || pageNum > Math.ceil((double)chests.size()/5)) {
+			pageNum = 1;
+		}
+		
+		
     }
     
     void printTopHunters(Player player, int pageNum) {
@@ -439,6 +455,14 @@ public class TreasureHunt extends JavaPlugin implements Listener{
             		}
             		printTopHunters(player, pageNum);
             		return true;
+            	} else if (args[0].equalsIgnoreCase("chests")) {
+            		int pageNum = 1;
+            		if (args.length >= 2) {
+                		if (tryParse(args[1]) != null) {
+                			pageNum = tryParse(args[1]);
+                		}
+            		}
+            		printChests(player, pageNum);
             	} else {
             		printHelp(player);
             		return true;
