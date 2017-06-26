@@ -4,10 +4,10 @@ chestFound: '&e[&6TreasureHunt&e] &b{PLAYER} &fhas struck treasure!'
 alreadyFound: '&e[&6TreasureHunt&e] &7This chest has already been found by &b{PLAYER}&7!'
 tooManyChests: '&e[&6TreasureHunt&e] &7The maximum number of chests are already spawned!'
 spawnedChests:
-  header: ' &e------- &6Treasure Hunt &e- &6Chests &e-------'
+  header: ' &e--------- &6Treasure Hunt &e- &6Chests &e---------'
   chestLine: ' &7{TIME}'
   morePages: ' &7Type &6/th chests {PAGE} &7for more.'
-  noChests: '&7No word of treasure has been heard.'
+  noChests: ' &7No word of treasure has been heard.'
   footer: ' &e----------------------------------------'
 topHunters:
   header: ' &e------- &6Treasure Hunt &e- &6Top Hunters &e-------'
