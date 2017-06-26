@@ -262,6 +262,10 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     	return randLocation;
     }
     
+    void printHelp(Player player) {
+    	player.sendMessage("Treasure Hunt Help");
+    }
+    
     void printTopHunters(Player player, int pageNum) {
 		if (pageNum < 1 || pageNum > Math.ceil((double)hunters.size()/5)) {
 			pageNum = 1;
@@ -400,30 +404,31 @@ public class TreasureHunt extends JavaPlugin implements Listener{
         if(cmd.getName().equalsIgnoreCase("th")) {
             // th
         	if (args.length == 0) {
-            	player.sendMessage("Treasure Hunt Help");
+            	printHelp(player);
             	return true;
-            } else {
-            	if (args.length > 0) {
-            		// th start
-            		if (args[0].equalsIgnoreCase("start")) {
-                    	if (chests.size() < maxChests) {
-                        	startHunt();
-                    	} else {
-                    		player.sendMessage(this.tooManyChests);
-                    	}
-                    	return true;
+            } else if (args.length > 0) {
+        		// th start
+        		if (args[0].equalsIgnoreCase("start")) {
+                	if (chests.size() < maxChests) {
+                    	startHunt();
+                	} else {
+                		player.sendMessage(this.tooManyChests);
                 	}
-            		// th top
-            		else if (args[0].equalsIgnoreCase("top")) {
-                		int pageNum = 1;
-                		if (args.length >= 2) {
-                    		if (tryParse(args[1]) != null) {
-                    			pageNum = tryParse(args[1]);
-                    		}
+                	return true;
+            	}
+        		// th top
+        		else if (args[0].equalsIgnoreCase("top")) {
+            		int pageNum = 1;
+            		if (args.length >= 2) {
+                		if (tryParse(args[1]) != null) {
+                			pageNum = tryParse(args[1]);
                 		}
-                		printTopHunters(player, pageNum);
-                		return true;
-                	} 
+            		}
+            		printTopHunters(player, pageNum);
+            		return true;
+            	} else {
+            		printHelp(player);
+            		return true;
             	}
             }
         }
