@@ -49,6 +49,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
 	private List <TreasureHunter> hunters = new ArrayList<TreasureHunter>();
 	private int spawnTimer;
 	private ColorConverter colorConv = new ColorConverter();
+	private TimeConverter timeConv;
 	
     // ======================
     // Enable
@@ -135,6 +136,16 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     	this.topHuntersMorePages = colorConv.convert(languageData.getString("topHunters.morePages"));
     	this.topHuntersFooter = colorConv.convert(languageData.getString("topHunters.footer"));
     	this.topHuntersNoHunters = colorConv.convert(languageData.getString("topHunters.noHunters"));
+    	
+    	String day = languageData.getString("time.day");
+    	String days = languageData.getString("time.days");
+    	String hour = languageData.getString("time.hour");
+    	String hours = languageData.getString("time.hours");
+    	String minute = languageData.getString("time.minute");
+    	String minutes = languageData.getString("time.minutes");
+    	String second = languageData.getString("time.second");
+    	String seconds = languageData.getString("time.seconds");
+    	timeConv = new TimeConverter(day, days, hour, hours, minute, minutes, second, seconds);
     }
     
     void saveHuntersFile() {
@@ -320,8 +331,8 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     	player.sendMessage(spawnedChestsHeader);
     	if (availableChests.size() > 0) {
         	for (int i=5*(pageNum-1); i<availableChests.size() && i<(5*pageNum); i++) {
-        		String time = Integer.toString(getRemainingTime(availableChests.get(i)));
-        		player.sendMessage(spawnedChestsChestLine.replace("{TIME}", time));
+        		String time = timeConv.friendlyTime(getRemainingTime(availableChests.get(i)));
+        		player.sendMessage(spawnedChestsChestLine.replace("{RANK}", Integer.toString(i+1)).replace("{TIME}", time));
         	}
 			if (availableChests.size() > 5*pageNum) {
 				int nextPageNum = pageNum + 1;

@@ -5,7 +5,7 @@ alreadyFound: '&e[&6TreasureHunt&e] &7This chest has already been found by &b{PL
 tooManyChests: '&e[&6TreasureHunt&e] &7The maximum number of chests are already spawned!'
 spawnedChests:
   header: ' &e--------- &6Treasure Hunt &e- &6Chests &e---------'
-  chestLine: ' &7{TIME}'
+  chestLine: ' &8{RANK}. &7{TIME}'
   morePages: ' &7Type &6/th chests {PAGE} &7for more.'
   noChests: ' &7No word of treasure has been heard.'
   footer: ' &e----------------------------------------'
@@ -15,4 +15,12 @@ topHunters:
   morePages: ' &7Type &6/th top {PAGE} &7for more.'
   noHunters: '&7 No one has found a treasure!'
   footer: ' &e----------------------------------------'
-  
+time:
+  day: 'day'
+  days: 'days'
+  hour: 'hour'
+  hours: 'hours'
+  minute: 'minute'
+  minutes: 'minutes'
+  second: 'second'
+  seconds: 'seconds'
