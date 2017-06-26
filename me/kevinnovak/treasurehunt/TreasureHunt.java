@@ -57,13 +57,17 @@ public class TreasureHunt extends JavaPlugin implements Listener{
         saveDefaultConfig();
         
         // get language file
-        saveResource("language.yml", false);
         languageFile = new File(getDataFolder() + "/language.yml");
+        if (!languageFile.exists()) {
+            saveResource("language.yml", false);
+        }
         languageData = YamlConfiguration.loadConfiguration(languageFile);
         
         // get treasure file
-        saveResource("treasure.yml", false);
         treasureFile = new File(getDataFolder() + "/treasure.yml");
+        if (!treasureFile.exists()) {
+            saveResource("treasure.yml", false);
+        }
         treasureData = YamlConfiguration.loadConfiguration(treasureFile);
         
         Bukkit.getServer().getPluginManager().registerEvents(this, this);
@@ -205,6 +209,25 @@ public class TreasureHunt extends JavaPlugin implements Listener{
         }
     }
     
+    List<TreasureChest> getAvailableChests() {
+    	List<TreasureChest> availableChests = new ArrayList<TreasureChest>();
+    	for (TreasureChest chest : this.chests) {
+    		if (!chest.isOpened()) {
+    			availableChests.add(chest);
+    		}
+    	}
+    	Collections.sort(availableChests, new Comparator<TreasureChest>() {
+    	    public int compare(TreasureChest left, TreasureChest right)  {
+    	        return right.getTimeAlive() - left.getTimeAlive(); // The order depends on the direction of sorting.
+    	    }
+    	});
+    	return availableChests;
+    }
+    
+    int getRemainingTime(TreasureChest chest) {
+    	return this.chestDuration - chest.getTimeAlive();
+    }
+    
     void sortHunters() {
     	Collections.sort(hunters, new Comparator<TreasureHunter>() {
     	    public int compare(TreasureHunter left, TreasureHunter right)  {
@@ -292,7 +315,22 @@ public class TreasureHunt extends JavaPlugin implements Listener{
 			pageNum = 1;
 		}
 		
+		List<TreasureChest> availableChests = getAvailableChests();
 		
+    	player.sendMessage(spawnedChestsHeader);
+    	if (availableChests.size() > 0) {
+        	for (int i=5*(pageNum-1); i<availableChests.size() && i<(5*pageNum); i++) {
+        		String time = Integer.toString(getRemainingTime(availableChests.get(i)));
+        		player.sendMessage(spawnedChestsChestLine.replace("{TIME}", time));
+        	}
+			if (availableChests.size() > 5*pageNum) {
+				int nextPageNum = pageNum + 1;
+				player.sendMessage(spawnedChestsMorePages.replace("{PAGE}", Integer.toString(nextPageNum)));
+			}
+    	} else {
+    		player.sendMessage(spawnedChestsNoChests);
+    	}
+    	player.sendMessage(spawnedChestsFooter);
     }
     
     void printTopHunters(Player player, int pageNum) {
@@ -463,6 +501,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
                 		}
             		}
             		printChests(player, pageNum);
+            		return true;
             	} else {
             		printHelp(player);
             		return true;
