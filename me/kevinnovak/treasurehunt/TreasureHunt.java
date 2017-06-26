@@ -263,7 +263,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     }
     
     void printTopHunters(Player player, int pageNum) {
-		if (pageNum > Math.ceil((double)hunters.size()/5)) {
+		if (pageNum < 1 || pageNum > Math.ceil((double)hunters.size()/5)) {
 			pageNum = 1;
 		}
     	
