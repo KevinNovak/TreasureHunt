@@ -46,7 +46,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
 	private List <TreasureHunter> hunters = new ArrayList<TreasureHunter>();
 	private int spawnTimer;
 	private LanguageManager langMan = new LanguageManager(this);
-	private TimeConverter timeConv;
+	private TimeConverter timeConv = new TimeConverter(langMan.day, langMan.days, langMan.hour, langMan.hours, langMan.minute, langMan.minutes, langMan.second, langMan.seconds);;
 	
     // ======================
     // Enable
@@ -114,8 +114,6 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     	this.maxChests = getConfig().getInt("maxChests");
     	
     	this.dontSpawnOn = getConfig().getIntegerList("dontSpawnOn");
-    	
-    	timeConv = new TimeConverter(langMan.day, langMan.days, langMan.hour, langMan.hours, langMan.minute, langMan.minutes, langMan.second, langMan.seconds);
     }
     
     void saveHuntersFile() {
