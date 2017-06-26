@@ -31,6 +31,8 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     FileConfiguration chestsData = YamlConfiguration.loadConfiguration(chestsFile);
     File huntersFile = new File(getDataFolder() + "/data/hunters.yml");
     FileConfiguration huntersData = YamlConfiguration.loadConfiguration(huntersFile);
+    File treasureFile;
+    FileConfiguration treasureData;
 	
 	// Config
 	private World world;
@@ -52,6 +54,12 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     // ======================
     public void onEnable() {
         saveDefaultConfig();
+        
+        // get treasure file
+        saveResource("treasure.yml", false);
+        treasureFile = new File(getDataFolder() + "/treasure.yml");
+        treasureData = YamlConfiguration.loadConfiguration(treasureFile);
+        
         Bukkit.getServer().getPluginManager().registerEvents(this, this);
         
         loadConfig();
