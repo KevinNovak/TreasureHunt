@@ -15,6 +15,10 @@ public class TimeConverter {
 	}
 	
     String friendlyTime(int initSeconds) {
+    	if (initSeconds == 0) {
+    		return "0 " + this.seconds;
+    	}
+    	
         String init = "";
         
         // days
@@ -58,8 +62,11 @@ public class TimeConverter {
                 init = init + " " + initSeconds + " " + this.second;
             }
         }
+        
         // remove the initial space
-        init = init.substring(1, init.length());
+        if (init.length() > 0) {
+            init = init.substring(1, init.length());
+        }
         return init;
     }
 }
