@@ -262,18 +262,26 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     	return randLocation;
     }
     
-    void printTopHunters(Player player) {
+    void printTopHunters(Player player, int pageNum) {
+		if (pageNum > Math.ceil((double)hunters.size()/5)) {
+			pageNum = 1;
+		}
+    	
     	player.sendMessage(topHuntersHeader);
     	if (hunters.size() > 0) {
         	sortHunters();
-        	for (int i=0; i<hunters.size(); i++) {
+        	for (int i=5*(pageNum-1); i<hunters.size() && i<(5*pageNum); i++) {
         		String name = "Unknown";
         		if (getServer().getOfflinePlayer(hunters.get(i).getID()).getName() != null) {
             		name = getServer().getOfflinePlayer(hunters.get(i).getID()).getName();
         		}
         		String chestsFound = String.valueOf(hunters.get(i).getChestsFound());
-        		player.sendMessage(topHuntersHunterLine.replace("{PLAYER}", name).replace("{CHESTS}", chestsFound));
+        		player.sendMessage(topHuntersHunterLine.replace("{RANK}", Integer.toString(i+1)).replace("{PLAYER}", name).replace("{CHESTS}", chestsFound));
         	}
+			if (hunters.size() > 5*pageNum) {
+				int nextPageNum = pageNum + 1;
+				player.sendMessage(topHuntersMorePages.replace("{PAGE}", Integer.toString(nextPageNum)));
+			}
     	} else {
     		player.sendMessage(topHuntersNoHunters);
     	}
@@ -397,14 +405,28 @@ public class TreasureHunt extends JavaPlugin implements Listener{
             		player.sendMessage(this.tooManyChests);
             	}
                 return true;
-            } else if (args.length == 1) {
+            } else {
             	if (args[0].equalsIgnoreCase("top")) {
-            		printTopHunters(player);
+            		int pageNum = 1;
+            		if (args.length >= 2) {
+                		if (tryParse(args[1]) != null) {
+                			pageNum = tryParse(args[1]);
+                		}
+            		}
+            		printTopHunters(player, pageNum);
             		return true;
             	}
             }
         }
         
 		return false;
+    }
+    
+    public static Integer tryParse(String text) {
+    	try {
+    		return Integer.parseInt(text);
+    	} catch (NumberFormatException e) {
+    		return null;
+    	}
     }
 }

@@ -72,7 +72,7 @@ language:
   tooManyChests: '&e[&6TreasureHunt&e] &7The maximum number of chests are already spawned!'
   topHunters:
     header: ' &e------- &6Treasure Hunt &e- &6Top Hunters &e-------'
-    hunterLine: ' &b{PLAYER} &8- &7{CHESTS}'
+    hunterLine: ' &8{RANK}. &b{PLAYER} &8- &7{CHESTS} chests'
     morePages: ' &7Type &6/th top {PAGE} &7for more.'
     noHunters: '&7 No one has found a treasure!'
     footer: ' &e----------------------------------------'
