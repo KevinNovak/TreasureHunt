@@ -11,11 +11,13 @@ public class TreasureChest {
 	private int timeAlive = 0;
 	private int timeSinceOpened = 0;
 	private boolean opened = false;
-	private String foundBy = "None"; 
+	private String foundBy = "None";
+	private String type = "None";
 	
-	TreasureChest(UUID id, Location location) {
+	TreasureChest(UUID id, Location location, String chestType) {
         this.id = id;
         this.location = location;
+        this.chestType = chestType;
     }
 	
 	TreasureChest(UUID id, Location location, int timeAlive) {
@@ -70,6 +72,14 @@ public class TreasureChest {
 	
 	void setFoundBy(String foundBy) {
 		this.foundBy = foundBy;
+	}
+	
+	String getType() {
+		return this.type;
+	}
+	
+	void setType(String type) {
+		this.type = type;
 	}
 	
 	void spawn() {
