@@ -224,7 +224,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
 	    	} else {
 	    		// TO-DO: get random loot
 	    		UUID id = UUID.randomUUID();
-	    		TreasureChest treasureChest = new TreasureChest(id, treasureLocation);
+	    		TreasureChest treasureChest = new TreasureChest(id, treasureLocation, "None");
 	    		treasureChest.spawn();
 	    		chests.add(treasureChest);
 	    		for (Player player : Bukkit.getOnlinePlayers()) {
