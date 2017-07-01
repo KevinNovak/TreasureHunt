@@ -47,6 +47,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
 	private int spawnTimer;
 	private LanguageManager langMan = new LanguageManager(this);
 	private TimeConverter timeConv = new TimeConverter(langMan.day, langMan.days, langMan.hour, langMan.hours, langMan.minute, langMan.minutes, langMan.second, langMan.seconds);;
+	private LootGenerator lootGen;
 	
     // ======================
     // Enable
@@ -121,6 +122,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
 			saveResource("treasure/rare.yml", false);
 			saveResource("treasure/uncommon.yml", false);
     	}
+    	lootGen = new LootGenerator(treasureDir.listFiles());
     }
     
     void saveHuntersFile() {
