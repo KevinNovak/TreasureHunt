@@ -3,19 +3,17 @@ package me.kevinnovak.treasurehunt;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.bukkit.inventory.ItemStack;
-
 public class TreasureChestType {
 	String name = "None";
 	int weight = 0;
 	int value = 0;
-	List<ItemStack> items = new ArrayList <ItemStack>();
+	List<TreasureChestItem> chestItems = new ArrayList <TreasureChestItem>();
 	
-	TreasureChestType(String name, int weight, int value, List<ItemStack> items) {
+	TreasureChestType(String name, int weight, int value, List<TreasureChestItem> chestItems) {
 		this.name = name;
 		this.weight = weight;
 		this.value = value;
-		this.items = items;
+		this.chestItems = chestItems;
     }
 	
 	String getName() {
@@ -42,8 +40,12 @@ public class TreasureChestType {
 		this.value = value;
 	}
 	
-	List<ItemStack> getItems() {
-		return this.items;
+	List<TreasureChestItem> getChestItems() {
+		return this.chestItems;
+	}
+	
+	void setChestItems(List<TreasureChestItem> chestItems) {
+		this.chestItems = chestItems;
 	}
 
 }

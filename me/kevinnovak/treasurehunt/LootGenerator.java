@@ -34,17 +34,18 @@ public class LootGenerator {
 					int value = data.getInt("value");
 					
 					// Add itemstacks to list of items
-					List<ItemStack> items = new ArrayList<ItemStack>();
+					List<TreasureChestItem> chestItems = new ArrayList<TreasureChestItem>();
 					ConfigurationSection itemsData = data.getConfigurationSection("items");
 					for (String key : itemsData.getKeys(false)) {
 						@SuppressWarnings("deprecation")
 						ItemStack item = new ItemStack(itemsData.getInt(key + ".id"), itemsData.getInt(key + ".amount"));
+						TreasureChestItem chestItem = new TreasureChestItem(item, itemsData.getInt(key + ".value"));
 						// TO-DO: value, item data, enchantments, etc
-						items.add(item);
+						chestItems.add(chestItem);
 					}
 					
 					// Add treasure chest type to list of treasure chest types
-					TreasureChestType treasureChestType = new TreasureChestType(name, weight, value, items);
+					TreasureChestType treasureChestType = new TreasureChestType(name, weight, value, chestItems);
 					treasureChestTypes.add(treasureChestType);
 				}
 			}

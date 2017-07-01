@@ -47,6 +47,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
 	private int spawnTimer;
 	private LanguageManager langMan = new LanguageManager(this);
 	private TimeConverter timeConv = new TimeConverter(langMan.day, langMan.days, langMan.hour, langMan.hours, langMan.minute, langMan.minutes, langMan.second, langMan.seconds);;
+	@SuppressWarnings("unused")
 	private LootGenerator lootGen;
 	
     // ======================
