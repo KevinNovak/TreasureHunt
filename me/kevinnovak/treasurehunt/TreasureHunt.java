@@ -114,14 +114,12 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     
     void copyTreasureFiles() {
     	File treasureDir = new File(getDataFolder() + "/treasure");
-    	if (treasureDir.isDirectory()) {
-    		if (!(treasureDir.list().length > 0)) {
-    			saveResource("treasure/common.yml", false);
-    			saveResource("treasure/epic.yml", false);
-    			saveResource("treasure/legendary.yml", false);
-    			saveResource("treasure/rare.yml", false);
-    			saveResource("treasure/uncommon.yml", false);
-    		}
+    	if (!treasureDir.isDirectory() || !(treasureDir.list().length > 0)) {
+			saveResource("treasure/common.yml", false);
+			saveResource("treasure/epic.yml", false);
+			saveResource("treasure/legendary.yml", false);
+			saveResource("treasure/rare.yml", false);
+			saveResource("treasure/uncommon.yml", false);
     	}
     }
     
