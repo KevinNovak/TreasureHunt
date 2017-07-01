@@ -4,7 +4,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -40,8 +39,8 @@ public class LootGenerator {
 					for (String key : itemsData.getKeys(false)) {
 						@SuppressWarnings("deprecation")
 						ItemStack item = new ItemStack(itemsData.getInt(key + ".id"), itemsData.getInt(key + ".amount"));
+						// TO-DO: value, item data, enchantments, etc
 						items.add(item);
-						Bukkit.getLogger().info(item.getTypeId() + " " + item.getAmount());
 					}
 					
 					// Add treasure chest type to list of treasure chest types
