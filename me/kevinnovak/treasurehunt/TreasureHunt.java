@@ -61,12 +61,8 @@ public class TreasureHunt extends JavaPlugin implements Listener{
         }
         languageData = YamlConfiguration.loadConfiguration(languageFile);
         
-        // get treasure file
-        treasureFile = new File(getDataFolder() + "/treasure.yml");
-        if (!treasureFile.exists()) {
-            saveResource("treasure.yml", false);
-        }
-        treasureData = YamlConfiguration.loadConfiguration(treasureFile);
+        // get treasure files
+        copyTreasureFiles();
         
         Bukkit.getServer().getPluginManager().registerEvents(this, this);
         
@@ -114,6 +110,19 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     	this.maxChests = getConfig().getInt("maxChests");
     	
     	this.dontSpawnOn = getConfig().getIntegerList("dontSpawnOn");
+    }
+    
+    void copyTreasureFiles() {
+    	File treasureDir = new File(getDataFolder() + "/treasure");
+    	if (treasureDir.isDirectory()) {
+    		if (!(treasureDir.list().length > 0)) {
+    			saveResource("treasure/common.yml", false);
+    			saveResource("treasure/epic.yml", false);
+    			saveResource("treasure/legendary.yml", false);
+    			saveResource("treasure/rare.yml", false);
+    			saveResource("treasure/uncommon.yml", false);
+    		}
+    	}
     }
     
     void saveHuntersFile() {
