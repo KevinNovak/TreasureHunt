@@ -1,0 +1,14 @@
+name: 'Uncommon'
+weight: 20
+value: 2000
+items: 
+  item-0:
+    id: 101
+    data: 0
+    amount: 15
+    value: 1991
+  item-1:
+    id: 101
+    data: 0
+    amount: 15
+    value: 1991
