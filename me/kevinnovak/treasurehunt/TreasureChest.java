@@ -17,7 +17,7 @@ public class TreasureChest {
 	TreasureChest(UUID id, Location location, String chestType) {
         this.id = id;
         this.location = location;
-        this.chestType = chestType;
+        this.type = chestType;
     }
 	
 	TreasureChest(UUID id, Location location, int timeAlive) {
