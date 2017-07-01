@@ -4,6 +4,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bukkit.Bukkit;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.inventory.ItemStack;
@@ -32,9 +34,17 @@ public class LootGenerator {
 					int weight = data.getInt("weight");
 					int value = data.getInt("value");
 					
+					// Add itemstacks to list of items
 					List<ItemStack> items = new ArrayList<ItemStack>();
-					// Add items
+					ConfigurationSection itemsData = data.getConfigurationSection("items");
+					for (String key : itemsData.getKeys(false)) {
+						@SuppressWarnings("deprecation")
+						ItemStack item = new ItemStack(itemsData.getInt(key + ".id"), itemsData.getInt(key + ".amount"));
+						items.add(item);
+						Bukkit.getLogger().info(item.getTypeId() + " " + item.getAmount());
+					}
 					
+					// Add treasure chest type to list of treasure chest types
 					TreasureChestType treasureChestType = new TreasureChestType(name, weight, value, items);
 					treasureChestTypes.add(treasureChestType);
 				}
