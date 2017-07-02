@@ -3,19 +3,23 @@ package me.kevinnovak.treasurehunt;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.inventory.ItemStack;
 
 public class LootGenerator {
+	Random rand = new Random();
 	List<TreasureChestType> treasureChestTypes = new ArrayList<TreasureChestType>();
 	int totalWeight = 0;
+	int[] weights;
 	
 	LootGenerator(File[] files) {
 		this.setTreasureChestTypes(files);
-		this.calculateTotalWeight();
+		this.setupWeights();
 	}
 	
 	List<TreasureChestType> getTreasureChestTypes() {
@@ -54,18 +58,40 @@ public class LootGenerator {
 		}
 	}
 	
-	void calculateTotalWeight() {
+	void setupWeights() {
+		this.weights = new int[treasureChestTypes.size() + 1];
+		this.weights[0] = 0;
 		int totalWeight = 0;
-		for (TreasureChestType treasureChestType : treasureChestTypes) {
-			totalWeight = totalWeight + treasureChestType.getWeight();
+		for (int i=0; i<treasureChestTypes.size(); i++) {
+			int weight = treasureChestTypes.get(i).getWeight();
+			totalWeight = totalWeight + weight;
+			this.weights[i+1] = weight + weights[i];
 		}
 		this.totalWeight = totalWeight;
+	}
+	
+	TreasureChestType selectChestType() {
+		for (int i=0; i<weights.length; i++) {
+			Bukkit.getLogger().info("Weights: " + weights[i]);
+		}
+		
+		
+		int randWeight = rand.nextInt(totalWeight); // min 0, max totalWeight-1
+		int i = 0;
+		while (randWeight > weights[i] && randWeight < totalWeight) {
+			i++;
+		}
+		i = i-1;
+		
+		Bukkit.getLogger().info("weight: " + randWeight + " i: " + i + " type: " + treasureChestTypes.get(i).getName());
+		
+		return treasureChestTypes.get(i);
 	}
 	
 	List<ItemStack> generateRandomItems() {
 		List<ItemStack> items = new ArrayList<ItemStack>();
 		
-		
+		TreasureChestType type = this.selectChestType();
 		
 		return items;
 	}

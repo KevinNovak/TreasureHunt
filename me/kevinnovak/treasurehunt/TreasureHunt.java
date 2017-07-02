@@ -465,6 +465,10 @@ public class TreasureHunt extends JavaPlugin implements Listener{
             } else if (args.length > 0) {
         		// th start
         		if (args[0].equalsIgnoreCase("start")) {
+                	
+        			// TEMP
+                	lootGen.selectChestType();
+                	
                 	if (chests.size() < maxChests) {
                     	startHunt();
                 	} else {
