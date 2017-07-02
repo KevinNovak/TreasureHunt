@@ -71,20 +71,12 @@ public class LootGenerator {
 	}
 	
 	TreasureChestType selectChestType() {
-		for (int i=0; i<weights.length; i++) {
-			Bukkit.getLogger().info("Weights: " + weights[i]);
-		}
-		
-		
 		int randWeight = rand.nextInt(totalWeight); // min 0, max totalWeight-1
 		int i = 0;
 		while (randWeight >= weights[i] && randWeight < totalWeight) {
 			i++;
 		}
 		i = i-1;
-		
-		Bukkit.getLogger().info("weight: " + randWeight + " i: " + i + " type: " + treasureChestTypes.get(i).getName());
-		
 		return treasureChestTypes.get(i);
 	}
 	
