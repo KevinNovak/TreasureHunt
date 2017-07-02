@@ -32,6 +32,7 @@ public class LootGenerator {
 		this.treasureChestTypes = treasureChestTypes;
 	}
 	
+	@SuppressWarnings("deprecation")
 	void setTreasureChestTypes(File[] files) {
 		for (File file : files) {
 			if (file.exists()) {
@@ -45,11 +46,19 @@ public class LootGenerator {
 					List<TreasureChestItem> chestItems = new ArrayList<TreasureChestItem>();
 					ConfigurationSection itemsData = data.getConfigurationSection("items");
 					for (String key : itemsData.getKeys(false)) {
-						@SuppressWarnings("deprecation")
-						ItemStack item = new ItemStack(itemsData.getInt(key + ".id"), itemsData.getInt(key + ".amount"));
-						TreasureChestItem chestItem = new TreasureChestItem(item, itemsData.getInt(key + ".value"));
-						// TO-DO: value, item data, enchantments, etc
-						chestItems.add(chestItem);
+						if (itemsData.isSet(key + ".id") && itemsData.isSet(key + ".value")) {
+							int itemID = itemsData.getInt(key + ".id");
+							int itemValue = itemsData.getInt(key + ".value");
+							ItemStack item;
+							if (itemsData.isSet(key + ".amount")) {
+								int itemAmount = itemsData.getInt(key + ".amount");
+								item = new ItemStack(itemID, itemAmount);
+							} else {
+								item = new ItemStack(itemID, 1);
+							}
+							TreasureChestItem chestItem = new TreasureChestItem(item, itemValue);
+							chestItems.add(chestItem);
+						}
 					}
 					
 					// Add treasure chest type to list of treasure chest types
