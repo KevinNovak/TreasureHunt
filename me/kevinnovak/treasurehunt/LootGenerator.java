@@ -83,7 +83,23 @@ public class LootGenerator {
 	List<ItemStack> generateRandomItems() {
 		List<ItemStack> items = new ArrayList<ItemStack>();
 		
-		TreasureChestType type = this.selectChestType();
+		TreasureChestType chestType = this.selectChestType();
+		List<TreasureChestItem> chestItems = chestType.getChestItems();
+		int remainingValue = chestType.getValue();
+		
+		int failedAttempts = 0;
+		while (remainingValue > 0 && items.size() < 27 && failedAttempts < 3000) {
+			int randInt = rand.nextInt(chestItems.size());
+			TreasureChestItem item = chestItems.get(randInt);
+			int itemValue = item.getValue();
+			if (itemValue <= remainingValue) {
+				failedAttempts = 0;
+				remainingValue = remainingValue - itemValue;
+				items.add(item.getItem());
+			} else {
+				failedAttempts++;
+			}
+		}
 		
 		return items;
 	}
