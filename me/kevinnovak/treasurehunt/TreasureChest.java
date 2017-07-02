@@ -15,6 +15,7 @@ public class TreasureChest {
 	private boolean opened = false;
 	private String foundBy = "None";
 	private String type = "None";
+	private String closestPlayer = "None";
 	
 	TreasureChest(UUID id, Location location, String type) {
         this.id = id;
@@ -83,6 +84,14 @@ public class TreasureChest {
 	
 	void setType(String type) {
 		this.type = type;
+	}
+	
+	String getClosestPlayer() {
+		return this.closestPlayer;
+	}
+	
+	void setClosestPlayer(String closestPlayer) {
+		this.closestPlayer = closestPlayer;
 	}
 	
 	void spawn(ItemStack[] items) {
