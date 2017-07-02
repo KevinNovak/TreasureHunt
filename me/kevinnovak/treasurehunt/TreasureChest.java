@@ -101,8 +101,10 @@ public class TreasureChest {
 	}
 	
 	void despawn() {
-		Chest chest = (Chest) this.location.getBlock().getState();
-		chest.getInventory().clear();
-		this.location.getBlock().setType(Material.AIR);
+		if (this.location.getBlock().getType() == Material.CHEST) {
+			Chest chest = (Chest) this.location.getBlock().getState();
+			chest.getInventory().clear();
+			this.location.getBlock().setType(Material.AIR);
+		}
 	}
 }
