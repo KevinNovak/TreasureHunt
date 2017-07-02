@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -70,20 +69,20 @@ public class LootGenerator {
 		this.totalWeight = totalWeight;
 	}
 	
-	TreasureChestType selectChestType() {
+	int selectChestType() {
 		int randWeight = rand.nextInt(totalWeight); // min 0, max totalWeight-1
 		int i = 0;
 		while (randWeight >= weights[i] && randWeight < totalWeight) {
 			i++;
 		}
 		i = i-1;
-		return treasureChestTypes.get(i);
+		return i;
 	}
 	
-	List<ItemStack> generateRandomItems() {
+	List<ItemStack> generateRandomItems(int i) {
 		List<ItemStack> items = new ArrayList<ItemStack>();
 		
-		TreasureChestType chestType = this.selectChestType();
+		TreasureChestType chestType = this.treasureChestTypes.get(i);
 		List<TreasureChestItem> chestItems = chestType.getChestItems();
 		int remainingValue = chestType.getValue();
 		
@@ -102,5 +101,9 @@ public class LootGenerator {
 		}
 		
 		return items;
+	}
+	
+	String getChestTypeName(int i) {
+		return this.treasureChestTypes.get(i).getName();
 	}
 }

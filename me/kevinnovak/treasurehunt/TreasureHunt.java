@@ -22,6 +22,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryOpenEvent;
 import org.bukkit.event.inventory.InventoryType;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitScheduler;
 
@@ -166,6 +167,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     	for (TreasureChest chest : chests) {
     		if (!chest.isOpened()) {
     			String id = chest.getID().toString();
+        		chestsData.set(id + ".type", chest.getType());
         		chestsData.set(id + ".location.world", chest.getLocation().getWorld().getName());
         		chestsData.set(id + ".location.xPos", chest.getLocation().getBlockX());
         		chestsData.set(id + ".location.yPos", chest.getLocation().getBlockY());
@@ -182,6 +184,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
         if (chestsFile.exists()) {
         	Set<String> keys = chestsData.getKeys(false);
         	for (String key : keys) {
+        		String type = chestsData.getString(key + ".type");
         		String worldString = chestsData.getString(key + ".location.world");
         		int xPos = chestsData.getInt(key + ".location.xPos");
         		int yPos = chestsData.getInt(key + ".location.yPos");
@@ -190,7 +193,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
         		UUID id = UUID.fromString(key);
         		World world = getServer().getWorld(worldString);
         		Location location = new Location(world, xPos, yPos, zPos);
-        		TreasureChest treasureChest = new TreasureChest(id, location, timeAlive);
+        		TreasureChest treasureChest = new TreasureChest(id, location, type, timeAlive);
         		chests.add(treasureChest);
         		chestsData.set(key, null);
         	}
@@ -234,8 +237,15 @@ public class TreasureHunt extends JavaPlugin implements Listener{
 	    	} else {
 	    		// TO-DO: get random loot
 	    		UUID id = UUID.randomUUID();
-	    		TreasureChest treasureChest = new TreasureChest(id, treasureLocation, "None");
-	    		treasureChest.spawn();
+	    		
+        		int chestTypeNum = lootGen.selectChestType();
+        		String type = lootGen.getChestTypeName(chestTypeNum);
+        		List<ItemStack> items = lootGen.generateRandomItems(chestTypeNum);
+        		ItemStack[] itemsArray = new ItemStack[items.size()];
+        		itemsArray = items.toArray(itemsArray);
+	    		TreasureChest treasureChest = new TreasureChest(id, treasureLocation, type);
+	    		treasureChest.spawn(itemsArray);
+	    		
 	    		chests.add(treasureChest);
 	    		for (Player player : Bukkit.getOnlinePlayers()) {
 	    			player.sendMessage(langMan.chestSpawned);
@@ -465,10 +475,6 @@ public class TreasureHunt extends JavaPlugin implements Listener{
             } else if (args.length > 0) {
         		// th start
         		if (args[0].equalsIgnoreCase("start")) {
-                	
-        			// TEMP
-                	lootGen.selectChestType();
-                	
                 	if (chests.size() < maxChests) {
                     	startHunt();
                 	} else {

@@ -1,9 +1,12 @@
 package me.kevinnovak.treasurehunt;
 
+import java.util.List;
 import java.util.UUID;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.block.Chest;
+import org.bukkit.inventory.ItemStack;
 
 public class TreasureChest {
 	private UUID id;
@@ -20,7 +23,7 @@ public class TreasureChest {
         this.type = chestType;
     }
 	
-	TreasureChest(UUID id, Location location, int timeAlive) {
+	TreasureChest(UUID id, Location location, String chestType, int timeAlive) {
 		this.id = id;
         this.location = location;
         this.timeAlive = timeAlive;
@@ -82,9 +85,10 @@ public class TreasureChest {
 		this.type = type;
 	}
 	
-	void spawn() {
+	void spawn(ItemStack[] items) {
 		this.location.getBlock().setType(Material.CHEST);
-		
+		Chest chest = (Chest) this.location.getBlock().getState();
+		chest.getInventory().setContents(items);
 	}
 	
 	void despawn() {

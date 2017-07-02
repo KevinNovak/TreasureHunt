@@ -3,12 +3,12 @@ weight: 60
 value: 1000
 items: 
   item-0:
-    id: 101
+    id: 3
     data: 0
-    amount: 15
-    value: 1991
+    amount: 64
+    value: 64
   item-1:
-    id: 101
+    id: 265
     data: 0
-    amount: 15
-    value: 1991
+    amount: 16
+    value: 160
