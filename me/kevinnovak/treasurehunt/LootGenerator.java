@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -41,22 +42,30 @@ public class LootGenerator {
 					String name = colorConv.convert(data.getString("name") + "&r");
 					int weight = data.getInt("weight");
 					int value = data.getInt("value");
-					
 					// Add itemstacks to list of items
 					List<TreasureChestItem> chestItems = new ArrayList<TreasureChestItem>();
 					ConfigurationSection itemsData = data.getConfigurationSection("items");
 					for (String key : itemsData.getKeys(false)) {
 						if (itemsData.isSet(key + ".id") && itemsData.isSet(key + ".value")) {
-							int itemID = itemsData.getInt(key + ".id");
-							int itemValue = itemsData.getInt(key + ".value");
-							int itemAmount = 1;
+							// get id and data
+							String itemIDString = itemsData.getString(key + ".id");
+							String[] itemIDArray = itemIDString.split("-");
+							int itemID = Integer.parseInt(itemIDArray[0]);
 							int itemData = 0;
+							Bukkit.getLogger().info("Length: " + itemIDArray.length);
+							if (itemIDArray.length > 1) {
+								itemData = Integer.parseInt(itemIDArray[1]);
+							}
+							
+							// get value
+							int itemValue = itemsData.getInt(key + ".value");
+							
+							// get amount
+							int itemAmount = 1;
 							if (itemsData.isSet(key + ".amount")) {
 								itemAmount = itemsData.getInt(key + ".amount");
 							}
-							if (itemsData.isSet(key + ".data")) {
-								itemData = itemsData.getInt(key + ".data");
-							}
+							
 							ItemStack item = new ItemStack(itemID, itemAmount, (byte) itemData); 
 							TreasureChestItem chestItem = new TreasureChestItem(item, itemValue);
 							chestItems.add(chestItem);
