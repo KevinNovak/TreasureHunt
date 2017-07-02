@@ -51,4 +51,12 @@ public class LootGenerator {
 			}
 		}
 	}
+	
+	List<ItemStack> generateRandomItems() {
+		List<ItemStack> items = new ArrayList<ItemStack>();
+		
+		
+		
+		return items;
+	}
 }
