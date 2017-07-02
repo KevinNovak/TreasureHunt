@@ -64,3 +64,8 @@ dontSpawnOn:
 - 143
 - 175
 - 209
+
+protectAgainst:
+  break: true
+  burn: true
+  explode: true

@@ -47,6 +47,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
 	private int spawnInterval, chestDuration, openedChestDuration, maxSpawnAttempts, maxFitItemAttempts;
 	private int minPlayersOnline, maxChests;
 	private List<Integer> dontSpawnOn;
+	private boolean protectAgainstBreak, protectAgainstBurn, protectAgainstExplode;
 	
 	// Plugin
 	private List <TreasureChest> chests = new ArrayList<TreasureChest>();
@@ -119,6 +120,10 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     	this.maxChests = getConfig().getInt("maxChests");
     	
     	this.dontSpawnOn = getConfig().getIntegerList("dontSpawnOn");
+    	
+    	this.protectAgainstBreak = getConfig().getBoolean("protectAgainst.break");
+    	this.protectAgainstBurn = getConfig().getBoolean("protectAgainst.burn");
+    	this.protectAgainstExplode = getConfig().getBoolean("protectAgainst.explode");
     }
     
     void copyTreasureFiles() {
@@ -454,43 +459,10 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     
     @EventHandler
     public void onBlockBreak(BlockBreakEvent e) {
-    	if (e.getBlock().getType() == Material.CHEST) {
-    		for (TreasureChest chest : chests) {
-    			if (chest.getLocation().equals(e.getBlock().getLocation())) {
-    				e.setCancelled(true);
-    			}
-    		}
-    	}
-    }
-    
-    @EventHandler
-    public void onBlockBurn(BlockBurnEvent e) {
-    	if (e.getBlock().getType() == Material.CHEST) {
-    		for (TreasureChest chest : chests) {
-    			if (chest.getLocation().equals(e.getBlock().getLocation())) {
-    				e.setCancelled(true);
-    			}
-    		}
-    	}
-    }
-    
-    @EventHandler
-    public void onBlockIgnite(BlockIgniteEvent e) {
-    	if (e.getBlock().getType() == Material.CHEST) {
-    		for (TreasureChest chest : chests) {
-    			if (chest.getLocation().equals(e.getBlock().getLocation())) {
-    				e.setCancelled(true);
-    			}
-    		}
-    	}
-    }
-    
-    @EventHandler
-    public void onBlockExplode(BlockExplodeEvent e) {
-    	for (Block block : e.blockList()) {
-        	if (block.getType() == Material.CHEST) {
+    	if (this.protectAgainstBreak) {
+        	if (e.getBlock().getType() == Material.CHEST) {
         		for (TreasureChest chest : chests) {
-        			if (chest.getLocation().equals(block.getLocation())) {
+        			if (chest.getLocation().equals(e.getBlock().getLocation())) {
         				e.setCancelled(true);
         			}
         		}
@@ -499,14 +471,57 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     }
     
     @EventHandler
+    public void onBlockBurn(BlockBurnEvent e) {
+    	if (this.protectAgainstBurn) {
+	    	if (e.getBlock().getType() == Material.CHEST) {
+	    		for (TreasureChest chest : chests) {
+	    			if (chest.getLocation().equals(e.getBlock().getLocation())) {
+	    				e.setCancelled(true);
+	    			}
+	    		}
+	    	}
+    	}
+    }
+    
+    @EventHandler
+    public void onBlockIgnite(BlockIgniteEvent e) {
+    	if (this.protectAgainstBurn) {
+	    	if (e.getBlock().getType() == Material.CHEST) {
+	    		for (TreasureChest chest : chests) {
+	    			if (chest.getLocation().equals(e.getBlock().getLocation())) {
+	    				e.setCancelled(true);
+	    			}
+	    		}
+	    	}
+    	}
+    }
+    
+    @EventHandler
+    public void onBlockExplode(BlockExplodeEvent e) {
+    	if (this.protectAgainstExplode) {
+	    	for (Block block : e.blockList()) {
+	        	if (block.getType() == Material.CHEST) {
+	        		for (TreasureChest chest : chests) {
+	        			if (chest.getLocation().equals(block.getLocation())) {
+	        				e.setCancelled(true);
+	        			}
+	        		}
+	        	}
+	    	}
+    	}
+    }
+    
+    @EventHandler
     public void onEntityExplode(EntityExplodeEvent e) {
-    	for (Block block : e.blockList()) {
-        	if (block.getType() == Material.CHEST) {
-        		for (TreasureChest chest : chests) {
-        			if (chest.getLocation().equals(block.getLocation())) {
-        				e.setCancelled(true);
-        			}
-        		}
+    	if (this.protectAgainstExplode) {
+        	for (Block block : e.blockList()) {
+            	if (block.getType() == Material.CHEST) {
+            		for (TreasureChest chest : chests) {
+            			if (chest.getLocation().equals(block.getLocation())) {
+            				e.setCancelled(true);
+            			}
+            		}
+            	}
         	}
     	}
     }
