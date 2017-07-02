@@ -12,6 +12,7 @@ import org.bukkit.inventory.ItemStack;
 
 public class LootGenerator {
 	Random rand = new Random();
+	private ColorConverter colorConv = new ColorConverter();
 	List<TreasureChestType> treasureChestTypes = new ArrayList<TreasureChestType>();
 	int totalWeight = 0;
 	int[] weights;
@@ -34,7 +35,7 @@ public class LootGenerator {
 			if (file.exists()) {
 				FileConfiguration data = YamlConfiguration.loadConfiguration(file);
 				if (data.isSet("name") && data.isSet("weight") && data.isSet("value") && data.isSet("items")) {
-					String name = data.getString("name");
+					String name = colorConv.convert(data.getString("name") + "&r");
 					int weight = data.getInt("weight");
 					int value = data.getInt("value");
 					

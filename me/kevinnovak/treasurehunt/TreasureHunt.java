@@ -247,7 +247,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
 	    		
 	    		chests.add(treasureChest);
 	    		for (Player player : Bukkit.getOnlinePlayers()) {
-	    			player.sendMessage(langMan.chestSpawned);
+	    			player.sendMessage(this.langMan.chestSpawned.replace("{RARITY}", type));
 	    		}
 	    		Bukkit.getServer().getLogger().info("[TreasureHunt] Chest spawned at " + treasureLocation.getBlockX() + ", " + treasureLocation.getBlockY() + ", " + treasureLocation.getBlockZ());
 	    	}
