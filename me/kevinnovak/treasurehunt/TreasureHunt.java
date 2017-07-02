@@ -382,7 +382,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
         			chest.despawn();
         			toRemove.add(chest);
         			for (Player player : Bukkit.getOnlinePlayers()) {
-        				player.sendMessage(langMan.chestDespawned);
+        				player.sendMessage(langMan.chestDespawned.replace("{RARITY}", chest.getType()));
         			}
         		}
     		}
