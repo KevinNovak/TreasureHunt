@@ -228,7 +228,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     }
     
     void startHunt() {
-		if (chests.size() < maxChests) {
+		if (this.getAvailableChests().size() < maxChests) {
 	    	Location treasureLocation = getTreasureLocation();
 	    	if (treasureLocation.getBlockX() == -1 && treasureLocation.getBlockY() == -1 && treasureLocation.getBlockZ() == -1) {
 	    		// TO-DO: Annouce to only admins
@@ -309,17 +309,17 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     }
     
     void printChests(Player player, int pageNum) {
-		if (pageNum < 1 || pageNum > Math.ceil((double)chests.size()/5)) {
+		List<TreasureChest> availableChests = getAvailableChests();
+    	
+		if (pageNum < 1 || pageNum > Math.ceil((double)availableChests.size()/5)) {
 			pageNum = 1;
 		}
-		
-		List<TreasureChest> availableChests = getAvailableChests();
 		
     	player.sendMessage(langMan.spawnedChestsHeader);
     	if (availableChests.size() > 0) {
         	for (int i=5*(pageNum-1); i<availableChests.size() && i<(5*pageNum); i++) {
         		String time = timeConv.friendlyTime(getRemainingTime(availableChests.get(i)));
-        		player.sendMessage(langMan.spawnedChestsChestLine.replace("{RANK}", Integer.toString(i+1)).replace("{TIME}", time));
+        		player.sendMessage(langMan.spawnedChestsChestLine.replace("{RARITY}", availableChests.get(i).getType()).replace("{RANK}", Integer.toString(i+1)).replace("{TIME}", time));
         	}
 			if (availableChests.size() > 5*pageNum) {
 				int nextPageNum = pageNum + 1;
@@ -399,7 +399,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
                 spawnTimer++;
                 if (spawnTimer > spawnInterval) {
                 	if (getServer().getOnlinePlayers().size() >= minPlayersOnline) {
-                		if (chests.size() < maxChests) {
+                		if (getAvailableChests().size() < maxChests) {
                 			startHunt();
                 		}
                 	}
@@ -430,7 +430,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
         					}
         					chest.setFoundBy(player.getName());
         					for (Player p : Bukkit.getOnlinePlayers()) {
-        						p.sendMessage(langMan.chestFound.replace("{PLAYER}", player.getName()));
+        						p.sendMessage(langMan.chestFound.replace("{PLAYER}", player.getName()).replace("{RARITY}", chest.getType()));
         					}
     					} else {
     						String foundBy = chest.getFoundBy();
@@ -474,7 +474,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
             } else if (args.length > 0) {
         		// th start
         		if (args[0].equalsIgnoreCase("start")) {
-                	if (chests.size() < maxChests) {
+                	if (this.getAvailableChests().size() < maxChests) {
                     	startHunt();
                 	} else {
                 		player.sendMessage(langMan.tooManyChests);

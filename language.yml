@@ -1,11 +1,11 @@
 chestSpawned: '&e[&6TreasureHunt&e] &fWord of {RARITY} treasure spreads across the land!'
 chestDespawned: '&e[&6TreasureHunt&e] &fA chest has faded without being found!'
-chestFound: '&e[&6TreasureHunt&e] &b{PLAYER} &fhas struck treasure!'
+chestFound: '&e[&6TreasureHunt&e] &b{PLAYER} &fhas struck {RARITY} treasure!'
 alreadyFound: '&e[&6TreasureHunt&e] &7This chest has already been found by &b{PLAYER}&7!'
 tooManyChests: '&e[&6TreasureHunt&e] &7The maximum number of chests are already spawned!'
 spawnedChests:
   header: ' &e--------- &6Treasure Hunt &e- &6Chests &e---------'
-  chestLine: ' &8{RANK}. &7{TIME}'
+  chestLine: ' &8{RANK}. {RARITY} &8- &7{TIME}'
   morePages: ' &7Type &6/th chests {PAGE} &7for more.'
   noChests: ' &7No word of treasure has been heard.'
   footer: ' &e----------------------------------------'
