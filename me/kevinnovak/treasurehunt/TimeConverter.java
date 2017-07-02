@@ -32,8 +32,9 @@ public class TimeConverter {
             }
         }
         
+
         // hours
-        if ((initSeconds/3600) >= 1) {
+        else if ((initSeconds/3600) >= 1) {
             int hours = initSeconds/3600;
             initSeconds = initSeconds%3600;
             if (hours > 1) {
@@ -44,7 +45,7 @@ public class TimeConverter {
         }
         
         // minutes
-        if ((initSeconds/60) >= 1) {
+        else if ((initSeconds/60) >= 1) {
             int minutes = initSeconds/60;
             initSeconds = initSeconds%60;
             if (minutes > 1) {
@@ -55,7 +56,7 @@ public class TimeConverter {
         }
         
         // seconds
-        if (initSeconds >= 1) {
+        else if (initSeconds >= 1) {
             if (initSeconds > 1) {
                 init = init + " " + initSeconds + " " + this.seconds;
             } else {
