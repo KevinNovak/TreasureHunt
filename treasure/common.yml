@@ -2,63 +2,70 @@ name: '&bCommon'
 weight: 60
 value: 1000
 items:
-  item-0:
+  iron_shovel:
     id: 256
-    data: 0
-    amount: 1
     value: 10
-  item-1:
+  iron_pickaxe:
     id: 257
-    data: 0
-    amount: 1
     value: 30
-  item-2:
+  iron_axe:
     id: 258
-    data: 0
-    amount: 1
     value: 30
-  item-3:
+  iron_sword:
     id: 267
-    data: 0
-    amount: 1
     value: 20
-  item-4:
+  iron_hoe:
     id: 292
-    data: 0
-    amount: 1
     value: 10
-  item-5:
+  iron_ingot:
     id: 265
-    data: 0
     amount: 16
     value: 160
-  item-6:
+  iron_helmet:
     id: 306
-    data: 0
-    amount: 1
     value: 50
-  item-7:
+  iron_chestplate:
     id: 307
-    data: 0
-    amount: 1
     value: 80
-  item-8:
+  iron_leggings:
     id: 308
-    data: 0
-    amount: 1
     value: 70
-  item-9:
+  iron_boots:
     id: 309
-    data: 0
-    amount: 1
     value: 40
-  item-10:
+  iron_ingot:
     id: 265
-    data: 0
     amount: 16
     value: 160
-  item-11:
+  diamond:
     id: 264
-    data: 0
     amount: 2
     value: 240
+  cookie:
+    id: 357
+    amount: 16
+    value: 60
+  glowstone:
+    id: 89
+    amount: 16
+    value: 120
+  obsidian:
+    id: 49
+    amount: 16
+    value: 320
+  gold_ingot:
+    id: 266
+    amount: 16
+    value: 160
+  steak:
+    id: 364
+    amount: 16
+    value: 80
+  ender_pearl:
+    id: 368
+    amount: 8
+    value: 240
+  redstone:
+    id: 331
+    amount: 16
+    value: 100
