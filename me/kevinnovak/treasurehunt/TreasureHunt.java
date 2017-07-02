@@ -13,6 +13,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
+import org.bukkit.block.Block;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -20,6 +21,11 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockBurnEvent;
+import org.bukkit.event.block.BlockExplodeEvent;
+import org.bukkit.event.block.BlockIgniteEvent;
+import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.ItemStack;
@@ -443,6 +449,65 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     				}
     			}
     		}
+    	}
+    }
+    
+    @EventHandler
+    public void onBlockBreak(BlockBreakEvent e) {
+    	if (e.getBlock().getType() == Material.CHEST) {
+    		for (TreasureChest chest : chests) {
+    			if (chest.getLocation().equals(e.getBlock().getLocation())) {
+    				e.setCancelled(true);
+    			}
+    		}
+    	}
+    }
+    
+    @EventHandler
+    public void onBlockBurn(BlockBurnEvent e) {
+    	if (e.getBlock().getType() == Material.CHEST) {
+    		for (TreasureChest chest : chests) {
+    			if (chest.getLocation().equals(e.getBlock().getLocation())) {
+    				e.setCancelled(true);
+    			}
+    		}
+    	}
+    }
+    
+    @EventHandler
+    public void onBlockIgnite(BlockIgniteEvent e) {
+    	if (e.getBlock().getType() == Material.CHEST) {
+    		for (TreasureChest chest : chests) {
+    			if (chest.getLocation().equals(e.getBlock().getLocation())) {
+    				e.setCancelled(true);
+    			}
+    		}
+    	}
+    }
+    
+    @EventHandler
+    public void onBlockExplode(BlockExplodeEvent e) {
+    	for (Block block : e.blockList()) {
+        	if (block.getType() == Material.CHEST) {
+        		for (TreasureChest chest : chests) {
+        			if (chest.getLocation().equals(block.getLocation())) {
+        				e.setCancelled(true);
+        			}
+        		}
+        	}
+    	}
+    }
+    
+    @EventHandler
+    public void onEntityExplode(EntityExplodeEvent e) {
+    	for (Block block : e.blockList()) {
+        	if (block.getType() == Material.CHEST) {
+        		for (TreasureChest chest : chests) {
+        			if (chest.getLocation().equals(block.getLocation())) {
+        				e.setCancelled(true);
+        			}
+        		}
+        	}
     	}
     }
     
