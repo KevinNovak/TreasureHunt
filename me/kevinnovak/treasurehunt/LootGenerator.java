@@ -78,7 +78,7 @@ public class LootGenerator {
 		
 		int randWeight = rand.nextInt(totalWeight); // min 0, max totalWeight-1
 		int i = 0;
-		while (randWeight > weights[i] && randWeight < totalWeight) {
+		while (randWeight >= weights[i] && randWeight < totalWeight) {
 			i++;
 		}
 		i = i-1;
