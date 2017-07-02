@@ -16,15 +16,16 @@ public class TreasureChest {
 	private String foundBy = "None";
 	private String type = "None";
 	
-	TreasureChest(UUID id, Location location, String chestType) {
+	TreasureChest(UUID id, Location location, String type) {
         this.id = id;
         this.location = location;
-        this.type = chestType;
+        this.type = type;
     }
 	
-	TreasureChest(UUID id, Location location, String chestType, int timeAlive) {
+	TreasureChest(UUID id, Location location, String type, int timeAlive) {
 		this.id = id;
         this.location = location;
+        this.type = type;
         this.timeAlive = timeAlive;
     }
 	
