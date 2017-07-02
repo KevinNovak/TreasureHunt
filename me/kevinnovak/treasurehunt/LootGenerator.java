@@ -16,10 +16,12 @@ public class LootGenerator {
 	List<TreasureChestType> treasureChestTypes = new ArrayList<TreasureChestType>();
 	int totalWeight = 0;
 	int[] weights;
+	int maxFitItemAttempts = 0;
 	
-	LootGenerator(File[] files) {
+	LootGenerator(File[] files, int maxFitItemAttempts) {
 		this.setTreasureChestTypes(files);
 		this.setupWeights();
+		this.maxFitItemAttempts = maxFitItemAttempts;
 	}
 	
 	List<TreasureChestType> getTreasureChestTypes() {
@@ -88,7 +90,7 @@ public class LootGenerator {
 		int remainingValue = chestType.getValue();
 		
 		int failedAttempts = 0;
-		while (remainingValue > 0 && items.size() < 27 && failedAttempts < 3000) {
+		while (remainingValue > 0 && items.size() < 27 && failedAttempts < maxFitItemAttempts) {
 			int randInt = rand.nextInt(chestItems.size());
 			TreasureChestItem item = chestItems.get(randInt);
 			int itemValue = item.getValue();

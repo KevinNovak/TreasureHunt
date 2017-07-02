@@ -38,7 +38,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
 	// Config
 	private World world;
 	private int minX, maxX, minY, maxY, minZ, maxZ;
-	private int spawnInterval, chestDuration, openedChestDuration, maxSpawnAttempts;
+	private int spawnInterval, chestDuration, openedChestDuration, maxSpawnAttempts, maxFitItemAttempts;
 	private int minPlayersOnline, maxChests;
 	private List<Integer> dontSpawnOn;
 	
@@ -63,13 +63,13 @@ public class TreasureHunt extends JavaPlugin implements Listener{
         }
         languageData = YamlConfiguration.loadConfiguration(languageFile);
         
-        // get treasure files
-        copyTreasureFiles();
-        
         Bukkit.getServer().getPluginManager().registerEvents(this, this);
         
         loadConfig();
         Bukkit.getServer().getLogger().info("[TreasureHunt] Config loaded.");
+        
+        // get treasure files
+        copyTreasureFiles();
         
         Bukkit.getServer().getLogger().info("[TreasureHunt] Loading treasure chests.");
         loadChestsFromFile();
@@ -108,6 +108,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     	this.chestDuration = getConfig().getInt("chestDuration");
     	this.openedChestDuration = getConfig().getInt("openedChestDuration");
     	this.maxSpawnAttempts = getConfig().getInt("maxSpawnAttempts");
+    	this.maxFitItemAttempts = getConfig().getInt("maxFitItemAttempts");
     	this.minPlayersOnline = getConfig().getInt("minPlayersOnline");
     	this.maxChests = getConfig().getInt("maxChests");
     	
@@ -123,7 +124,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
 			saveResource("treasure/rare.yml", false);
 			saveResource("treasure/uncommon.yml", false);
     	}
-    	lootGen = new LootGenerator(treasureDir.listFiles());
+    	lootGen = new LootGenerator(treasureDir.listFiles(), this.maxFitItemAttempts);
     }
     
     void saveHuntersFile() {
