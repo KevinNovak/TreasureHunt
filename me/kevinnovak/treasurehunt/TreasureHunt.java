@@ -42,6 +42,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     FileConfiguration languageData, treasureData;
 	
 	// Config
+    private int huntItem;
 	private World world;
 	private int minX, maxX, minY, maxY, minZ, maxZ;
 	private int spawnInterval, chestDuration, openedChestDuration, maxSpawnAttempts, maxFitItemAttempts;
@@ -101,6 +102,8 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     }
     
     void loadConfig() {
+    	this.huntItem = getConfig().getInt("huntItem");
+    	
     	String worldString = getConfig().getString("huntArea.world");
     	this.world = getServer().getWorld(worldString);
     	

@@ -1,6 +1,8 @@
 # Configuration file for TreasureHunt
 # Created by KevinNovak
 
+huntItem: 358
+
 huntArea:
   world: 'world'
   x-Range:
