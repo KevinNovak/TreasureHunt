@@ -219,11 +219,13 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     			availableChests.add(chest);
     		}
     	}
-    	Collections.sort(availableChests, new Comparator<TreasureChest>() {
-    	    public int compare(TreasureChest left, TreasureChest right)  {
-    	        return right.getTimeAlive() - left.getTimeAlive(); // The order depends on the direction of sorting.
-    	    }
-    	});
+    	if (availableChests.size() > 1) {
+        	Collections.sort(availableChests, new Comparator<TreasureChest>() {
+        	    public int compare(TreasureChest left, TreasureChest right)  {
+        	        return right.getTimeAlive() - left.getTimeAlive(); // The order depends on the direction of sorting.
+        	    }
+        	});
+    	}
     	return availableChests;
     }
     
