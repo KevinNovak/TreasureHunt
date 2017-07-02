@@ -49,13 +49,15 @@ public class LootGenerator {
 						if (itemsData.isSet(key + ".id") && itemsData.isSet(key + ".value")) {
 							int itemID = itemsData.getInt(key + ".id");
 							int itemValue = itemsData.getInt(key + ".value");
-							ItemStack item;
+							int itemAmount = 1;
+							int itemData = 0;
 							if (itemsData.isSet(key + ".amount")) {
-								int itemAmount = itemsData.getInt(key + ".amount");
-								item = new ItemStack(itemID, itemAmount);
-							} else {
-								item = new ItemStack(itemID, 1);
+								itemAmount = itemsData.getInt(key + ".amount");
 							}
+							if (itemsData.isSet(key + ".data")) {
+								itemData = itemsData.getInt(key + ".data");
+							}
+							ItemStack item = new ItemStack(itemID, itemAmount, (byte) itemData); 
 							TreasureChestItem chestItem = new TreasureChestItem(item, itemValue);
 							chestItems.add(chestItem);
 						}
