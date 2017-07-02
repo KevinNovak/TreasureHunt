@@ -1,6 +1,5 @@
 package me.kevinnovak.treasurehunt;
 
-import java.util.List;
 import java.util.UUID;
 
 import org.bukkit.Location;
