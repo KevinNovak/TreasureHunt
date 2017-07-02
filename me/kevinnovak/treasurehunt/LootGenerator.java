@@ -11,9 +11,11 @@ import org.bukkit.inventory.ItemStack;
 
 public class LootGenerator {
 	List<TreasureChestType> treasureChestTypes = new ArrayList<TreasureChestType>();
+	int totalWeight = 0;
 	
 	LootGenerator(File[] files) {
 		this.setTreasureChestTypes(files);
+		this.calculateTotalWeight();
 	}
 	
 	List<TreasureChestType> getTreasureChestTypes() {
@@ -50,6 +52,14 @@ public class LootGenerator {
 				}
 			}
 		}
+	}
+	
+	void calculateTotalWeight() {
+		int totalWeight = 0;
+		for (TreasureChestType treasureChestType : treasureChestTypes) {
+			totalWeight = totalWeight + treasureChestType.getWeight();
+		}
+		this.totalWeight = totalWeight;
 	}
 	
 	List<ItemStack> generateRandomItems() {
