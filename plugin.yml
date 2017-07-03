@@ -20,3 +20,6 @@ permissions:
     treasurehunt.command.top:
         description: Shows top treasure hunters.
         default: true
+    treasurehunt.command.chests:
+        description: Shows available treasure chests.
+        default: true
