@@ -56,10 +56,11 @@ public class TreasureHunt extends JavaPlugin implements Listener{
 	private List <TreasureChest> chests = new ArrayList<TreasureChest>();
 	private List <TreasureHunter> hunters = new ArrayList<TreasureHunter>();
 	private int spawnTimer;
+	private PermissionManager perm = new PermissionManager();
 	private LanguageManager langMan = new LanguageManager(this);
 	private TimeConverter timeConv = new TimeConverter(langMan.day, langMan.days, langMan.hour, langMan.hours, langMan.minute, langMan.minutes, langMan.second, langMan.seconds);;
 	private LootGenerator lootGen;
-	private PermissionManager perm = new PermissionManager();
+	private HelpMenu helpMenu = new HelpMenu(this.perm, this.langMan);
 	
     // ======================
     // Enable
@@ -323,11 +324,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     	Location randLocation = new Location(this.world, randX, randY, randZ);
     	
     	return randLocation;
-    }
-    
-    void printHelp(Player player) {
-    	player.sendMessage("Treasure Hunt Help");
-    }
+    }    
     
     void printChests(Player player, int pageNum) {
 		List<TreasureChest> availableChests = getAvailableChests();
@@ -609,7 +606,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
         if(cmd.getName().equalsIgnoreCase("th")) {
             // th
         	if (args.length == 0) {
-            	printHelp(player);
+            	helpMenu.print(player, 1);
             	return true;
             } else if (args.length > 0) {
         		// th start
@@ -657,7 +654,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
         				return true;
             		}
             	} else {
-            		printHelp(player);
+            		helpMenu.print(player, 1);
             		return true;
             	}
             }
