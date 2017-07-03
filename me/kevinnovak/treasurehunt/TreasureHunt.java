@@ -629,14 +629,19 @@ public class TreasureHunt extends JavaPlugin implements Listener{
             	}
         		// th top
         		else if (args[0].equalsIgnoreCase("top")) {
-            		int pageNum = 1;
-            		if (args.length >= 2) {
-                		if (tryParse(args[1]) != null) {
-                			pageNum = tryParse(args[1]);
+        			if (player.hasPermission(perm.top)) {
+                		int pageNum = 1;
+                		if (args.length >= 2) {
+                    		if (tryParse(args[1]) != null) {
+                    			pageNum = tryParse(args[1]);
+                    		}
                 		}
-            		}
-            		printTopHunters(player, pageNum);
-            		return true;
+                		printTopHunters(player, pageNum);
+                		return true;
+        			} else {
+        				player.sendMessage(langMan.noPermission);
+        				return true;
+        			}
             	} else if (args[0].equalsIgnoreCase("chests")) {
             		int pageNum = 1;
             		if (args.length >= 2) {

@@ -14,6 +14,9 @@ permissions:
     treasurehunt.item:
         description: Use the treasure hunt item.
         default: true
-    treasurehunt.start:
+    treasurehunt.command.start:
         description: Start a treasure hunt.
         default: op
+    treasurehunt.command.top:
+        description: Shows top treasure hunters.
+        default: true
