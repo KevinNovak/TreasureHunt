@@ -21,6 +21,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockBurnEvent;
 import org.bukkit.event.block.BlockExplodeEvent;
@@ -28,6 +29,7 @@ import org.bukkit.event.block.BlockIgniteEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
 import org.bukkit.event.inventory.InventoryType;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitScheduler;
@@ -42,7 +44,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     FileConfiguration languageData, treasureData;
 	
 	// Config
-    private int huntItem;
+    private ItemStack huntItem;
 	private World world;
 	private int minX, maxX, minY, maxY, minZ, maxZ;
 	private int spawnInterval, chestDuration, openedChestDuration, maxSpawnAttempts, maxFitItemAttempts;
@@ -101,8 +103,9 @@ public class TreasureHunt extends JavaPlugin implements Listener{
         Bukkit.getServer().getLogger().info("[TreasureHunt] Plugin Disabled!");
     }
     
-    void loadConfig() {
-    	this.huntItem = getConfig().getInt("huntItem");
+    @SuppressWarnings("deprecation")
+	void loadConfig() {
+    	this.huntItem = new ItemStack(getConfig().getInt("huntItem"));
     	
     	String worldString = getConfig().getString("huntArea.world");
     	this.world = getServer().getWorld(worldString);
@@ -529,6 +532,54 @@ public class TreasureHunt extends JavaPlugin implements Listener{
             	}
         	}
     	}
+    }
+    
+    int distanceBetween(Location here, Location there) {
+    	int x1 = here.getBlockX();
+    	int x2 = there.getBlockX();
+    	int z1 = here.getBlockZ();
+    	int z2 = there.getBlockZ();
+    	int distance = (int) Math.sqrt(((x1 - x2)*(x1 - x2)) + ((z1 - z2)*(z1 - z2)));
+    	return distance;
+    }
+    
+    void sendDistance(Player player) {
+    	List<TreasureChest> availableChests = this.getAvailableChests();
+    	if (availableChests.size() > 0) {
+    		Location playerLoc = player.getLocation();
+			if (playerLoc.getWorld().equals(world)) {
+	    		int closestDistance = Integer.MAX_VALUE;
+				for (TreasureChest chest : availableChests) {
+					int distance = distanceBetween(playerLoc, chest.getLocation());
+	    			if (distance < closestDistance) {
+	    				closestDistance = distance;
+	    			}
+	    		}
+				// send distance
+			} else {
+				// wrong world
+			}
+    	} else {
+    		// no chests
+    	}
+    }
+    
+    @SuppressWarnings("deprecation")
+	@EventHandler
+    // when a player clicks
+    public void interact(PlayerInteractEvent event) {
+        // get the players name and type of click
+        Player player = event.getPlayer();
+        Action action = event.getAction();
+        
+        // if player is left clicking with the hunt item
+        if (getConfig().getBoolean("leftClick") || getConfig().getBoolean("leftClickParticles")) {
+            if (action.equals(Action.LEFT_CLICK_AIR) || action.equals(Action.LEFT_CLICK_BLOCK)) {
+                if (player.getItemInHand().getType() == huntItem.getType()) {
+                	this.sendDistance(player);
+                }
+            }
+        }
     }
     
     // ======================
