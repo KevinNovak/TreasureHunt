@@ -8,7 +8,7 @@ public class LanguageManager {
 	public TreasureHunt plugin;
 	private ColorConverter colorConv = new ColorConverter();
 	
-	public String chestSpawned, chestDespawned, chestFound, alreadyFound, tooManyChests;
+	public String chestSpawned, chestDespawned, chestFound, alreadyFound, tooManyChests, noPermission;
 	public String huntItemSendDistance, huntItemAnotherWorld, huntItemNoChests;
 	public String spawnedChestsHeader, spawnedChestsChestLine, spawnedChestsMorePages, spawnedChestsNoChests, spawnedChestsFooter;
 	public String topHuntersHeader, topHuntersHunterLine, topHuntersMorePages, topHuntersNoHunters, topHuntersFooter;
@@ -27,6 +27,7 @@ public class LanguageManager {
     	this.chestFound = colorConv.convert(languageData.getString("chestFound"));
     	this.alreadyFound = colorConv.convert(languageData.getString("alreadyFound"));
     	this.tooManyChests = colorConv.convert(languageData.getString("tooManyChests"));
+    	this.noPermission = colorConv.convert(languageData.getString("noPermission"));
     	
     	this.huntItemSendDistance = colorConv.convert(languageData.getString("huntItem.sendDistance"));
     	this.huntItemAnotherWorld = colorConv.convert(languageData.getString("huntItem.anotherWorld"));

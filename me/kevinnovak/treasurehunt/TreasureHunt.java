@@ -59,6 +59,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
 	private LanguageManager langMan = new LanguageManager(this);
 	private TimeConverter timeConv = new TimeConverter(langMan.day, langMan.days, langMan.hour, langMan.hours, langMan.minute, langMan.minutes, langMan.second, langMan.seconds);;
 	private LootGenerator lootGen;
+	private PermissionManager perm = new PermissionManager();
 	
     // ======================
     // Enable
@@ -575,7 +576,11 @@ public class TreasureHunt extends JavaPlugin implements Listener{
         // if player is left clicking with the hunt item
         if (action.equals(Action.LEFT_CLICK_AIR) || action.equals(Action.LEFT_CLICK_BLOCK)) {
             if (player.getItemInHand().getType() == huntItem.getType()) {
-            	this.sendDistance(player);
+            	if (player.hasPermission(perm.item)) {
+                	this.sendDistance(player);
+            	} else {
+            		player.sendMessage(langMan.noPermission);
+            	}
             }
         }
     }
@@ -609,12 +614,18 @@ public class TreasureHunt extends JavaPlugin implements Listener{
             } else if (args.length > 0) {
         		// th start
         		if (args[0].equalsIgnoreCase("start")) {
-                	if (this.getAvailableChests().size() < maxChests) {
-                    	startHunt();
-                	} else {
-                		player.sendMessage(langMan.tooManyChests);
-                	}
-                	return true;
+        			if (player.hasPermission(perm.start)) {
+                    	if (this.getAvailableChests().size() < maxChests) {
+                        	startHunt();
+                        	return true;
+                    	} else {
+                    		player.sendMessage(langMan.tooManyChests);
+                        	return true;
+                    	}
+        			} else {
+        				player.sendMessage(langMan.noPermission);
+        				return true;
+        			}
             	}
         		// th top
         		else if (args[0].equalsIgnoreCase("top")) {

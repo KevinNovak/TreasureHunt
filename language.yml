@@ -3,6 +3,7 @@ chestDespawned: '&e[&6TreasureHunt&e] &fA {RARITY} chest has faded without being
 chestFound: '&e[&6TreasureHunt&e] &b{PLAYER} &fhas struck {RARITY} treasure!'
 alreadyFound: '&e[&6TreasureHunt&e] &7This chest has already been found by &b{PLAYER}&7!'
 tooManyChests: '&e[&6TreasureHunt&e] &7The maximum number of chests are already spawned!'
+noPermission: '&cYou are not permitted to do this!'
 huntItem:
   sendDistance: '&e[&6TreasureHunt&e] &7The closest chest is &6{DISTANCE} &7blocks away.'
   anotherWorld: '&e[&6TreasureHunt&e] &7The closest chest is in another world!'

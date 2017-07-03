@@ -9,3 +9,11 @@ commands:
         usage: /<command>
         description: List all TreasureHunt commands.
         aliases: [treasurehunt]
+        
+permissions:
+    treasurehunt.item:
+        description: Use the treasure hunt item.
+        default: true
+    treasurehunt.start:
+        description: Start a treasure hunt.
+        default: op
