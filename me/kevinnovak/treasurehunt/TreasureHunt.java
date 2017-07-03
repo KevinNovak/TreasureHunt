@@ -44,7 +44,6 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     FileConfiguration languageData, treasureData;
 	
 	// Config
-    private List<String> rootCommands;
     private ItemStack huntItem;
 	private World world;
 	private int minX, maxX, minY, maxY, minZ, maxZ;
@@ -108,8 +107,6 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     
     @SuppressWarnings("deprecation")
 	void loadConfig() {
-    	this.rootCommands = getConfig().getStringList("commands.root");
-    	
     	this.huntItem = new ItemStack(getConfig().getInt("huntItem"));
     	
     	String worldString = getConfig().getString("huntArea.world");
@@ -606,62 +603,60 @@ public class TreasureHunt extends JavaPlugin implements Listener{
         // ======================
         // /mt
         // ======================
-        for (String rootCommand : rootCommands) {
-        	if(cmd.getName().equalsIgnoreCase(rootCommand)) {
-                // th
-            	if (args.length == 0) {
-                	helpMenu.print(player, 1);
-                	return true;
-                } else if (args.length > 0) {
-            		// th start
-            		if (args[0].equalsIgnoreCase("start")) {
-            			if (player.hasPermission(perm.start)) {
-                        	if (this.getAvailableChests().size() < maxChests) {
-                            	startHunt();
-                            	return true;
-                        	} else {
-                        		player.sendMessage(langMan.tooManyChests);
-                            	return true;
-                        	}
-            			} else {
-            				player.sendMessage(langMan.noPermission);
-            				return true;
-            			}
-                	}
-            		// th top
-            		else if (args[0].equalsIgnoreCase("top")) {
-            			if (player.hasPermission(perm.top)) {
-                    		int pageNum = 1;
-                    		if (args.length >= 2) {
-                        		if (tryParse(args[1]) != null) {
-                        			pageNum = tryParse(args[1]);
-                        		}
+        if(cmd.getName().equalsIgnoreCase("th")) {
+            // th
+        	if (args.length == 0) {
+            	helpMenu.print(player, 1);
+            	return true;
+            } else if (args.length > 0) {
+        		// th start
+        		if (args[0].equalsIgnoreCase("start")) {
+        			if (player.hasPermission(perm.start)) {
+                    	if (this.getAvailableChests().size() < maxChests) {
+                        	startHunt();
+                        	return true;
+                    	} else {
+                    		player.sendMessage(langMan.tooManyChests);
+                        	return true;
+                    	}
+        			} else {
+        				player.sendMessage(langMan.noPermission);
+        				return true;
+        			}
+            	}
+        		// th top
+        		else if (args[0].equalsIgnoreCase("top")) {
+        			if (player.hasPermission(perm.top)) {
+                		int pageNum = 1;
+                		if (args.length >= 2) {
+                    		if (tryParse(args[1]) != null) {
+                    			pageNum = tryParse(args[1]);
                     		}
-                    		printTopHunters(player, pageNum);
-                    		return true;
-            			} else {
-            				player.sendMessage(langMan.noPermission);
-            				return true;
-            			}
-                	} else if (args[0].equalsIgnoreCase("chests")) {
-                		if (player.hasPermission(perm.chests)) {
-                    		int pageNum = 1;
-                    		if (args.length >= 2) {
-                        		if (tryParse(args[1]) != null) {
-                        			pageNum = tryParse(args[1]);
-                        		}
-                    		}
-                    		printChests(player, pageNum);
-                    		return true;
-                		} else {
-            				player.sendMessage(langMan.noPermission);
-            				return true;
                 		}
-                	} else {
-                		helpMenu.print(player, 1);
+                		printTopHunters(player, pageNum);
                 		return true;
-                	}
-                }
+        			} else {
+        				player.sendMessage(langMan.noPermission);
+        				return true;
+        			}
+            	} else if (args[0].equalsIgnoreCase("chests")) {
+            		if (player.hasPermission(perm.chests)) {
+                		int pageNum = 1;
+                		if (args.length >= 2) {
+                    		if (tryParse(args[1]) != null) {
+                    			pageNum = tryParse(args[1]);
+                    		}
+                		}
+                		printChests(player, pageNum);
+                		return true;
+            		} else {
+        				player.sendMessage(langMan.noPermission);
+        				return true;
+            		}
+            	} else {
+            		helpMenu.print(player, 1);
+            		return true;
+            	}
             }
         }
         
