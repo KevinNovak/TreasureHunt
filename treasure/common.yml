@@ -1,6 +1,6 @@
 name: '&bCommon'
 weight: 60
-value: 1000
+value: 300
 items:
   iron_shovel:
     id: 256

@@ -1,6 +1,6 @@
 name: '&bEpic'
 weight: 3
-value: 10000
+value: 5000
 items:
   item-0:
     id: 256
