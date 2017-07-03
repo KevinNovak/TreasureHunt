@@ -2,9 +2,11 @@ package me.kevinnovak.treasurehunt;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
+import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -12,6 +14,8 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 
 public class LootGenerator {
+	public static final int CHEST_SIZE = 27;
+	
 	Random rand = new Random();
 	private ColorConverter colorConv = new ColorConverter();
 	List<TreasureChestType> treasureChestTypes = new ArrayList<TreasureChestType>();
@@ -119,7 +123,7 @@ public class LootGenerator {
 		int remainingValue = chestType.getValue();
 		
 		int failedAttempts = 0;
-		while (remainingValue > 0 && items.size() < 27 && failedAttempts < maxFitItemAttempts) {
+		while (remainingValue > 0 && items.size() < CHEST_SIZE && failedAttempts < maxFitItemAttempts) {
 			int randInt = rand.nextInt(chestItems.size());
 			TreasureChestItem item = chestItems.get(randInt);
 			int itemValue = item.getValue();
@@ -131,6 +135,12 @@ public class LootGenerator {
 				failedAttempts++;
 			}
 		}
+		
+		while (items.size() < CHEST_SIZE) {
+			items.add(new ItemStack(Material.AIR));
+		}
+		
+		Collections.shuffle(items);
 		
 		return items;
 	}
