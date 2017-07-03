@@ -18,8 +18,8 @@ permissions:
         description: Start a treasure hunt.
         default: op
     treasurehunt.command.top:
-        description: Shows top treasure hunters.
+        description: Show top treasure hunters.
         default: true
     treasurehunt.command.chests:
-        description: Shows available treasure chests.
+        description: Show available treasure chests.
         default: true

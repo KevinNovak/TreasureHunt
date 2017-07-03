@@ -8,6 +8,15 @@ huntItem:
   sendDistance: '&7The closest chest is &6{DISTANCE} &7blocks away.'
   anotherWorld: '&7The closest chest is in another world!'
   noChests: '&7No word of treasure has been heard.'
+helpMenu:
+  header: ' &e---------- &6Treasure Hunt &e- &6Help &e----------'
+  command:
+    chests: '&b/th chests &7- Show available treasure chests.'
+    top: '&b/th top &7- Show top treasure hunters.
+    start: '&b/th start &7- Start a treasure hunt.'
+  morePages: ' &7Type &6/th {PAGE} &7for more.'
+  noCommands: ' &7You are not allowed to use commands.'
+  footer: ' &e----------------------------------------'
 chestList:
   header: ' &e--------- &6Treasure Hunt &e- &6Chests &e---------'
   chestLine: ' &8{RANK}. {RARITY} &8- &7{TIME}'
