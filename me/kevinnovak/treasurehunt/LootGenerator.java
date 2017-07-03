@@ -8,6 +8,7 @@ import java.util.Random;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 
 public class LootGenerator {
@@ -64,7 +65,17 @@ public class LootGenerator {
 								itemAmount = itemsData.getInt(key + ".amount");
 							}
 							
-							ItemStack item = new ItemStack(itemID, itemAmount, (byte) itemData); 
+							ItemStack item = new ItemStack(itemID, itemAmount, (byte) itemData);
+							
+							// add enchantments
+							if (itemsData.isSet(key + ".enchantments")) {
+								ConfigurationSection enchantmentsData = itemsData.getConfigurationSection(key + ".enchantments");
+								for (String enchantmentName : enchantmentsData.getKeys(false)) {
+									Enchantment enchantment = Enchantment.getByName(enchantmentName);
+									item.addUnsafeEnchantment(enchantment, enchantmentsData.getInt(enchantmentName));
+								}
+							}
+ 
 							TreasureChestItem chestItem = new TreasureChestItem(item, itemValue);
 							chestItems.add(chestItem);
 						}
