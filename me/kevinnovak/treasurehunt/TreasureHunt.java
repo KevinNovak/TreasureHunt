@@ -336,20 +336,20 @@ public class TreasureHunt extends JavaPlugin implements Listener{
 			pageNum = 1;
 		}
 		
-    	player.sendMessage(langMan.spawnedChestsHeader);
+    	player.sendMessage(langMan.chestListHeader);
     	if (availableChests.size() > 0) {
         	for (int i=5*(pageNum-1); i<availableChests.size() && i<(5*pageNum); i++) {
         		String time = timeConv.friendlyTime(getRemainingTime(availableChests.get(i)));
-        		player.sendMessage(langMan.spawnedChestsChestLine.replace("{RARITY}", availableChests.get(i).getType()).replace("{RANK}", Integer.toString(i+1)).replace("{TIME}", time));
+        		player.sendMessage(langMan.chestListChestLine.replace("{RARITY}", availableChests.get(i).getType()).replace("{RANK}", Integer.toString(i+1)).replace("{TIME}", time));
         	}
 			if (availableChests.size() > 5*pageNum) {
 				int nextPageNum = pageNum + 1;
-				player.sendMessage(langMan.spawnedChestsMorePages.replace("{PAGE}", Integer.toString(nextPageNum)));
+				player.sendMessage(langMan.chestListMorePages.replace("{PAGE}", Integer.toString(nextPageNum)));
 			}
     	} else {
-    		player.sendMessage(langMan.spawnedChestsNoChests);
+    		player.sendMessage(langMan.chestListNoChests);
     	}
-    	player.sendMessage(langMan.spawnedChestsFooter);
+    	player.sendMessage(langMan.chestListFooter);
     }
     
     void printTopHunters(Player player, int pageNum) {

@@ -8,7 +8,7 @@ huntItem:
   sendDistance: '&7The closest chest is &6{DISTANCE} &7blocks away.'
   anotherWorld: '&7The closest chest is in another world!'
   noChests: '&7No word of treasure has been heard.'
-spawnedChests:
+chestList:
   header: ' &e--------- &6Treasure Hunt &e- &6Chests &e---------'
   chestLine: ' &8{RANK}. {RARITY} &8- &7{TIME}'
   morePages: ' &7Type &6/th chests {PAGE} &7for more.'

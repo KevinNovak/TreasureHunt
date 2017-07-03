@@ -10,7 +10,7 @@ public class LanguageManager {
 	
 	public String chestSpawned, chestDespawned, chestFound, alreadyFound, tooManyChests, noPermission;
 	public String huntItemSendDistance, huntItemAnotherWorld, huntItemNoChests;
-	public String spawnedChestsHeader, spawnedChestsChestLine, spawnedChestsMorePages, spawnedChestsNoChests, spawnedChestsFooter;
+	public String chestListHeader, chestListChestLine, chestListMorePages, chestListNoChests, chestListFooter;
 	public String topHuntersHeader, topHuntersHunterLine, topHuntersMorePages, topHuntersNoHunters, topHuntersFooter;
 	public String day, days, hour, hours, minute, minutes, second, seconds;
 	
@@ -33,11 +33,11 @@ public class LanguageManager {
     	this.huntItemAnotherWorld = colorConv.convert(languageData.getString("huntItem.anotherWorld"));
     	this.huntItemNoChests = colorConv.convert(languageData.getString("huntItem.noChests"));
     	
-    	this.spawnedChestsHeader = colorConv.convert(languageData.getString("spawnedChests.header"));
-    	this.spawnedChestsChestLine = colorConv.convert(languageData.getString("spawnedChests.chestLine"));
-    	this.spawnedChestsMorePages = colorConv.convert(languageData.getString("spawnedChests.morePages"));
-    	this.spawnedChestsFooter = colorConv.convert(languageData.getString("spawnedChests.footer"));
-    	this.spawnedChestsNoChests = colorConv.convert(languageData.getString("spawnedChests.noChests"));
+    	this.chestListHeader = colorConv.convert(languageData.getString("chestList.header"));
+    	this.chestListChestLine = colorConv.convert(languageData.getString("chestList.chestLine"));
+    	this.chestListMorePages = colorConv.convert(languageData.getString("chestList.morePages"));
+    	this.chestListFooter = colorConv.convert(languageData.getString("chestList.footer"));
+    	this.chestListNoChests = colorConv.convert(languageData.getString("chestList.noChests"));
     	
     	this.topHuntersHeader = colorConv.convert(languageData.getString("topHunters.header"));
     	this.topHuntersHunterLine = colorConv.convert(languageData.getString("topHunters.hunterLine"));
