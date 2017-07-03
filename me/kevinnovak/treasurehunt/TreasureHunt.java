@@ -555,12 +555,12 @@ public class TreasureHunt extends JavaPlugin implements Listener{
 	    				closestDistance = distance;
 	    			}
 	    		}
-				// send distance
+				player.sendMessage(langMan.huntItemSendDistance.replace("{DISTANCE}", Integer.toString(closestDistance)));
 			} else {
-				// wrong world
+				player.sendMessage(langMan.huntItemAnotherWorld);
 			}
     	} else {
-    		// no chests
+    		player.sendMessage(langMan.huntItemNoChests);
     	}
     }
     
@@ -573,11 +573,9 @@ public class TreasureHunt extends JavaPlugin implements Listener{
         Action action = event.getAction();
         
         // if player is left clicking with the hunt item
-        if (getConfig().getBoolean("leftClick") || getConfig().getBoolean("leftClickParticles")) {
-            if (action.equals(Action.LEFT_CLICK_AIR) || action.equals(Action.LEFT_CLICK_BLOCK)) {
-                if (player.getItemInHand().getType() == huntItem.getType()) {
-                	this.sendDistance(player);
-                }
+        if (action.equals(Action.LEFT_CLICK_AIR) || action.equals(Action.LEFT_CLICK_BLOCK)) {
+            if (player.getItemInHand().getType() == huntItem.getType()) {
+            	this.sendDistance(player);
             }
         }
     }

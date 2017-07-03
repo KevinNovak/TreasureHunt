@@ -9,6 +9,7 @@ public class LanguageManager {
 	private ColorConverter colorConv = new ColorConverter();
 	
 	public String chestSpawned, chestDespawned, chestFound, alreadyFound, tooManyChests;
+	public String huntItemSendDistance, huntItemAnotherWorld, huntItemNoChests;
 	public String spawnedChestsHeader, spawnedChestsChestLine, spawnedChestsMorePages, spawnedChestsNoChests, spawnedChestsFooter;
 	public String topHuntersHeader, topHuntersHunterLine, topHuntersMorePages, topHuntersNoHunters, topHuntersFooter;
 	public String day, days, hour, hours, minute, minutes, second, seconds;
@@ -26,6 +27,10 @@ public class LanguageManager {
     	this.chestFound = colorConv.convert(languageData.getString("chestFound"));
     	this.alreadyFound = colorConv.convert(languageData.getString("alreadyFound"));
     	this.tooManyChests = colorConv.convert(languageData.getString("tooManyChests"));
+    	
+    	this.huntItemSendDistance = colorConv.convert(languageData.getString("huntItem.sendDistance"));
+    	this.huntItemAnotherWorld = colorConv.convert(languageData.getString("huntItem.anotherWorld"));
+    	this.huntItemNoChests = colorConv.convert(languageData.getString("huntItem.noChests"));
     	
     	this.spawnedChestsHeader = colorConv.convert(languageData.getString("spawnedChests.header"));
     	this.spawnedChestsChestLine = colorConv.convert(languageData.getString("spawnedChests.chestLine"));

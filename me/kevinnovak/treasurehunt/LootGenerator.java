@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -52,7 +51,6 @@ public class LootGenerator {
 							String[] itemIDArray = itemIDString.split("-");
 							int itemID = Integer.parseInt(itemIDArray[0]);
 							int itemData = 0;
-							Bukkit.getLogger().info("Length: " + itemIDArray.length);
 							if (itemIDArray.length > 1) {
 								itemData = Integer.parseInt(itemIDArray[1]);
 							}
