@@ -12,7 +12,7 @@ helpMenu:
   header: ' &e---------- &6Treasure Hunt &e- &6Help &e----------'
   command:
     chests: '&b/th chests &7- Show available treasure chests.'
-    top: '&b/th top &7- Show top treasure hunters.
+    top: '&b/th top &7- Show top treasure hunters.'
     start: '&b/th start &7- Start a treasure hunt.'
   morePages: ' &7Type &6/th {PAGE} &7for more.'
   noCommands: ' &7You are not allowed to use commands.'
