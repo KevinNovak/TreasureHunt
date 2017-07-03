@@ -1,13 +1,13 @@
 chestSpawned: '&e[&6TreasureHunt&e] &fWord of {RARITY} treasure spreads across the land!'
 chestDespawned: '&e[&6TreasureHunt&e] &fA {RARITY} chest has faded without being found!'
 chestFound: '&e[&6TreasureHunt&e] &b{PLAYER} &fhas struck {RARITY} treasure!'
-alreadyFound: '&e[&6TreasureHunt&e] &7This chest has already been found by &b{PLAYER}&7!'
-tooManyChests: '&e[&6TreasureHunt&e] &7The maximum number of chests are already spawned!'
+alreadyFound: '&7This chest has already been found by &b{PLAYER}&7!'
+tooManyChests: '&cThe maximum number of chests are already spawned!'
 noPermission: '&cYou are not permitted to do this!'
 huntItem:
-  sendDistance: '&e[&6TreasureHunt&e] &7The closest chest is &6{DISTANCE} &7blocks away.'
-  anotherWorld: '&e[&6TreasureHunt&e] &7The closest chest is in another world!'
-  noChests: '&e[&6TreasureHunt&e] &7No word of treasure has been heard.'
+  sendDistance: '&7The closest chest is &6{DISTANCE} &7blocks away.'
+  anotherWorld: '&7The closest chest is in another world!'
+  noChests: '&7No word of treasure has been heard.'
 spawnedChests:
   header: ' &e--------- &6Treasure Hunt &e- &6Chests &e---------'
   chestLine: ' &8{RANK}. {RARITY} &8- &7{TIME}'
