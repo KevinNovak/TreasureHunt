@@ -1,6 +1,12 @@
 # Configuration file for TreasureHunt
 # Created by KevinNovak
 
+commands:
+  root:
+  - 'th'
+  - 'thunt'
+  - 'treasurehunt'
+
 huntItem: 358
 
 huntArea:

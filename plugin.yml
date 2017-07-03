@@ -3,12 +3,6 @@ version: 1.0.0
 main: me.kevinnovak.treasurehunt.TreasureHunt
 author: KevinNovak
 description: Hunt for treasure!
-
-commands:
-    th:
-        usage: /<command>
-        description: List all TreasureHunt commands.
-        aliases: [treasurehunt]
         
 permissions:
     treasurehunt.item:
