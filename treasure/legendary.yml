@@ -2,63 +2,61 @@ name: '&bLegendary'
 weight: 7
 value: 3000
 items:
-  item-0:
-    id: 256
-    data: 0
-    amount: 1
-    value: 10
-  item-1:
-    id: 257
-    data: 0
-    amount: 1
-    value: 30
-  item-2:
-    id: 258
-    data: 0
-    amount: 1
-    value: 30
-  item-3:
-    id: 267
-    data: 0
-    amount: 1
-    value: 20
-  item-4:
-    id: 292
-    data: 0
-    amount: 1
-    value: 10
-  item-5:
-    id: 265
-    data: 0
-    amount: 16
+  dragon_breath:
+    id: 437
+    amount: 8
     value: 160
-  item-6:
-    id: 306
-    data: 0
-    amount: 1
-    value: 50
-  item-7:
-    id: 307
-    data: 0
-    amount: 1
-    value: 80
-  item-8:
-    id: 308
-    data: 0
-    amount: 1
-    value: 70
-  item-9:
-    id: 309
-    data: 0
-    amount: 1
-    value: 40
-  item-10:
-    id: 265
-    data: 0
+  totem_of_undying:
+    id: 449
+    value: 1000
+  experience_bottle:
+    id: 384
     amount: 16
-    value: 160
-  item-11:
-    id: 264
-    data: 0
-    amount: 2
-    value: 240
+    value: 1000
+  spawn_llama:
+    id: 383-103
+    value: 1000
+  spawn_squid:
+    id: 383-94
+    value: 1000
+  spawn_rabbit:
+    id: 383-101
+    value: 1000
+  spawn_horse:
+    id: 383-28
+    value: 1000
+  spawn_wolf:
+    id: 383-95
+    value: 1000
+  spawn_cow:
+    id: 383-92
+    value: 1000
+  spawn_pig:
+    id: 383-90
+    value: 1000
+  spawn_sheep:
+    id: 383-91
+    value: 1000
+  spawn_ocelot:
+    id: 383-98
+    value: 1000
+  diamond_helmet:
+    id: 310
+    value: 600
+  diamond_chestplate:
+    id: 311
+    value: 960
+  diamond_leggings:
+    id: 312
+    value: 840
+  diamond_boots:
+    id: 313
+    value: 480
+  coal_block:
+    id: 173
+    amount: 8
+    value: 400
+  lapis_block:
+    id: 22
+    amount: 4
+    value: 456
