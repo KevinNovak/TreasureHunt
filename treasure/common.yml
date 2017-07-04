@@ -2,69 +2,185 @@ name: '&bCommon'
 weight: 60
 value: 300
 items:
+  pumpkin:
+    id: 32
+    amount: 32
+    value: 30
+  bread:
+    id: 297
+    amount: 32
+    value: 96
+  sponge:
+    id: 19
+    amount: 64
+    value: 80
+  soul_sand:
+    id: 88
+    amount: 16
+    value: 40
+  sea_lantern:
+    id: 169
+    amount: 16
+    value: 120
+  white_glazed_terracotta:
+    id: 235
+    amount: 64
+    value: 120
+  orange_glazed_terracotta:
+    id: 236
+    amount: 64
+    value: 120
+  magenta_glazed_terracotta:
+    id: 237
+    amount: 64
+    value: 120
+  light_blue_glazed_terracotta:
+    id: 238
+    amount: 64
+    value: 120
+  yellow_glazed_terracotta:
+    id: 239
+    amount: 64
+    value: 120
+  lime_glazed_terracotta:
+    id: 240
+    amount: 64
+    value: 120
+  pink_glazed_terracotta:
+    id: 241
+    amount: 64
+    value: 120
+  gray_glazed_terracotta:
+    id: 242
+    amount: 64
+    value: 120
+  light_gray_glazed_terracotta:
+    id: 243
+    amount: 64
+    value: 120
+  cyan_glazed_terracotta:
+    id: 244
+    amount: 64
+    value: 120
+  purple_glazed_terracotta:
+    id: 245
+    amount: 64
+    value: 120
+  blue_glazed_terracotta:
+    id: 246
+    amount: 64
+    value: 120
+  brown_glazed_terracotta:
+    id: 247
+    amount: 64
+    value: 120
+  green_glazed_terracotta:
+    id: 248
+    amount: 64
+    value: 120
+  red_glazed_terracotta:
+    id: 249
+    amount: 64
+    value: 120
+  black_glazed_terracotta:
+    id: 250
+    amount: 64
+    value: 120
+  cooked_beef:
+    id: 364
+    amount: 16
+    value: 80
+  melon:
+    id: 360
+    amount: 64
+    value: 50
+  cake:
+    id: 354
+    value: 20
+  saddle:
+    id: 329
+    value: 50
+  cactus:
+    id: 81
+    amount: 16
+    value: 20
+  leather:
+    id: 334
+    amount: 16
+    value: 32
+  string:
+    id: 287
+    amount: 64
+    value: 14
+  book:
+    id: 340
+    amount: 8
+    value: 40
+  slime_ball:
+    id: 341
+    amount: 32
+    value: 90
+  glowstone_dust:
+    id: 348
+    amount: 32
+    value: 80
+  gunpowder:
+    id: 289
+    amount: 32
+    value: 80
+  potato:
+    id: 142
+    amount: 16
+    value: 32
+  carrot:
+    id: 391
+    amount: 16
+    value: 32
+  reeds:
+    id: 338
+    amount: 32
+    value: 30
+  beetroot_seeds:
+    id: 435
+    amount: 16
+    value: 16
+  melon_seeds:
+    id: 362
+    amount: 16
+    value: 16
+  wheat_seeds:
+    id: 295
+    amount: 16
+    value: 16
+  fermented_spider_eye:
+    id: 376
+    amount: 8
+    value: 24
+  lava_bucket:
+    id: 327
+    value: 60
+  armor_stand:
+    id: 416
+    value: 20
+  iron_hoe:
+    id: 292
+    value: 20
+  iron_axe:
+    id: 258
+    value: 30
   iron_shovel:
     id: 256
     value: 10
   iron_pickaxe:
     id: 257
     value: 30
-  iron_axe:
-    id: 258
-    value: 30
   iron_sword:
     id: 267
     value: 20
-  iron_hoe:
-    id: 292
-    value: 10
-  iron_ingot:
-    id: 265
-    amount: 16
-    value: 160
-  iron_helmet:
-    id: 306
-    value: 50
-  iron_chestplate:
-    id: 307
-    value: 80
-  iron_leggings:
-    id: 308
-    value: 70
-  iron_boots:
-    id: 309
-    value: 40
-  iron_ingot:
-    id: 265
-    amount: 16
-    value: 160
-  diamond:
-    id: 264
-    amount: 2
-    value: 240
-  cookie:
-    id: 357
-    amount: 16
-    value: 60
-  glowstone:
-    id: 89
-    amount: 16
-    value: 120
-  obsidian:
-    id: 49
-    amount: 16
-    value: 320
-  gold_ingot:
-    id: 266
-    amount: 16
-    value: 160
-  steak:
-    id: 364
+  coal:
+    id: 263
     amount: 16
     value: 80
-  ender_pearl:
-    id: 368
-    amount: 8
-    value: 240
   redstone:
     id: 331
     amount: 16
