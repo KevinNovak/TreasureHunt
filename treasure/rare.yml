@@ -2,63 +2,72 @@ name: '&bRare'
 weight: 10
 value: 1000
 items:
-  item-0:
-    id: 256
-    data: 0
-    amount: 1
-    value: 10
-  item-1:
-    id: 257
-    data: 0
-    amount: 1
-    value: 30
-  item-2:
-    id: 258
-    data: 0
-    amount: 1
-    value: 30
-  item-3:
-    id: 267
-    data: 0
-    amount: 1
-    value: 20
-  item-4:
-    id: 292
-    data: 0
-    amount: 1
-    value: 10
-  item-5:
-    id: 265
-    data: 0
-    amount: 16
-    value: 160
-  item-6:
-    id: 306
-    data: 0
-    amount: 1
-    value: 50
-  item-7:
-    id: 307
-    data: 0
-    amount: 1
-    value: 80
-  item-8:
-    id: 308
-    data: 0
-    amount: 1
+  enchanting_table:
+    id: 116
+    value: 330
+  ender_chest:
+    id: 130
+    value: 200
+  swiftness_potion:
+    id: 373-8258
+    value: 100
+  invisible_potion:
+    id: 373-8270
+    value: 100
+  water_breathing_potion:
+    id: 373-8269
+    value: 100
+  health_potion:
+    id: 373-8229
+    value: 100
+  strength_potion:
+    id: 373-8265
+    value: 100
+  golden_apple:
+    id: 322
+    value: 84
+  rabbit_foot:
+    id: 414
+    value: 100
+  golden_carrot:
+    id: 396
+    amount: 8
     value: 70
-  item-9:
-    id: 309
-    data: 0
-    amount: 1
-    value: 40
-  item-10:
-    id: 265
-    data: 0
+  beacon:
+    id: 138
+    value: 1000
+  ender_eye:
+    id: 381
+    amount: 8
+    value: 380
+  diamond_hoe:
+    id: 293
+    value: 240
+  diamond_axe:
+    id: 279
+    value: 360
+  diamond_shovel:
+    id: 277
+    value: 120
+  diamond_pickaxe:
+    id: 278
+    value: 360
+  diamond_sword:
+    id: 276
+    value: 240
+  lapis:
+    id: 351-4
     amount: 16
-    value: 160
-  item-11:
+    value: 200
+  emerald:
+    id: 388
+    amount: 2
+    value: 200
+  redstone_block:
+    id: 152
+    amount: 4
+    value: 224
+  diamond:
     id: 264
-    data: 0
     amount: 2
     value: 240
