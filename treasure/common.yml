@@ -3,7 +3,7 @@ weight: 60
 value: 500
 items:
   pumpkin:
-    id: 32
+    id: 86
     amount: 32
     value: 30
   bread:
@@ -24,68 +24,68 @@ items:
     value: 120
   white_glazed_terracotta:
     id: 235
-    amount: 64
-    value: 120
+    amount: 32
+    value: 60
   orange_glazed_terracotta:
     id: 236
-    amount: 64
-    value: 120
+    amount: 32
+    value: 60
   magenta_glazed_terracotta:
     id: 237
-    amount: 64
-    value: 120
+    amount: 32
+    value: 60
   light_blue_glazed_terracotta:
     id: 238
-    amount: 64
-    value: 120
+    amount: 32
+    value: 60
   yellow_glazed_terracotta:
     id: 239
-    amount: 64
-    value: 120
+    amount: 32
+    value: 60
   lime_glazed_terracotta:
     id: 240
-    amount: 64
-    value: 120
+    amount: 32
+    value: 60
   pink_glazed_terracotta:
     id: 241
-    amount: 64
-    value: 120
+    amount: 32
+    value: 60
   gray_glazed_terracotta:
     id: 242
-    amount: 64
-    value: 120
+    amount: 32
+    value: 60
   light_gray_glazed_terracotta:
     id: 243
-    amount: 64
-    value: 120
+    amount: 32
+    value: 60
   cyan_glazed_terracotta:
     id: 244
-    amount: 64
-    value: 120
+    amount: 32
+    value: 60
   purple_glazed_terracotta:
     id: 245
-    amount: 64
-    value: 120
+    amount: 32
+    value: 60
   blue_glazed_terracotta:
     id: 246
-    amount: 64
-    value: 120
+    amount: 32
+    value: 60
   brown_glazed_terracotta:
     id: 247
-    amount: 64
-    value: 120
+    amount: 32
+    value: 60
   green_glazed_terracotta:
     id: 248
-    amount: 64
-    value: 120
+    amount: 32
+    value: 60
   red_glazed_terracotta:
     id: 249
-    amount: 64
-    value: 120
+    amount: 32
+    value: 60
   black_glazed_terracotta:
     id: 250
-    amount: 64
-    value: 120
+    amount: 32
+    value: 60
   cooked_beef:
     id: 364
     amount: 16
