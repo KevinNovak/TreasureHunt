@@ -47,7 +47,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     private ItemStack huntItem;
 	private World world;
 	private int minX, maxX, minY, maxY, minZ, maxZ;
-	private int spawnInterval, chestDuration, openedChestDuration, maxSpawnAttempts, maxFitItemAttempts;
+	private int spawnInterval, chestDuration, openedChestDuration, bufferPercentage, maxSpawnAttempts, maxFitItemAttempts;
 	private int minPlayersOnline, maxChests;
 	private List<Integer> dontSpawnOn;
 	private boolean protectAgainstBreak, protectAgainstBurn, protectAgainstExplode;
@@ -122,6 +122,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     	this.spawnInterval = getConfig().getInt("spawnInterval");
     	this.chestDuration = getConfig().getInt("chestDuration");
     	this.openedChestDuration = getConfig().getInt("openedChestDuration");
+    	this.bufferPercentage = getConfig().getInt("bufferPercentage");
     	this.maxSpawnAttempts = getConfig().getInt("maxSpawnAttempts");
     	this.maxFitItemAttempts = getConfig().getInt("maxFitItemAttempts");
     	this.minPlayersOnline = getConfig().getInt("minPlayersOnline");
@@ -143,7 +144,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
 			saveResource("treasure/rare.yml", false);
 			saveResource("treasure/uncommon.yml", false);
     	}
-    	lootGen = new LootGenerator(treasureDir.listFiles(), this.maxFitItemAttempts);
+    	lootGen = new LootGenerator(treasureDir.listFiles(), this.bufferPercentage, this.maxFitItemAttempts);
     }
     
     void saveHuntersFile() {

@@ -22,10 +22,12 @@ public class LootGenerator {
 	int totalWeight = 0;
 	int[] weights;
 	int maxFitItemAttempts = 0;
+	int bufferPercentage = 0;
 	
-	LootGenerator(File[] files, int maxFitItemAttempts) {
+	LootGenerator(File[] files, int bufferPercentage, int maxFitItemAttempts) {
 		this.setTreasureChestTypes(files);
 		this.setupWeights();
+		this.bufferPercentage = bufferPercentage;
 		this.maxFitItemAttempts = maxFitItemAttempts;
 	}
 	
