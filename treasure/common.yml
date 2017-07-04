@@ -1,6 +1,6 @@
 name: '&bCommon'
 weight: 60
-value: 300
+value: 500
 items:
   pumpkin:
     id: 32

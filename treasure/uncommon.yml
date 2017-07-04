@@ -1,64 +1,140 @@
 name: '&bUncommon'
 weight: 20
-value: 500
+value: 1000
 items:
-  item-0:
-    id: 256
-    data: 0
-    amount: 1
-    value: 10
-  item-1:
-    id: 257
-    data: 0
-    amount: 1
-    value: 30
-  item-2:
-    id: 258
-    data: 0
-    amount: 1
-    value: 30
-  item-3:
-    id: 267
-    data: 0
-    amount: 1
-    value: 20
-  item-4:
-    id: 292
-    data: 0
-    amount: 1
-    value: 10
-  item-5:
-    id: 265
-    data: 0
+  stonebrick:
+    id: 98-3
+    amount: 32
+    value: 90
+  slime:
+    id: 165
+    amount: 8
+    value: 200
+  magma:
+    id: 213
+    amount: 32
+    value: 100
+  obsidian:
+    id: 49
     amount: 16
-    value: 160
-  item-6:
-    id: 306
-    data: 0
-    amount: 1
-    value: 50
-  item-7:
-    id: 307
-    data: 0
-    amount: 1
+    value: 320
+  bookshelf:
+    id: 47
+    amount: 5
+    value: 100
+  end_rod:
+    id: 198
+    amount: 8
     value: 80
-  item-8:
-    id: 308
-    data: 0
-    amount: 1
-    value: 70
-  item-9:
-    id: 309
-    data: 0
-    amount: 1
+  nether_wart:
+    id: 372
+    amount: 16
+    value: 60
+  magma_cream:
+    id: 378
+    amount: 64
+    value: 50
+  ghast_tear:
+    id: 370
+    amount: 8
+    value: 100
+  speckled_melon:
+    id: 382
+    amount: 8
+    value: 20
+  blaze_powder:
+    id: 377
+    amount: 16
+    value: 120
+  brewing_stand:
+    id: 117
     value: 40
-  item-10:
+  cauldron:
+    id: 380
+    value: 70
+  fish:
+    id: 349-3
+    amount: 8
+    value: 80
+  white_shulker_box:
+    id: 219
+    value: 20
+  orange_shulker_box:
+    id: 220
+    value: 20
+  magenta_shulker_box:
+    id: 221
+    value: 20
+  light_blue_shulker_box:
+    id: 222
+    value: 20
+  yellow_shulker_box:
+    id: 223
+    value: 20
+  lime_shulker_box:
+    id: 224
+    value: 20
+  pink_shulker_box:
+    id: 225
+    value: 20
+  gray_shulker_box:
+    id: 226
+    value: 20
+  silver_shulker_box:
+    id: 227
+    value: 20
+  cyan_shulker_box:
+    id: 228
+    value: 20
+  purple_shulker_box:
+    id: 229
+    value: 20
+  blue_shulker_box:
+    id: 230
+    value: 20
+  brown_shulker_box:
+    id: 231
+    value: 20
+  green_shulker_box:
+    id: 232
+    value: 20
+  red_shulker_box:
+    id: 233
+    value: 20
+  black_shulker_box:
+    id: 234
+    value: 20
+  piston:
+    id: 33
+    value: 22
+  elytra:
+    id: 443
+    value: 200
+  ender_pearl:
+    id: 368
+    amount: 8
+    value: 240
+  shield:
+    id: 442
+    amount: 1
+    value: 14
+  iron_helmet:
+    id: 306
+    value: 50
+  iron_chestplate:
+    id: 307
+    value: 80
+  iron_leggings:
+    id: 308
+    value: 70
+  iron_boots:
+    id: 309
+    value: 40
+  iron_ingot:
     id: 265
-    data: 0
     amount: 16
     value: 160
-  item-11:
-    id: 264
-    data: 0
-    amount: 2
-    value: 240
+  gold_ingot:
+    id: 266
+    amount: 16
+    value: 160
