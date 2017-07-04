@@ -8,20 +8,20 @@ items:
     value: 30
   bread:
     id: 297
-    amount: 32
-    value: 96
+    amount: 16
+    value: 48
   sponge:
     id: 19
-    amount: 64
-    value: 80
+    amount: 32
+    value: 40
   soul_sand:
     id: 88
     amount: 16
     value: 40
   sea_lantern:
     id: 169
-    amount: 16
-    value: 120
+    amount: 8
+    value: 60
   white_glazed_terracotta:
     id: 235
     amount: 32
@@ -122,12 +122,12 @@ items:
     value: 90
   glowstone_dust:
     id: 348
-    amount: 32
-    value: 80
+    amount: 16
+    value: 40
   gunpowder:
     id: 289
-    amount: 32
-    value: 80
+    amount: 16
+    value: 40
   potato:
     id: 142
     amount: 16
@@ -179,9 +179,9 @@ items:
     value: 20
   coal:
     id: 263
-    amount: 16
-    value: 80
+    amount: 8
+    value: 40
   redstone:
     id: 331
-    amount: 16
-    value: 100
+    amount: 8
+    value: 50
