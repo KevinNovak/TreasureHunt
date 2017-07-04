@@ -8,16 +8,16 @@ items:
     value: 90
   slime:
     id: 165
-    amount: 8
-    value: 200
+    amount: 4
+    value: 100
   magma:
     id: 213
     amount: 32
     value: 100
   obsidian:
     id: 49
-    amount: 16
-    value: 320
+    amount: 8
+    value: 160
   bookshelf:
     id: 47
     amount: 5
@@ -44,8 +44,8 @@ items:
     value: 20
   blaze_powder:
     id: 377
-    amount: 16
-    value: 120
+    amount: 8
+    value: 60
   brewing_stand:
     id: 117
     value: 40
@@ -112,8 +112,8 @@ items:
     value: 200
   ender_pearl:
     id: 368
-    amount: 8
-    value: 240
+    amount: 4
+    value: 120
   shield:
     id: 442
     amount: 1
@@ -132,9 +132,9 @@ items:
     value: 40
   iron_ingot:
     id: 265
-    amount: 16
-    value: 160
+    amount: 8
+    value: 80
   gold_ingot:
     id: 266
-    amount: 16
-    value: 160
+    amount: 8
+    value: 80
