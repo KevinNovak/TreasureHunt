@@ -8,9 +8,6 @@ items:
   spawn_mooshroom:
     id: 383-96
     value: 2000
-  spawn_polar_bear:
-    id: 383-102
-    value: 2000
   spawn_guardian:
     id: 383-68
     value: 2000
