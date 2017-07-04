@@ -20,7 +20,7 @@ chestDuration: 1800
 openedChestDuration: 300
 
 maxSpawnAttempts: 3000
-maxFitItemAttempts: 200
+maxFitItemAttempts: 10
 minPlayersOnline: 3
 maxChests: 5
 
