@@ -1,5 +1,5 @@
 name: '&bLegendary'
-weight: 7
+weight: 60
 value: 3000
 items:
   dragon_breath:
@@ -13,17 +13,11 @@ items:
     id: 384
     amount: 16
     value: 1000
-  spawn_llama:
-    id: 383-103
-    value: 1000
   spawn_squid:
     id: 383-94
     value: 1000
   spawn_rabbit:
     id: 383-101
-    value: 1000
-  spawn_horse:
-    id: 383-28
     value: 1000
   spawn_wolf:
     id: 383-95
