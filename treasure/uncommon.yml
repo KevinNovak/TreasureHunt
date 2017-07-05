@@ -1,6 +1,8 @@
 name: '&bUncommon'
 weight: 20
 value: 1000
+inheritance:
+- 'common'
 items:
   stonebrick:
     id: 98-3

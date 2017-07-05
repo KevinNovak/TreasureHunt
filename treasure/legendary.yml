@@ -1,6 +1,8 @@
 name: '&bLegendary'
 weight: 7
 value: 3000
+inheritance:
+- 'rare'
 items:
   dragon_breath:
     id: 437

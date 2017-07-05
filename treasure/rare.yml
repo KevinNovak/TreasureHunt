@@ -1,6 +1,8 @@
 name: '&bRare'
 weight: 10
 value: 1000
+inheritance:
+- 'uncommon'
 items:
   enchanting_table:
     id: 116
