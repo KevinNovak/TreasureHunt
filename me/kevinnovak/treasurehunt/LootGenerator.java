@@ -40,6 +40,52 @@ public class LootGenerator {
 	}
 	
 	@SuppressWarnings("deprecation")
+	List<TreasureChestItem> getItemsFromFile(File file) {
+		List<TreasureChestItem> chestItems = new ArrayList<TreasureChestItem>();
+		if (file.exists()) {
+			FileConfiguration data = YamlConfiguration.loadConfiguration(file);
+			if (data.isSet("items")) {
+				ConfigurationSection itemsData = data.getConfigurationSection("items");
+				for (String key : itemsData.getKeys(false)) {
+					if (itemsData.isSet(key + ".id") && itemsData.isSet(key + ".value")) {
+						// get id and data
+						String itemIDString = itemsData.getString(key + ".id");
+						String[] itemIDArray = itemIDString.split("-");
+						int itemID = Integer.parseInt(itemIDArray[0]);
+						int itemData = 0;
+						if (itemIDArray.length > 1) {
+							itemData = Integer.parseInt(itemIDArray[1]);
+						}
+						
+						// get value
+						int itemValue = itemsData.getInt(key + ".value");
+						
+						// get amount
+						int itemAmount = 1;
+						if (itemsData.isSet(key + ".amount")) {
+							itemAmount = itemsData.getInt(key + ".amount");
+						}
+						
+						ItemStack item = new ItemStack(itemID, itemAmount, (byte) itemData);
+						
+						// add enchantments
+						if (itemsData.isSet(key + ".enchantments")) {
+							ConfigurationSection enchantmentsData = itemsData.getConfigurationSection(key + ".enchantments");
+							for (String enchantmentName : enchantmentsData.getKeys(false)) {
+								Enchantment enchantment = Enchantment.getByName(enchantmentName);
+								item.addUnsafeEnchantment(enchantment, enchantmentsData.getInt(enchantmentName));
+							}
+						}
+
+						TreasureChestItem chestItem = new TreasureChestItem(item, itemValue);
+						chestItems.add(chestItem);
+					}
+				}
+			}
+		}
+		return chestItems;
+	}
+	
 	void setTreasureChestTypes(File[] files) {
 		for (File file : files) {
 			if (file.exists()) {
@@ -48,42 +94,18 @@ public class LootGenerator {
 					String name = colorConv.convert(data.getString("name") + "&r");
 					int weight = data.getInt("weight");
 					int value = data.getInt("value");
-					// Add itemstacks to list of items
-					List<TreasureChestItem> chestItems = new ArrayList<TreasureChestItem>();
-					ConfigurationSection itemsData = data.getConfigurationSection("items");
-					for (String key : itemsData.getKeys(false)) {
-						if (itemsData.isSet(key + ".id") && itemsData.isSet(key + ".value")) {
-							// get id and data
-							String itemIDString = itemsData.getString(key + ".id");
-							String[] itemIDArray = itemIDString.split("-");
-							int itemID = Integer.parseInt(itemIDArray[0]);
-							int itemData = 0;
-							if (itemIDArray.length > 1) {
-								itemData = Integer.parseInt(itemIDArray[1]);
-							}
-							
-							// get value
-							int itemValue = itemsData.getInt(key + ".value");
-							
-							// get amount
-							int itemAmount = 1;
-							if (itemsData.isSet(key + ".amount")) {
-								itemAmount = itemsData.getInt(key + ".amount");
-							}
-							
-							ItemStack item = new ItemStack(itemID, itemAmount, (byte) itemData);
-							
-							// add enchantments
-							if (itemsData.isSet(key + ".enchantments")) {
-								ConfigurationSection enchantmentsData = itemsData.getConfigurationSection(key + ".enchantments");
-								for (String enchantmentName : enchantmentsData.getKeys(false)) {
-									Enchantment enchantment = Enchantment.getByName(enchantmentName);
-									item.addUnsafeEnchantment(enchantment, enchantmentsData.getInt(enchantmentName));
+
+					List<TreasureChestItem> chestItems = this.getItemsFromFile(file);
+					
+					if (data.isSet("inheritance")){
+						List<String> inheritance = data.getStringList("inheritance");
+						for (String inheritedFileName : inheritance) {
+							for (File otherFile : files) {
+								if (otherFile.getName().equals(inheritedFileName + ".yml") || otherFile.getName().equals(inheritedFileName)) {
+									List<TreasureChestItem> inheritedItems = this.getItemsFromFile(otherFile);
+									chestItems.addAll(inheritedItems);
 								}
 							}
- 
-							TreasureChestItem chestItem = new TreasureChestItem(item, itemValue);
-							chestItems.add(chestItem);
 						}
 					}
 					
