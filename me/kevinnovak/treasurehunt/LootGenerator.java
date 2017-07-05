@@ -148,7 +148,6 @@ public class LootGenerator {
 		List<ItemStack> items = new ArrayList<ItemStack>();
 		
 		TreasureChestType chestType = this.treasureChestTypes.get(i);
-		List<TreasureChestItem> chestItems = chestType.getChestItems();
 		
 		int chestValue = chestType.getValue();
 		int bufferAmount = (int) ((double) chestValue * (double) this.bufferPercentage / (double) 100);
@@ -160,8 +159,7 @@ public class LootGenerator {
 		int failedAttempts = 0;
 		
 		while (currentValue < minValue && items.size() < CHEST_SIZE && failedAttempts < maxFitItemAttempts) {
-			int randInt = rand.nextInt(chestItems.size());
-			TreasureChestItem item = chestItems.get(randInt);
+			TreasureChestItem item = chestType.getRandomItem();
 			int itemValue = item.getValue();
 			if (currentValue + itemValue <= maxValue) {
 				failedAttempts = 0;
