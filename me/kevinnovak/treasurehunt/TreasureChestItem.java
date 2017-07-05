@@ -6,10 +6,12 @@ public class TreasureChestItem {
 	@SuppressWarnings("deprecation")
 	ItemStack item = new ItemStack(0);
 	int value = 0;
+	int weight = 0;
 	
-	TreasureChestItem(ItemStack item, int value) {
+	TreasureChestItem(ItemStack item, int value, int weight) {
 		this.item = item;
 		this.value = value;
+		this.weight = weight;
     }
 	
 	ItemStack getItem() {

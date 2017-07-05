@@ -66,6 +66,11 @@ public class LootGenerator {
 							itemAmount = itemsData.getInt(key + ".amount");
 						}
 						
+						int itemWeight = 100;
+						if (itemsData.isSet(key + ".weight")) {
+							itemWeight = itemsData.getInt(key + ".weight");
+						}
+						
 						ItemStack item = new ItemStack(itemID, itemAmount, (byte) itemData);
 						
 						// add enchantments
@@ -77,7 +82,7 @@ public class LootGenerator {
 							}
 						}
 
-						TreasureChestItem chestItem = new TreasureChestItem(item, itemValue);
+						TreasureChestItem chestItem = new TreasureChestItem(item, itemValue, itemWeight);
 						chestItems.add(chestItem);
 					}
 				}
