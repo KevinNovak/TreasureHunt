@@ -29,4 +29,12 @@ public class TreasureChestItem {
 	void setValue(int value) {
 		this.value = value;
 	}
+	
+	int getWeight() {
+		return this.weight;
+	}
+	
+	void setWeight(int weight) {
+		this.weight = weight;
+	}
 }

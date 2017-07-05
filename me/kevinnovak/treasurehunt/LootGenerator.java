@@ -66,6 +66,7 @@ public class LootGenerator {
 							itemAmount = itemsData.getInt(key + ".amount");
 						}
 						
+						// get weight
 						int itemWeight = 100;
 						if (itemsData.isSet(key + ".weight")) {
 							itemWeight = itemsData.getInt(key + ".weight");
