@@ -37,7 +37,7 @@ items:
     value: 70
   beacon:
     id: 138
-    value: 1000
+    value: 100
   ender_eye:
     id: 381
     amount: 8
