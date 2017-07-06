@@ -19,16 +19,18 @@ public class LootGenerator {
 	Random rand = new Random();
 	private ColorConverter colorConv = new ColorConverter();
 	List<TreasureChestType> treasureChestTypes = new ArrayList<TreasureChestType>();
+	int maxFitItemAttempts = 0;
+	int defaultItemWeight = 0;
 	int totalWeight = 0;
 	int[] weights;
-	int maxFitItemAttempts = 0;
 	int bufferPercentage = 0;
 	
-	LootGenerator(File[] files, int bufferPercentage, int maxFitItemAttempts) {
+	LootGenerator(File[] files, int maxFitItemAttempts, int defaultItemWeight, int bufferPercentage) {
 		this.setTreasureChestTypes(files);
 		this.setupWeights();
-		this.bufferPercentage = bufferPercentage;
 		this.maxFitItemAttempts = maxFitItemAttempts;
+		this.defaultItemWeight = defaultItemWeight;
+		this.bufferPercentage = bufferPercentage;
 	}
 	
 	List<TreasureChestType> getTreasureChestTypes() {

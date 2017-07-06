@@ -19,11 +19,15 @@ spawnInterval: 3600
 chestDuration: 1800
 openedChestDuration: 300
 
-bufferPercentage: 10
-maxSpawnAttempts: 3000
-maxFitItemAttempts: 3
 minPlayersOnline: 3
 maxChests: 5
+
+maxSpawnAttempts: 3000
+maxFitItemAttempts: 3
+
+defaultItemWeight: 100
+
+bufferPercentage: 10
 
 dontSpawnOn:
 - 6

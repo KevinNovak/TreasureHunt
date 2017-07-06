@@ -47,8 +47,11 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     private ItemStack huntItem;
 	private World world;
 	private int minX, maxX, minY, maxY, minZ, maxZ;
-	private int spawnInterval, chestDuration, openedChestDuration, bufferPercentage, maxSpawnAttempts, maxFitItemAttempts;
+	private int spawnInterval, chestDuration, openedChestDuration;
 	private int minPlayersOnline, maxChests;
+	private int maxSpawnAttempts, maxFitItemAttempts;
+	private int defaultItemWeight; 
+	private int bufferPercentage;
 	private List<Integer> dontSpawnOn;
 	private boolean protectAgainstBreak, protectAgainstBurn, protectAgainstExplode;
 	
@@ -122,12 +125,17 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     	this.spawnInterval = getConfig().getInt("spawnInterval");
     	this.chestDuration = getConfig().getInt("chestDuration");
     	this.openedChestDuration = getConfig().getInt("openedChestDuration");
-    	this.bufferPercentage = getConfig().getInt("bufferPercentage");
-    	this.maxSpawnAttempts = getConfig().getInt("maxSpawnAttempts");
-    	this.maxFitItemAttempts = getConfig().getInt("maxFitItemAttempts");
+    	
     	this.minPlayersOnline = getConfig().getInt("minPlayersOnline");
     	this.maxChests = getConfig().getInt("maxChests");
     	
+    	this.maxSpawnAttempts = getConfig().getInt("maxSpawnAttempts");
+    	this.maxFitItemAttempts = getConfig().getInt("maxFitItemAttempts");
+    	
+    	this.defaultItemWeight = getConfig().getInt("defaultItemWeight");
+    	
+    	this.bufferPercentage = getConfig().getInt("bufferPercentage");
+
     	this.dontSpawnOn = getConfig().getIntegerList("dontSpawnOn");
     	
     	this.protectAgainstBreak = getConfig().getBoolean("protectAgainst.break");
@@ -144,7 +152,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
 			saveResource("treasure/rare.yml", false);
 			saveResource("treasure/uncommon.yml", false);
     	}
-    	lootGen = new LootGenerator(treasureDir.listFiles(), this.bufferPercentage, this.maxFitItemAttempts);
+    	lootGen = new LootGenerator(treasureDir.listFiles(), this.maxFitItemAttempts, this.defaultItemWeight, this.bufferPercentage);
     }
     
     void saveHuntersFile() {
