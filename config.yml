@@ -9,8 +9,8 @@ huntArea:
     min: -500
     max: 500
   y-Range:
-    min: 2
-    max: 70
+    min: 4
+    max: 50
   z-Range:
     min: -500
     max: 500
