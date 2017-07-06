@@ -35,6 +35,11 @@ defaultItemWeight: 100
 
 bufferPercentage: 10
 
+spawnUnder:
+  air: true
+  water: false
+  lava: false
+
 dontSpawnOn:
 - 6
 - 8
