@@ -8,6 +8,8 @@ public class TreasureChestType {
 	String name = "None";
 	int weight = 0;
 	int value = 0;
+	int totalItemWeight = 0;
+	int[] itemWeights;
 	List<TreasureChestItem> chestItems = new ArrayList <TreasureChestItem>();
 	Random rand = new Random();
 	
@@ -16,7 +18,20 @@ public class TreasureChestType {
 		this.weight = weight;
 		this.value = value;
 		this.chestItems = chestItems;
+		this.setupWeights();
     }
+	
+	void setupWeights() {
+		this.itemWeights = new int[chestItems.size() + 1];
+		this.itemWeights[0] = 0;
+		int totalItemWeight = 0;
+		for (int i=0; i<chestItems.size(); i++) {
+			int itemWeight = chestItems.get(i).getWeight();
+			totalItemWeight = totalItemWeight + itemWeight;
+			this.itemWeights[i+1] = itemWeight + itemWeights[i];
+		}
+		this.totalItemWeight = totalItemWeight;
+	}
 	
 	String getName() {
 		return this.name;
@@ -51,9 +66,13 @@ public class TreasureChestType {
 	}
 	
 	TreasureChestItem getRandomItem() {
-		int randInt = rand.nextInt(chestItems.size());
-		TreasureChestItem item = chestItems.get(randInt);
-		return item;
+		int randWeight = rand.nextInt(totalItemWeight); // min 0, max totalItemWeight-1
+		int i = 0;
+		while (randWeight >= itemWeights[i] && randWeight < totalItemWeight) {
+			i++;
+		}
+		i = i-1;
+		return this.chestItems.get(i);
 	}
 
 }
