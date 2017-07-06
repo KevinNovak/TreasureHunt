@@ -23,3 +23,6 @@ permissions:
     treasurehunt.command.chests:
         description: Show available treasure chests.
         default: true
+    treasurehunt.command.despawn:
+        description: Despawn all treasure chests.
+        default: op

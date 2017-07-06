@@ -393,6 +393,13 @@ public class TreasureHunt extends JavaPlugin implements Listener{
 		return -1;
     }
     
+    void despawnAllChests() {
+    	for (TreasureChest chest : chests) {
+    		chest.despawn();
+    	}
+    	chests = new ArrayList<TreasureChest>();
+    }
+    
     void incrementChestTimes() {
     	List<TreasureChest> toRemove = new ArrayList<TreasureChest>();
     	for (int i=0; i<chests.size(); i++) {
@@ -660,6 +667,14 @@ public class TreasureHunt extends JavaPlugin implements Listener{
                 		return true;
             		} else {
         				player.sendMessage(langMan.noPermission);
+        				return true;
+            		}
+            	} else if (args[0].equalsIgnoreCase("despawn")) {
+            		if (player.hasPermission(perm.despawn)) {
+            			this.despawnAllChests();
+            			return true;
+            		} else {
+            			player.sendMessage(langMan.noPermission);
         				return true;
             		}
             	} else {
