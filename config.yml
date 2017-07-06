@@ -15,8 +15,8 @@ huntArea:
     min: -500
     max: 500
 
-spawnInterval: 3600
-chestDuration: 1800
+spawnInterval: 1800
+chestDuration: 10800
 openedChestDuration: 300
 announceTime:
   enabled: true
