@@ -438,12 +438,26 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     	chests.removeAll(toRemove);
     }
     
+    void announceChests() {
+    	for (TreasureChest chest : this.getAvailableChests()) {
+    		Integer remainingTime = this.chestDuration - chest.getTimeAlive();
+    		if (this.announceTimeAtRemainingTimes.contains(remainingTime)) {
+    			for (Player player : Bukkit.getOnlinePlayers()) {
+    				player.sendMessage(langMan.announceTime.replace("{RARITY}", chest.getType()).replace("{TIME}", timeConv.friendlyTime(remainingTime)));
+    			}
+    		}
+    	}
+    }
+    
     public void startTimerThread() {
         BukkitScheduler scheduler = getServer().getScheduler();
         scheduler.scheduleSyncRepeatingTask(this, new Runnable() {
         	@Override
             public void run() {
                 incrementChestTimes();
+                if (announceTimeEnabled) {
+                    announceChests();
+                }
                 spawnTimer++;
                 if (spawnTimer > spawnInterval) {
                 	if (getServer().getOnlinePlayers().size() >= minPlayersOnline) {
