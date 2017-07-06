@@ -29,6 +29,10 @@ public class HelpMenu {
 			commandLines.add(langMan.helpMenuCommandStart);
 		}
 		
+		if (player.hasPermission(perm.despawn)) {
+			commandLines.add(langMan.helpMenuCommandDespawn);
+		}
+		
 		return commandLines;
 	}
 	

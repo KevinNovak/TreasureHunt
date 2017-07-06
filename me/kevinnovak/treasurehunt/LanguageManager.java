@@ -8,9 +8,9 @@ public class LanguageManager {
 	public TreasureHunt plugin;
 	private ColorConverter colorConv = new ColorConverter();
 	
-	public String chestSpawned, chestDespawned, chestFound, alreadyFound, tooManyChests, noPermission;
+	public String chestSpawned, chestDespawned, chestFound, alreadyFound, tooManyChests, despawnedAllChests, noSpawnedChests, noPermission;
 	public String huntItemSendDistance, huntItemAnotherWorld, huntItemNoChests;
-	public String helpMenuHeader, helpMenuCommandChests, helpMenuCommandTop, helpMenuCommandStart, helpMenuMorePages, helpMenuNoCommands, helpMenuFooter;
+	public String helpMenuHeader, helpMenuCommandChests, helpMenuCommandTop, helpMenuCommandStart, helpMenuCommandDespawn, helpMenuMorePages, helpMenuNoCommands, helpMenuFooter;
 	public String chestListHeader, chestListChestLine, chestListMorePages, chestListNoChests, chestListFooter;
 	public String topHuntersHeader, topHuntersHunterLine, topHuntersMorePages, topHuntersNoHunters, topHuntersFooter;
 	public String day, days, hour, hours, minute, minutes, second, seconds;
@@ -28,6 +28,8 @@ public class LanguageManager {
     	this.chestFound = colorConv.convert(languageData.getString("chestFound"));
     	this.alreadyFound = colorConv.convert(languageData.getString("alreadyFound"));
     	this.tooManyChests = colorConv.convert(languageData.getString("tooManyChests"));
+    	this.despawnedAllChests = colorConv.convert(languageData.getString("despawnedAllChests"));
+    	this.noSpawnedChests = colorConv.convert(languageData.getString("noSpawnedChests"));
     	this.noPermission = colorConv.convert(languageData.getString("noPermission"));
     	
     	this.huntItemSendDistance = colorConv.convert(languageData.getString("huntItem.sendDistance"));
@@ -38,6 +40,7 @@ public class LanguageManager {
     	this.helpMenuCommandChests = colorConv.convert(languageData.getString("helpMenu.command.chests"));
     	this.helpMenuCommandTop = colorConv.convert(languageData.getString("helpMenu.command.top"));
     	this.helpMenuCommandStart = colorConv.convert(languageData.getString("helpMenu.command.start"));
+    	this.helpMenuCommandDespawn = colorConv.convert(languageData.getString("helpMenu.command.despawn"));
     	this.helpMenuMorePages = colorConv.convert(languageData.getString("helpMenu.morePages"));
     	this.helpMenuNoCommands = colorConv.convert(languageData.getString("helpMenu.noCommands"));
     	this.helpMenuFooter = colorConv.convert(languageData.getString("helpMenu.footer"));

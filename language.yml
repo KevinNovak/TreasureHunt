@@ -3,6 +3,8 @@ chestDespawned: '&e[&6TreasureHunt&e] &fA {RARITY} chest has faded without being
 chestFound: '&e[&6TreasureHunt&e] &b{PLAYER} &fhas struck {RARITY} treasure!'
 alreadyFound: '&7This chest has already been found by &b{PLAYER}&7!'
 tooManyChests: '&cThe maximum number of chests are already spawned!'
+despawnedAllChests: '&7Despawned all chests.'
+noSpawnedChests: '&cThere are no chests to despawn!'
 noPermission: '&cYou are not permitted to do this!'
 huntItem:
   sendDistance: '&7The closest chest is &6{DISTANCE} &7blocks away.'
@@ -14,6 +16,7 @@ helpMenu:
     chests: '&b/th chests &7- Show available treasure chests.'
     top: '&b/th top &7- Show top treasure hunters.'
     start: '&b/th start &7- Start a treasure hunt.'
+    despawn: '&b/th despawn &7- Despawn all treasure chests.'
   morePages: ' &7Type &6/th {PAGE} &7for more.'
   noCommands: ' &7You are not allowed to use commands.'
   footer: ' &e----------------------------------------'

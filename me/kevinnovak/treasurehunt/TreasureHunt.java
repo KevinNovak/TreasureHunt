@@ -393,11 +393,21 @@ public class TreasureHunt extends JavaPlugin implements Listener{
 		return -1;
     }
     
-    void despawnAllChests() {
-    	for (TreasureChest chest : chests) {
-    		chest.despawn();
+    void despawnAllChests(Player despawner) {
+    	if (chests.size() > 0) {
+        	for (TreasureChest chest : chests) {
+        		chest.despawn();
+        		if (!chest.isOpened()) {
+        			for (Player player : Bukkit.getOnlinePlayers()) {
+        				player.sendMessage(langMan.chestDespawned.replace("{RARITY}", chest.getType()));
+        			}
+        		}
+        	}
+        	chests = new ArrayList<TreasureChest>();
+        	despawner.sendMessage(langMan.despawnedAllChests);
+    	} else {
+    		despawner.sendMessage(langMan.noSpawnedChests);
     	}
-    	chests = new ArrayList<TreasureChest>();
     }
     
     void incrementChestTimes() {
@@ -671,7 +681,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
             		}
             	} else if (args[0].equalsIgnoreCase("despawn")) {
             		if (player.hasPermission(perm.despawn)) {
-            			this.despawnAllChests();
+            			this.despawnAllChests(player);
             			return true;
             		} else {
             			player.sendMessage(langMan.noPermission);
