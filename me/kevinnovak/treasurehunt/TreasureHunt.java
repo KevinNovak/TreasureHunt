@@ -590,15 +590,6 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     	}
     }
     
-    int distanceBetween(Location here, Location there) {
-    	int x1 = here.getBlockX();
-    	int x2 = there.getBlockX();
-    	int z1 = here.getBlockZ();
-    	int z2 = there.getBlockZ();
-    	int distance = (int) Math.sqrt(((x1 - x2)*(x1 - x2)) + ((z1 - z2)*(z1 - z2)));
-    	return distance;
-    }
-    
     void sendDistance(Player player) {
     	List<TreasureChest> availableChests = this.getAvailableChests();
     	if (availableChests.size() > 0) {
@@ -606,7 +597,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
 			if (playerLoc.getWorld().equals(world)) {
 	    		int closestDistance = Integer.MAX_VALUE;
 				for (TreasureChest chest : availableChests) {
-					int distance = distanceBetween(playerLoc, chest.getLocation());
+					int distance = chest.distanceTo(playerLoc);
 	    			if (distance < closestDistance) {
 	    				closestDistance = distance;
 	    			}

@@ -110,12 +110,21 @@ public class TreasureChest {
 		}
 	}
 	
+    int distanceTo(Location location) {
+    	int x1 = this.location.getBlockX();
+    	int x2 = location.getBlockX();
+    	int z1 = this.location.getBlockZ();
+    	int z2 = location.getBlockZ();
+    	int distance = (int) Math.sqrt(((x1 - x2)*(x1 - x2)) + ((z1 - z2)*(z1 - z2)));
+    	return distance;
+    }
+	
 	String findClosestPlayer() {
 		String closestPlayer = this.getClosestPlayer();
-		double closestDistance = Integer.MAX_VALUE;
+		int closestDistance = Integer.MAX_VALUE;
 		for (Player player : Bukkit.getOnlinePlayers()) {
 			if (player.getLocation().getWorld().equals(this.location.getWorld())) {
-				double playerDistance = player.getLocation().distance(this.location);
+				int playerDistance = this.distanceTo(player.getLocation());
 				if (playerDistance < closestDistance) {
 					closestDistance = playerDistance;
 					closestPlayer = player.getName();
