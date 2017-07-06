@@ -3,6 +3,7 @@ weight: 7
 value: 3000
 inheritance:
 - 'rare'
+- 'uncommon'
 items:
   dragon_breath:
     id: 437

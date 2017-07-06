@@ -3,6 +3,7 @@ weight: 3
 value: 5000
 inheritance:
 - 'legendary'
+- 'rare'
 items:
   enchanted_golden_apple:
     id: 322-1

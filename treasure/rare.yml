@@ -3,6 +3,7 @@ weight: 10
 value: 1000
 inheritance:
 - 'uncommon'
+- 'common'
 items:
   enchanting_table:
     id: 116
