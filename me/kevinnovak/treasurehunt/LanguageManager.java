@@ -8,7 +8,7 @@ public class LanguageManager {
 	public TreasureHunt plugin;
 	private ColorConverter colorConv = new ColorConverter();
 	
-	public String chestSpawned, chestDespawned, chestFound, alreadyFound, tooManyChests, despawnedAllChests, noSpawnedChests, noPermission;
+	public String chestSpawned, announceTime, chestDespawned, chestFound, alreadyFound, tooManyChests, despawnedAllChests, noSpawnedChests, noPermission;
 	public String huntItemSendDistance, huntItemAnotherWorld, huntItemNoChests;
 	public String helpMenuHeader, helpMenuCommandChests, helpMenuCommandTop, helpMenuCommandStart, helpMenuCommandDespawn, helpMenuMorePages, helpMenuNoCommands, helpMenuFooter;
 	public String chestListHeader, chestListChestLine, chestListMorePages, chestListNoChests, chestListFooter;
@@ -24,6 +24,7 @@ public class LanguageManager {
         YamlConfiguration languageData = YamlConfiguration.loadConfiguration(languageFile);
         
     	this.chestSpawned = colorConv.convert(languageData.getString("chestSpawned"));
+    	this.announceTime = colorConv.convert(languageData.getString("announceTime"));
     	this.chestDespawned = colorConv.convert(languageData.getString("chestDespawned"));
     	this.chestFound = colorConv.convert(languageData.getString("chestFound"));
     	this.alreadyFound = colorConv.convert(languageData.getString("alreadyFound"));

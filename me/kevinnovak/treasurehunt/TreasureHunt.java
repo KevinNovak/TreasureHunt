@@ -48,6 +48,8 @@ public class TreasureHunt extends JavaPlugin implements Listener{
 	private World world;
 	private int minX, maxX, minY, maxY, minZ, maxZ;
 	private int spawnInterval, chestDuration, openedChestDuration;
+	private boolean announceTimeEnabled;
+	private List<Integer> announceTimeAtRemainingTimes;
 	private int minPlayersOnline, maxChests;
 	private int maxSpawnAttempts, maxFitItemAttempts;
 	private int defaultItemWeight; 
@@ -125,6 +127,8 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     	this.spawnInterval = getConfig().getInt("spawnInterval");
     	this.chestDuration = getConfig().getInt("chestDuration");
     	this.openedChestDuration = getConfig().getInt("openedChestDuration");
+    	this.announceTimeEnabled = getConfig().getBoolean("announceTime.enabled");
+    	this.announceTimeAtRemainingTimes = getConfig().getIntegerList("announceTime.atRemainingTimes");
     	
     	this.minPlayersOnline = getConfig().getInt("minPlayersOnline");
     	this.maxChests = getConfig().getInt("maxChests");
