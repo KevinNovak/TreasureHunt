@@ -54,7 +54,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
 	private int maxSpawnAttempts, maxFitItemAttempts;
 	private int defaultItemWeight; 
 	private int bufferPercentage;
-	private boolean spawnUnderAir, spawnUnderWater, spawnUnderLava;
+	private List<Material> spawnUnder = new ArrayList<Material>();
 	private List<Integer> dontSpawnOn;
 	private boolean protectAgainstBreak, protectAgainstBurn, protectAgainstExplode;
 	
@@ -141,11 +141,17 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     	
     	this.bufferPercentage = getConfig().getInt("bufferPercentage");
 
-    	this.spawnUnderAir = getConfig().getBoolean("spawnUnder.air");
-    	this.spawnUnderWater = getConfig().getBoolean("spawnUnder.water");
-    	this.spawnUnderLava = getConfig().getBoolean("spawnUnder.lava");
-    	if (!this.spawnUnderAir && !this.spawnUnderWater && !this.spawnUnderLava) {
-    		this.spawnUnderAir = true;
+    	if(getConfig().getBoolean("spawnUnder.air")) {
+    		this.spawnUnder.add(Material.AIR);
+    	}
+    	if(getConfig().getBoolean("spawnUnder.water")) {
+    		this.spawnUnder.add(Material.STATIONARY_WATER);
+    	}
+    	if(getConfig().getBoolean("spawnUnder.lava")) {
+    		this.spawnUnder.add(Material.STATIONARY_LAVA);
+    	}
+    	if (this.spawnUnder.size() == 0) {
+    		this.spawnUnder.add(Material.AIR);
     	}
     	
     	this.dontSpawnOn = getConfig().getIntegerList("dontSpawnOn");
@@ -310,26 +316,26 @@ public class TreasureHunt extends JavaPlugin implements Listener{
         		int randY = randLocation.getBlockY();
         		int randZ = randLocation.getBlockZ();
         		
-        		Location blockAbove = new Location(world, randX, randY+1, randZ);
-        		Location blockBelow = new Location(world, randX, randY-1, randZ);
-    			
-    			if (randLocation.getBlock().getType() == Material.AIR) {
-    				if (blockAbove.getBlock().getType() == Material.AIR) {
-    					// TO-DO: Or other forbidden blocks
-    					Material blockBelowMaterial = blockBelow.getBlock().getType();
-    					if (blockBelowMaterial != Material.AIR) {
-    						boolean forbidden = false;
-    						for (Integer itemID : dontSpawnOn) {
-    							if (blockBelowMaterial == Material.getMaterial(itemID)) {
-    								forbidden = true;
-    							}
-    						}
-    						if (!forbidden) {
-        						return randLocation;
-    						}
-    					}
-    				}
-    			}
+        		Material blockAboveMaterial = new Location(world, randX, randY+1, randZ).getBlock().getType();
+        		Material blockBelowMaterial = new Location(world, randX, randY-1, randZ).getBlock().getType();
+        		
+        		for (Material material : this.spawnUnder) {
+        			if (randLocation.getBlock().getType() == material) {
+        				if (blockAboveMaterial == material) {
+        					if (blockBelowMaterial != material) {
+        						boolean forbidden = false;
+        						for (Integer itemID : dontSpawnOn) {
+        							if (blockBelowMaterial == Material.getMaterial(itemID)) {
+        								forbidden = true;
+        							}
+        						}
+        						if (!forbidden) {
+            						return randLocation;
+        						}
+        					}
+        				}
+        			}
+        		}
     			randLocation.subtract(0, 1, 0);
     			attempt++;
     		}
