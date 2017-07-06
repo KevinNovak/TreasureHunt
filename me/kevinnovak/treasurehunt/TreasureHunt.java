@@ -454,10 +454,10 @@ public class TreasureHunt extends JavaPlugin implements Listener{
         scheduler.scheduleSyncRepeatingTask(this, new Runnable() {
         	@Override
             public void run() {
-                incrementChestTimes();
                 if (announceTimeEnabled) {
                     announceChests();
                 }
+                incrementChestTimes();
                 spawnTimer++;
                 if (spawnTimer > spawnInterval) {
                 	if (getServer().getOnlinePlayers().size() >= minPlayersOnline) {
