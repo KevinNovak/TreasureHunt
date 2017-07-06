@@ -17,10 +17,10 @@ permissions:
     treasurehunt.command.chests:
         description: Show available treasure chests.
         default: true
-     treasurehunt.command.top:
+    treasurehunt.command.top:
         description: Show top treasure hunters.
         default: true
-     treasurehunt.command.start:
+    treasurehunt.command.start:
         description: Start a treasure hunt.
         default: op
     treasurehunt.command.despawn:
