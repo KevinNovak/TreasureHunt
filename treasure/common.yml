@@ -26,66 +26,82 @@ items:
     id: 235
     amount: 32
     value: 60
+    weight: 6
   orange_glazed_terracotta:
     id: 236
     amount: 32
     value: 60
+    weight: 6
   magenta_glazed_terracotta:
     id: 237
     amount: 32
     value: 60
+    weight: 6
   light_blue_glazed_terracotta:
     id: 238
     amount: 32
     value: 60
+    weight: 6
   yellow_glazed_terracotta:
     id: 239
     amount: 32
     value: 60
+    weight: 6
   lime_glazed_terracotta:
     id: 240
     amount: 32
     value: 60
+    weight: 6
   pink_glazed_terracotta:
     id: 241
     amount: 32
     value: 60
+    weight: 6
   gray_glazed_terracotta:
     id: 242
     amount: 32
     value: 60
+    weight: 6
   light_gray_glazed_terracotta:
     id: 243
     amount: 32
     value: 60
+    weight: 6
   cyan_glazed_terracotta:
     id: 244
     amount: 32
     value: 60
+    weight: 6
   purple_glazed_terracotta:
     id: 245
     amount: 32
     value: 60
+    weight: 6
   blue_glazed_terracotta:
     id: 246
     amount: 32
     value: 60
+    weight: 6
   brown_glazed_terracotta:
     id: 247
     amount: 32
     value: 60
+    weight: 6
   green_glazed_terracotta:
     id: 248
     amount: 32
     value: 60
+    weight: 6
   red_glazed_terracotta:
     id: 249
     amount: 32
     value: 60
+    weight: 6
   black_glazed_terracotta:
     id: 250
     amount: 32
     value: 60
+    weight: 6
   cooked_beef:
     id: 364
     amount: 16

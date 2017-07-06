@@ -61,51 +61,67 @@ items:
   white_shulker_box:
     id: 219
     value: 20
+    weight: 6
   orange_shulker_box:
     id: 220
     value: 20
+    weight: 6
   magenta_shulker_box:
     id: 221
     value: 20
+    weight: 6
   light_blue_shulker_box:
     id: 222
     value: 20
+    weight: 6
   yellow_shulker_box:
     id: 223
     value: 20
+    weight: 6
   lime_shulker_box:
     id: 224
     value: 20
+    weight: 6
   pink_shulker_box:
     id: 225
     value: 20
+    weight: 6
   gray_shulker_box:
     id: 226
     value: 20
+    weight: 6
   silver_shulker_box:
     id: 227
     value: 20
+    weight: 6
   cyan_shulker_box:
     id: 228
     value: 20
+    weight: 6
   purple_shulker_box:
     id: 229
     value: 20
+    weight: 6
   blue_shulker_box:
     id: 230
     value: 20
+    weight: 6
   brown_shulker_box:
     id: 231
     value: 20
+    weight: 6
   green_shulker_box:
     id: 232
     value: 20
+    weight: 6
   red_shulker_box:
     id: 233
     value: 20
+    weight: 6
   black_shulker_box:
     id: 234
     value: 20
+    weight: 6
   piston:
     id: 33
     value: 22
