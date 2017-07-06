@@ -1,5 +1,5 @@
 chestSpawned: '&e[&6TreasureHunt&e] &fWord of {RARITY} treasure spreads across the land!'
-announceTime: '&e[&6TreasureHunt&e] &fA {RARITY} chest will disappear in {TIME}!'
+announceTime: '&e[&6TreasureHunt&e] &fA {RARITY} chest will disappear in &7{TIME}&f!'
 chestDespawned: '&e[&6TreasureHunt&e] &fA {RARITY} chest has faded without being found!'
 chestFound: '&e[&6TreasureHunt&e] &b{PLAYER} &fhas struck {RARITY} treasure!'
 alreadyFound: '&7This chest has already been found by &b{PLAYER}&7!'
