@@ -14,15 +14,15 @@ permissions:
     treasurehunt.item:
         description: Use the treasure hunt item.
         default: true
-    treasurehunt.command.start:
-        description: Start a treasure hunt.
-        default: op
-    treasurehunt.command.top:
-        description: Show top treasure hunters.
-        default: true
     treasurehunt.command.chests:
         description: Show available treasure chests.
         default: true
+     treasurehunt.command.top:
+        description: Show top treasure hunters.
+        default: true
+     treasurehunt.command.start:
+        description: Start a treasure hunt.
+        default: op
     treasurehunt.command.despawn:
         description: Despawn all treasure chests.
         default: op
