@@ -18,6 +18,16 @@ huntArea:
 spawnInterval: 3600
 chestDuration: 1800
 openedChestDuration: 300
+announceDisappearing:
+  enabled: true
+  atRemainingTime:
+  - 600
+  - 300
+  - 60
+  - 30
+  - 3
+  - 2
+  - 1
 
 minPlayersOnline: 3
 maxChests: 5
