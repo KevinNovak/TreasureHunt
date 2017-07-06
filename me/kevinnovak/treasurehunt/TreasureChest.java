@@ -112,6 +112,8 @@ public class TreasureChest {
 	
 	String findClosestPlayer() {
 		String closestPlayer = this.getClosestPlayer();
+		double closestDistance = Integer.MAX_VALUE;
+		for (Player player : Bukkit.getOnlinePlayers()) {
 			if (player.getLocation().getWorld().equals(this.location.getWorld())) {
 				double playerDistance = player.getLocation().distance(this.location);
 				if (playerDistance < closestDistance) {
