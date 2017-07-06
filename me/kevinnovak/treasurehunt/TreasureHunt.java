@@ -54,6 +54,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
 	private int maxSpawnAttempts, maxFitItemAttempts;
 	private int defaultItemWeight; 
 	private int bufferPercentage;
+	private boolean spawnUnderAir, spawnUnderWater, spawnUnderLava;
 	private List<Integer> dontSpawnOn;
 	private boolean protectAgainstBreak, protectAgainstBurn, protectAgainstExplode;
 	
@@ -140,6 +141,13 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     	
     	this.bufferPercentage = getConfig().getInt("bufferPercentage");
 
+    	this.spawnUnderAir = getConfig().getBoolean("spawnUnder.air");
+    	this.spawnUnderWater = getConfig().getBoolean("spawnUnder.water");
+    	this.spawnUnderLava = getConfig().getBoolean("spawnUnder.lava");
+    	if (!this.spawnUnderAir && !this.spawnUnderWater && !this.spawnUnderLava) {
+    		this.spawnUnderAir = true;
+    	}
+    	
     	this.dontSpawnOn = getConfig().getIntegerList("dontSpawnOn");
     	
     	this.protectAgainstBreak = getConfig().getBoolean("protectAgainst.break");
