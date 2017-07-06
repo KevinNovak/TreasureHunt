@@ -2,9 +2,11 @@ package me.kevinnovak.treasurehunt;
 
 import java.util.UUID;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Chest;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 public class TreasureChest {
@@ -106,5 +108,18 @@ public class TreasureChest {
 			chest.getInventory().clear();
 			this.location.getBlock().setType(Material.AIR);
 		}
+	}
+	
+	String findClosestPlayer() {
+		String closestPlayer = this.getClosestPlayer();
+			if (player.getLocation().getWorld().equals(this.location.getWorld())) {
+				double playerDistance = player.getLocation().distance(this.location);
+				if (playerDistance < closestDistance) {
+					closestDistance = playerDistance;
+					closestPlayer = player.getName();
+				}
+			}
+		}
+		return closestPlayer;
 	}
 }
