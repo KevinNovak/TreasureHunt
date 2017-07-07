@@ -10,6 +10,7 @@ import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
@@ -283,7 +284,6 @@ public class TreasureHunt extends JavaPlugin implements Listener{
 	    		// TO-DO: Annouce to only admins
 	    		Bukkit.getServer().getLogger().info("[TreasureHunt] Failed to spawn a treasure chest after max attempts.");
 	    	} else {
-	    		// TO-DO: get random loot
 	    		UUID id = UUID.randomUUID();
 	    		
         		int chestTypeNum = lootGen.selectChestType();
@@ -298,7 +298,8 @@ public class TreasureHunt extends JavaPlugin implements Listener{
 	    		for (Player player : Bukkit.getOnlinePlayers()) {
 	    			player.sendMessage(this.langMan.chestSpawned.replace("{RARITY}", type));
 	    		}
-	    		Bukkit.getServer().getLogger().info("[TreasureHunt] Chest spawned at " + treasureLocation.getBlockX() + ", " + treasureLocation.getBlockY() + ", " + treasureLocation.getBlockZ());
+	    		String location = treasureLocation.getBlockX() + ", " + treasureLocation.getBlockY() + ", " + treasureLocation.getBlockZ();
+	    		Bukkit.getServer().getLogger().info(langMan.consolePrefix + langMan.consoleChestSpawned.replace("{RARITY}", ChatColor.stripColor(type)).replace("{LOCATION}", location));
 	    	}
 		}
     }

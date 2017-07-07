@@ -8,6 +8,7 @@ public class LanguageManager {
 	public TreasureHunt plugin;
 	private ColorConverter colorConv = new ColorConverter();
 	
+	public String consolePrefix = "[TreasureHunt] ";
 	public String chestSpawned, announceTime, chestDespawned, chestFound, alreadyFound;
 	public String tooManyChests, despawnedAllChests, noSpawnedChests, noPermission;
 	public String huntItemSendDistance, huntItemAnotherWorld, huntItemNoChests;
