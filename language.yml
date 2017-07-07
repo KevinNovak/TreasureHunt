@@ -5,6 +5,7 @@ chestSpawned: '&e[&6TreasureHunt&e] &fWord of {RARITY} treasure spreads across t
 announceTime: '&e[&6TreasureHunt&e] &fA {RARITY} chest will disappear in &7{TIME}&f!'
 chestDespawned: '&e[&6TreasureHunt&e] &fA {RARITY} chest has faded without being found!'
 chestFound: '&e[&6TreasureHunt&e] &b{PLAYER} &fhas struck {RARITY} treasure!'
+
 alreadyFound: '&7This chest has already been found by &b{PLAYER}&7!'
 tooManyChests: '&cThe maximum number of chests are already spawned!'
 despawnedAllChests: '&7Despawned all chests.'
@@ -50,3 +51,9 @@ time:
   minutes: 'minutes'
   second: 'second'
   seconds: 'seconds'
+  
+console:
+  chestSpawned: 'A {RARITY} chest spawned at {LOCATION}.'
+  announceTime: 'A {RARITY} chest will disappear in {TIME}.'
+  chestDespawned: 'A {RARITY} chest disappeared without being found.'
+  chestFound: '{PLAYER} found a {RARITY} treasure.'

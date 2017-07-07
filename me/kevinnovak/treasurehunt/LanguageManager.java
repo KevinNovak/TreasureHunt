@@ -8,12 +8,14 @@ public class LanguageManager {
 	public TreasureHunt plugin;
 	private ColorConverter colorConv = new ColorConverter();
 	
-	public String chestSpawned, announceTime, chestDespawned, chestFound, alreadyFound, tooManyChests, despawnedAllChests, noSpawnedChests, noPermission;
+	public String chestSpawned, announceTime, chestDespawned, chestFound, alreadyFound;
+	public String tooManyChests, despawnedAllChests, noSpawnedChests, noPermission;
 	public String huntItemSendDistance, huntItemAnotherWorld, huntItemNoChests;
 	public String helpMenuHeader, helpMenuCommandChests, helpMenuCommandTop, helpMenuCommandStart, helpMenuCommandDespawn, helpMenuMorePages, helpMenuNoCommands, helpMenuFooter;
 	public String chestListHeader, chestListChestLine, chestListMorePages, chestListNoChests, chestListFooter;
 	public String topHuntersHeader, topHuntersHunterLine, topHuntersMorePages, topHuntersNoHunters, topHuntersFooter;
 	public String day, days, hour, hours, minute, minutes, second, seconds;
+	public String consoleChestSpawned, consoleAnnounceTime, consoleChestDespawned, consoleChestFound;
 	
 	public LanguageManager(TreasureHunt plugin) {
 		this.plugin = plugin;
@@ -66,5 +68,10 @@ public class LanguageManager {
     	this.minutes = languageData.getString("time.minutes");
     	this.second = languageData.getString("time.second");
     	this.seconds = languageData.getString("time.seconds");
+    	
+    	this.consoleChestSpawned = colorConv.convert(languageData.getString("console.chestSpawned"));
+    	this.consoleAnnounceTime = colorConv.convert(languageData.getString("console.announceTime"));
+    	this.consoleChestDespawned = colorConv.convert(languageData.getString("console.chestDespawned"));
+    	this.consoleChestFound = colorConv.convert(languageData.getString("console.chestFound"));
 	}
 }
