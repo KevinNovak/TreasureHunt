@@ -85,32 +85,37 @@ public class TreasureHunt extends JavaPlugin implements Listener{
         Bukkit.getServer().getPluginManager().registerEvents(this, this);
         
         loadConfig();
-        Bukkit.getServer().getLogger().info("[TreasureHunt] Config loaded.");
+        this.log("Config loaded.");
         
         // get treasure files
         copyTreasureFiles();
         
-        Bukkit.getServer().getLogger().info("[TreasureHunt] Loading treasure chests.");
+        this.log("Loading treasure chests.");
         loadChestsFromFile();
         
-        Bukkit.getServer().getLogger().info("[TreasureHunt] Loading treasure hunters.");
+        this.log("Loading treasure hunters.");
         loadHuntersFromFile();
         
         startTimerThread();
         
-        Bukkit.getServer().getLogger().info("[TreasureHunt] Plugin Enabled!");
+        this.log("Plugin Enabled!");
     }
     
     // ======================
     // Disable
     // ======================
     public void onDisable() {
-    	Bukkit.getServer().getLogger().info("[TreasureHunt] Saving treasure chests.");
+    	this.log("Saving treasure chests.");
     	saveChestsToFile();
-    	Bukkit.getServer().getLogger().info("[TreasureHunt] Saving treasure hunters.");
+    	this.log("Saving treasure hunters.");
     	saveHuntersToFile();
-        Bukkit.getServer().getLogger().info("[TreasureHunt] Plugin Disabled!");
+    	this.log("Plugin Disabled!");
     }
+    
+    void log(String info) {
+    	Bukkit.getServer().getLogger().info(langMan.consolePrefix + info);
+    }
+    
     
     @SuppressWarnings("deprecation")
 	void loadConfig() {
@@ -282,7 +287,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
 	    	Location treasureLocation = getTreasureLocation();
 	    	if (treasureLocation.getBlockX() == -1 && treasureLocation.getBlockY() == -1 && treasureLocation.getBlockZ() == -1) {
 	    		// TO-DO: Annouce to only admins
-	    		Bukkit.getServer().getLogger().info("[TreasureHunt] Failed to spawn a treasure chest after max attempts.");
+	    		this.log(langMan.consoleChestSpawnFailed);
 	    	} else {
 	    		UUID id = UUID.randomUUID();
 	    		
@@ -299,7 +304,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
 	    			player.sendMessage(this.langMan.chestSpawned.replace("{RARITY}", type));
 	    		}
 	    		String location = treasureLocation.getBlockX() + ", " + treasureLocation.getBlockY() + ", " + treasureLocation.getBlockZ();
-	    		Bukkit.getServer().getLogger().info(langMan.consolePrefix + langMan.consoleChestSpawned.replace("{RARITY}", ChatColor.stripColor(type)).replace("{LOCATION}", location));
+	    		this.log(langMan.consoleChestSpawned.replace("{RARITY}", ChatColor.stripColor(type)).replace("{LOCATION}", location));
 	    	}
 		}
     }
