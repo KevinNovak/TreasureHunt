@@ -87,9 +87,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     // ======================
     public void onDisable() {
     	this.saveChestsToFile();
-    	this.log("Saved treasure chests.");
     	this.saveHuntersToFile();
-    	this.log("Saved treasure hunters.");
     	this.log("Plugin disabled!");
     }
     
@@ -189,11 +187,14 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     }
     
     void saveHuntersToFile() {
-    	for (TreasureHunter hunter : this.hunters) {
-    		String id = hunter.getID().toString();
-    		huntersData.set(id + ".chestsFound", hunter.getChestsFound());
+    	if (this.hunters.size() > 0) {
+        	this.log("Saving treasure hunters.");
+        	for (TreasureHunter hunter : this.hunters) {
+        		String id = hunter.getID().toString();
+        		huntersData.set(id + ".chestsFound", hunter.getChestsFound());
+        	}
+        	saveHuntersFile();
     	}
-    	saveHuntersFile();
     }
     
     void loadHuntersFromFile() {
@@ -212,8 +213,13 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     }
     
     void saveChestsToFile() {
+    	boolean announcedSaving = false;
     	for (TreasureChest chest : chests) {
     		if (!chest.isOpened()) {
+    			if (!announcedSaving) {
+    		    	this.log("Saving treasure chests.");
+    		    	announcedSaving = true;
+    			}
     			String id = chest.getID().toString();
         		chestsData.set(id + ".type", chest.getType());
         		chestsData.set(id + ".location.world", chest.getLocation().getWorld().getName());
