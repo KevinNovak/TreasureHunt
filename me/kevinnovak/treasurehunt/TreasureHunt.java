@@ -42,7 +42,6 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     File huntersFile = new File(getDataFolder() + "/data/hunters.yml");
     FileConfiguration huntersData = YamlConfiguration.loadConfiguration(huntersFile);
     File languageFile, treasureFile;
-    FileConfiguration languageData, treasureData;
 	
 	// Config
     private ItemStack huntItem;
@@ -73,52 +72,51 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     // Enable
     // ======================
     public void onEnable() {
-        saveDefaultConfig();
-        
-        // get language file
-        languageFile = new File(getDataFolder() + "/language.yml");
-        if (!languageFile.exists()) {
-            saveResource("language.yml", false);
-        }
-        languageData = YamlConfiguration.loadConfiguration(languageFile);
-        
-        Bukkit.getServer().getPluginManager().registerEvents(this, this);
-        
-        loadConfig();
-        this.log("Config loaded.");
-        
-        // get treasure files
-        copyTreasureFiles();
-        
-        this.log("Loading treasure chests.");
-        loadChestsFromFile();
-        
-        this.log("Loading treasure hunters.");
-        loadHuntersFromFile();
-        
-        startTimerThread();
-        
-        this.log("Plugin Enabled!");
+        this.saveDefaultConfig();
+        this.loadConfig();
+        this.copyTreasureFiles();
+        this.loadChestsFromFile();
+        this.loadHuntersFromFile();
+        this.loadLanguageFile();
+        this.registerEvents();
+        this.startTimerThread();
+        this.log("Plugin enabled!");
     }
     
     // ======================
     // Disable
     // ======================
     public void onDisable() {
-    	this.log("Saving treasure chests.");
-    	saveChestsToFile();
-    	this.log("Saving treasure hunters.");
-    	saveHuntersToFile();
-    	this.log("Plugin Disabled!");
+    	this.saveChestsToFile();
+    	this.log("Saved treasure chests.");
+    	this.saveHuntersToFile();
+    	this.log("Saved treasure hunters.");
+    	this.log("Plugin disabled!");
     }
     
     void log(String info) {
     	Bukkit.getServer().getLogger().info(langMan.consolePrefix + info);
     }
     
+    void registerEvents() {
+        Bukkit.getServer().getPluginManager().registerEvents(this, this);
+        this.log("Registered events.");
+    }
+    
+    void loadLanguageFile() {
+        // get language file
+        languageFile = new File(getDataFolder() + "/language.yml");
+        if (!languageFile.exists()) {
+            this.log("Copying default language file.");
+            saveResource("language.yml", false);
+        }
+        this.log("Loaded language file.");
+    }
     
     @SuppressWarnings("deprecation")
 	void loadConfig() {
+        this.log("Loading main config.");
+    	
     	this.huntItem = new ItemStack(getConfig().getInt("huntItem"));
     	
     	String worldString = getConfig().getString("huntArea.world");
@@ -175,6 +173,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
 			saveResource("treasure/legendary.yml", false);
 			saveResource("treasure/rare.yml", false);
 			saveResource("treasure/uncommon.yml", false);
+	        this.log("Copied default treasure files.");
     	}
     	lootGen = new LootGenerator(treasureDir.listFiles(), this.maxFitItemAttempts, this.defaultItemWeight, this.bufferPercentage);
     }
@@ -206,11 +205,14 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     void loadHuntersFromFile() {
     	if (huntersFile.exists()) {
     		Set<String> keys = huntersData.getKeys(false);
-    		for (String key : keys) {
-    			UUID id = UUID.fromString(key);
-    			int chestsFound = huntersData.getInt(key + ".chestsFound");
-    			TreasureHunter hunter = new TreasureHunter(id, chestsFound);
-    			hunters.add(hunter);
+    		if (keys.size() > 0) {
+    	        this.log("Loaded treasure hunters.");
+        		for (String key : keys) {
+        			UUID id = UUID.fromString(key);
+        			int chestsFound = huntersData.getInt(key + ".chestsFound");
+        			TreasureHunter hunter = new TreasureHunter(id, chestsFound);
+        			hunters.add(hunter);
+        		}
     		}
     	}
     }
@@ -235,21 +237,24 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     void loadChestsFromFile() {
         if (chestsFile.exists()) {
         	Set<String> keys = chestsData.getKeys(false);
-        	for (String key : keys) {
-        		String type = chestsData.getString(key + ".type");
-        		String worldString = chestsData.getString(key + ".location.world");
-        		int xPos = chestsData.getInt(key + ".location.xPos");
-        		int yPos = chestsData.getInt(key + ".location.yPos");
-        		int zPos = chestsData.getInt(key + ".location.zPos");
-        		int timeAlive = chestsData.getInt(key + ".timeAlive");
-        		UUID id = UUID.fromString(key);
-        		World world = getServer().getWorld(worldString);
-        		Location location = new Location(world, xPos, yPos, zPos);
-        		TreasureChest treasureChest = new TreasureChest(id, location, type, timeAlive);
-        		chests.add(treasureChest);
-        		chestsData.set(key, null);
+        	if (keys.size() > 0) {
+                this.log("Loading treasure chests.");
+            	for (String key : keys) {
+            		String type = chestsData.getString(key + ".type");
+            		String worldString = chestsData.getString(key + ".location.world");
+            		int xPos = chestsData.getInt(key + ".location.xPos");
+            		int yPos = chestsData.getInt(key + ".location.yPos");
+            		int zPos = chestsData.getInt(key + ".location.zPos");
+            		int timeAlive = chestsData.getInt(key + ".timeAlive");
+            		UUID id = UUID.fromString(key);
+            		World world = getServer().getWorld(worldString);
+            		Location location = new Location(world, xPos, yPos, zPos);
+            		TreasureChest treasureChest = new TreasureChest(id, location, type, timeAlive);
+            		chests.add(treasureChest);
+            		chestsData.set(key, null);
+            	}
+            	saveChestsFile();
         	}
-        	saveChestsFile();
         }
     }
     
