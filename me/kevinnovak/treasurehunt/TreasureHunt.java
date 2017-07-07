@@ -287,12 +287,15 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     	});
     }
     
-    void startHunt() {
+    void startHunt(Player sender) {
 		if (this.getAvailableChests().size() < maxChests) {
 	    	Location treasureLocation = getTreasureLocation();
 	    	if (treasureLocation.getBlockX() == -1 && treasureLocation.getBlockY() == -1 && treasureLocation.getBlockZ() == -1) {
 	    		// TO-DO: Annouce to only admins
-	    		this.log(langMan.consoleChestSpawnFailed);
+	    		if (sender != null) {
+	    			sender.sendMessage(langMan.chestSpawnFailed);
+	    		}
+		    	this.log(langMan.consoleChestSpawnFailed);
 	    	} else {
 	    		UUID id = UUID.randomUUID();
 	    		
@@ -487,7 +490,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
                 if (spawnTimer > spawnInterval) {
                 	if (getServer().getOnlinePlayers().size() >= minPlayersOnline) {
                 		if (getAvailableChests().size() < maxChests) {
-                			startHunt();
+                			startHunt(null);
                 		}
                 	}
                 	spawnTimer=0;
@@ -674,7 +677,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
         		if (args[0].equalsIgnoreCase("start")) {
         			if (player.hasPermission(perm.start)) {
                     	if (this.getAvailableChests().size() < maxChests) {
-                        	startHunt();
+                        	startHunt(player);
                         	return true;
                     	} else {
                     		player.sendMessage(langMan.tooManyChests);
