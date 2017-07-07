@@ -133,4 +133,8 @@ public class TreasureChest {
 		}
 		return closestPlayer;
 	}
+	
+	String getFriendlyLocation() {
+		return this.location.getBlockX() + ", " + location.getBlockY() + ", " + location.getBlockZ();
+	}
 }
