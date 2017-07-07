@@ -96,8 +96,8 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     }
     
     void registerEvents() {
+        this.log("Registering events.");
         Bukkit.getServer().getPluginManager().registerEvents(this, this);
-        this.log("Registered events.");
     }
     
     void loadLanguageFile() {
