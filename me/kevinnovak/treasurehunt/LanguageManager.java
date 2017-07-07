@@ -20,10 +20,15 @@ public class LanguageManager {
 	
 	public LanguageManager(TreasureHunt plugin) {
 		this.plugin = plugin;
+	}
+	
+	void load() {
         File languageFile = new File(plugin.getDataFolder() + "/language.yml");
         if (!languageFile.exists()) {
-        	plugin.saveResource("language.yml", false);
+        	this.plugin.log("Copying default language file.");
+        	this.plugin.saveResource("language.yml", false);
         }
+		this.plugin.log("Loading language file.");
         YamlConfiguration languageData = YamlConfiguration.loadConfiguration(languageFile);
         
     	this.chestSpawned = colorConv.convert(languageData.getString("chestSpawned"));
