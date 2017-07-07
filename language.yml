@@ -54,6 +54,7 @@ time:
   
 console:
   chestSpawned: 'A {RARITY} chest spawned at {LOCATION}.'
+  chestSpawnFailed: 'Failed to spawn a treasure chest after max attempts.'
   announceTime: 'A {RARITY} chest will disappear in {TIME}.'
   chestDespawned: 'A {RARITY} chest disappeared without being found.'
   chestFound: '{PLAYER} found a {RARITY} treasure.'
