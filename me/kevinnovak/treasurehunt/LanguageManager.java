@@ -9,8 +9,8 @@ public class LanguageManager {
 	private ColorConverter colorConv = new ColorConverter();
 	
 	public String consolePrefix = "[TreasureHunt] ";
-	public String chestSpawned, chestSpawnFailed, announceTime, chestDespawned, chestFound, alreadyFound;
-	public String tooManyChests, despawnedAllChests, noSpawnedChests, noPermission;
+	public String chestSpawned, announceTime, chestDespawned, chestFound;
+	public String chestSpawnFailed, tooManyChests, alreadyFound, despawnedAllChests, noSpawnedChests, noPermission;
 	public String huntItemSendDistance, huntItemAnotherWorld, huntItemNoChests;
 	public String helpMenuHeader, helpMenuCommandChests, helpMenuCommandTop, helpMenuCommandStart, helpMenuCommandDespawn, helpMenuMorePages, helpMenuNoCommands, helpMenuFooter;
 	public String chestListHeader, chestListChestLine, chestListMorePages, chestListNoChests, chestListFooter;
@@ -32,13 +32,13 @@ public class LanguageManager {
         YamlConfiguration languageData = YamlConfiguration.loadConfiguration(languageFile);
         
     	this.chestSpawned = colorConv.convert(languageData.getString("chestSpawned"));
-    	this.chestSpawnFailed = colorConv.convert(languageData.getString("chestSpawnFailed"));
     	this.announceTime = colorConv.convert(languageData.getString("announceTime"));
     	this.chestDespawned = colorConv.convert(languageData.getString("chestDespawned"));
     	this.chestFound = colorConv.convert(languageData.getString("chestFound"));
     	
-    	this.alreadyFound = colorConv.convert(languageData.getString("alreadyFound"));
+    	this.chestSpawnFailed = colorConv.convert(languageData.getString("chestSpawnFailed"));
     	this.tooManyChests = colorConv.convert(languageData.getString("tooManyChests"));
+    	this.alreadyFound = colorConv.convert(languageData.getString("alreadyFound"));
     	this.despawnedAllChests = colorConv.convert(languageData.getString("despawnedAllChests"));
     	this.noSpawnedChests = colorConv.convert(languageData.getString("noSpawnedChests"));
     	this.noPermission = colorConv.convert(languageData.getString("noPermission"));
