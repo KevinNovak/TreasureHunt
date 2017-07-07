@@ -92,7 +92,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     }
     
     void log(String info) {
-    	Bukkit.getServer().getLogger().info(langMan.consolePrefix + info);
+    	Bukkit.getServer().getLogger().info(langMan.consolePrefix + ChatColor.stripColor(info));
     }
     
     void registerEvents() {
@@ -308,8 +308,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
 	    		for (Player player : Bukkit.getOnlinePlayers()) {
 	    			player.sendMessage(this.langMan.chestSpawned.replace("{RARITY}", type));
 	    		}
-	    		String location = treasureLocation.getBlockX() + ", " + treasureLocation.getBlockY() + ", " + treasureLocation.getBlockZ();
-	    		this.log(langMan.consoleChestSpawned.replace("{RARITY}", ChatColor.stripColor(type)).replace("{LOCATION}", location));
+	    		this.log(langMan.consoleChestSpawned.replace("{RARITY}", type).replace("{LOCATION}", treasureChest.getFriendlyLocation()));
 	    	}
 		}
     }
@@ -457,6 +456,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
         			for (Player player : Bukkit.getOnlinePlayers()) {
         				player.sendMessage(langMan.chestDespawned.replace("{RARITY}", chest.getType()));
         			}
+        			this.log(langMan.consoleChestDespawned.replace("{RARITY}", chest.getType()));
         		}
     		}
     	}
