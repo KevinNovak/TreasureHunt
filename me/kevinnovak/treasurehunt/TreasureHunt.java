@@ -456,7 +456,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
         			for (Player player : Bukkit.getOnlinePlayers()) {
         				player.sendMessage(langMan.chestDespawned.replace("{RARITY}", chest.getType()));
         			}
-        			this.log(langMan.consoleChestDespawned.replace("{RARITY}", chest.getType()));
+        			this.log(langMan.consoleChestDespawned.replace("{RARITY}", chest.getType()).replace("{LOCATION}", chest.getFriendlyLocation()));
         		}
     		}
     	}
