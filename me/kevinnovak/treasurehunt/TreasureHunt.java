@@ -41,7 +41,6 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     FileConfiguration chestsData = YamlConfiguration.loadConfiguration(chestsFile);
     File huntersFile = new File(getDataFolder() + "/data/hunters.yml");
     FileConfiguration huntersData = YamlConfiguration.loadConfiguration(huntersFile);
-    File languageFile, treasureFile;
 	
 	// Config
     private ItemStack huntItem;
@@ -74,10 +73,10 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     public void onEnable() {
         this.saveDefaultConfig();
         this.loadConfig();
+        this.loadLanguageFile();
         this.copyTreasureFiles();
         this.loadChestsFromFile();
         this.loadHuntersFromFile();
-        this.loadLanguageFile();
         this.registerEvents();
         this.startTimerThread();
         this.log("Plugin enabled!");
@@ -104,13 +103,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     }
     
     void loadLanguageFile() {
-        // get language file
-        languageFile = new File(getDataFolder() + "/language.yml");
-        if (!languageFile.exists()) {
-            this.log("Copying default language file.");
-            saveResource("language.yml", false);
-        }
-        this.log("Loaded language file.");
+    	langMan.load();
     }
     
     @SuppressWarnings("deprecation")
@@ -206,7 +199,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     	if (huntersFile.exists()) {
     		Set<String> keys = huntersData.getKeys(false);
     		if (keys.size() > 0) {
-    	        this.log("Loaded treasure hunters.");
+    	        this.log("Loading treasure hunters.");
         		for (String key : keys) {
         			UUID id = UUID.fromString(key);
         			int chestsFound = huntersData.getInt(key + ".chestsFound");
