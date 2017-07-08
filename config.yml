@@ -24,6 +24,7 @@ announceTime:
   - 600
   - 300
   - 60
+closestPlayerInterval: 5
 
 minPlayersOnline: 3
 maxChests: 5

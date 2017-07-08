@@ -49,6 +49,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
 	private int spawnInterval, chestDuration, openedChestDuration;
 	private boolean announceTimeEnabled;
 	private List<Integer> announceTimeAtRemainingTimes;
+	private int closestPlayerInterval;
 	private int minPlayersOnline, maxChests;
 	private int maxSpawnAttempts, maxFitItemAttempts;
 	private int defaultItemWeight; 
@@ -60,7 +61,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
 	// Plugin
 	private List <TreasureChest> chests = new ArrayList<TreasureChest>();
 	private List <TreasureHunter> hunters = new ArrayList<TreasureHunter>();
-	private int spawnTimer;
+	private int spawnTimer = 0, closestPlayerTimer = 0;
 	private PermissionManager perm = new PermissionManager();
 	private LanguageManager langMan = new LanguageManager(this);
 	private TimeConverter timeConv = new TimeConverter(langMan.day, langMan.days, langMan.hour, langMan.hours, langMan.minute, langMan.minutes, langMan.second, langMan.seconds);;
@@ -125,6 +126,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     	this.openedChestDuration = getConfig().getInt("openedChestDuration");
     	this.announceTimeEnabled = getConfig().getBoolean("announceTime.enabled");
     	this.announceTimeAtRemainingTimes = getConfig().getIntegerList("announceTime.atRemainingTimes");
+    	this.closestPlayerInterval = getConfig().getInt("closestPlayerInterval");
     	
     	this.minPlayersOnline = getConfig().getInt("minPlayersOnline");
     	this.maxChests = getConfig().getInt("maxChests");
@@ -477,6 +479,10 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     	}
     }
     
+    void updateClosestPlayer() {
+    	
+    }
+    
     public void startTimerThread() {
         BukkitScheduler scheduler = getServer().getScheduler();
         scheduler.scheduleSyncRepeatingTask(this, new Runnable() {
@@ -494,6 +500,11 @@ public class TreasureHunt extends JavaPlugin implements Listener{
                 		}
                 	}
                 	spawnTimer=0;
+                }
+                closestPlayerTimer++;
+                if (closestPlayerTimer > closestPlayerInterval) {
+                	updateClosestPlayer();
+                	closestPlayerTimer = 0;
                 }
             }
         }, 0L, 20 * 1);
