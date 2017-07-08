@@ -481,18 +481,30 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     }
     
     void updateClosestPlayer() {
+    	List<Player> newClosestPlayers = new ArrayList<Player>();
+    	List<Player> oldClosestPlayers = new ArrayList<Player>();
     	for (TreasureChest chest : this.getAvailableChests()) {
     		Player oldClosestPlayer = chest.getClosestPlayer();
     		Player newClosestPlayer = chest.findClosestPlayer();
     		if (oldClosestPlayer != newClosestPlayer) {
     			chest.setClosestPlayer(newClosestPlayer);
     			if (oldClosestPlayer != null) {
-    				oldClosestPlayer.sendMessage(langMan.notClosestPlayer);
+    				if (!oldClosestPlayers.contains(oldClosestPlayer)) {
+    					oldClosestPlayers.add(oldClosestPlayer);
+    				}
     			}
     			if (newClosestPlayer != null) {
-    				newClosestPlayer.sendMessage(langMan.closestPlayer);
+    				if (!newClosestPlayers.contains(newClosestPlayer)) {
+    					newClosestPlayers.add(newClosestPlayer);
+    				}
     			}
     		}
+    	}
+    	for (Player oldClosestPlayer : oldClosestPlayers) {
+    		oldClosestPlayer.sendMessage(langMan.notClosestPlayer);
+    	}
+    	for (Player newClosestPlayer: newClosestPlayers) {
+			newClosestPlayer.sendMessage(langMan.closestPlayer);
     	}
     }
     
