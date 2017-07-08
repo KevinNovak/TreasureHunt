@@ -64,7 +64,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
 	private int spawnTimer = 0, closestPlayerTimer = 0;
 	private PermissionManager perm = new PermissionManager();
 	private LanguageManager langMan = new LanguageManager(this);
-	private TimeConverter timeConv = new TimeConverter(langMan.day, langMan.days, langMan.hour, langMan.hours, langMan.minute, langMan.minutes, langMan.second, langMan.seconds);;
+	private TimeConverter timeConv;
 	private LootGenerator lootGen;
 	private HelpMenu helpMenu = new HelpMenu(this.perm, this.langMan);
 	
@@ -103,6 +103,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     
     void loadLanguageFile() {
     	langMan.load();
+    	timeConv = new TimeConverter(langMan.day, langMan.days, langMan.hour, langMan.hours, langMan.minute, langMan.minutes, langMan.second, langMan.seconds);
     }
     
     @SuppressWarnings("deprecation")
@@ -480,7 +481,19 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     }
     
     void updateClosestPlayer() {
-    	
+    	for (TreasureChest chest : this.getAvailableChests()) {
+    		Player oldClosestPlayer = chest.getClosestPlayer();
+    		Player newClosestPlayer = chest.findClosestPlayer();
+    		if (oldClosestPlayer != newClosestPlayer) {
+    			chest.setClosestPlayer(newClosestPlayer);
+    			if (oldClosestPlayer != null) {
+    				oldClosestPlayer.sendMessage(langMan.notClosestPlayer);
+    			}
+    			if (newClosestPlayer != null) {
+    				newClosestPlayer.sendMessage(langMan.closestPlayer);
+    			}
+    		}
+    	}
     }
     
     public void startTimerThread() {

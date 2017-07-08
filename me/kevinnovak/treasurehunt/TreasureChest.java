@@ -17,7 +17,7 @@ public class TreasureChest {
 	private boolean opened = false;
 	private String foundBy = "None";
 	private String type = "None";
-	private String closestPlayer = "None";
+	private Player closestPlayer = null;
 	
 	TreasureChest(UUID id, Location location, String type) {
         this.id = id;
@@ -88,11 +88,11 @@ public class TreasureChest {
 		this.type = type;
 	}
 	
-	String getClosestPlayer() {
+	Player getClosestPlayer() {
 		return this.closestPlayer;
 	}
 	
-	void setClosestPlayer(String closestPlayer) {
+	void setClosestPlayer(Player closestPlayer) {
 		this.closestPlayer = closestPlayer;
 	}
 	
@@ -119,15 +119,15 @@ public class TreasureChest {
     	return distance;
     }
 	
-	String findClosestPlayer() {
-		String closestPlayer = this.getClosestPlayer();
+    Player findClosestPlayer() {
+    	Player closestPlayer = this.getClosestPlayer();
 		int closestDistance = Integer.MAX_VALUE;
 		for (Player player : Bukkit.getOnlinePlayers()) {
 			if (player.getLocation().getWorld().equals(this.location.getWorld())) {
 				int playerDistance = this.distanceTo(player.getLocation());
 				if (playerDistance < closestDistance) {
 					closestDistance = playerDistance;
-					closestPlayer = player.getName();
+					closestPlayer = player;
 				}
 			}
 		}

@@ -10,7 +10,7 @@ public class LanguageManager {
 	
 	public String consolePrefix = "[TreasureHunt] ";
 	public String chestSpawned, announceTime, chestDespawned, chestFound;
-	public String chestSpawnFailed, tooManyChests, alreadyFound, despawnedAllChests, noSpawnedChests, noPermission;
+	public String closestPlayer, notClosestPlayer, chestSpawnFailed, tooManyChests, alreadyFound, despawnedAllChests, noSpawnedChests, noPermission;
 	public String huntItemSendDistance, huntItemAnotherWorld, huntItemNoChests;
 	public String helpMenuHeader, helpMenuCommandChests, helpMenuCommandTop, helpMenuCommandStart, helpMenuCommandDespawn, helpMenuMorePages, helpMenuNoCommands, helpMenuFooter;
 	public String chestListHeader, chestListChestLine, chestListMorePages, chestListNoChests, chestListFooter;
@@ -36,6 +36,8 @@ public class LanguageManager {
     	this.chestDespawned = colorConv.convert(languageData.getString("chestDespawned"));
     	this.chestFound = colorConv.convert(languageData.getString("chestFound"));
     	
+    	this.closestPlayer = colorConv.convert(languageData.getString("closestPlayer"));
+    	this.notClosestPlayer = colorConv.convert(languageData.getString("notClosestPlayer"));
     	this.chestSpawnFailed = colorConv.convert(languageData.getString("chestSpawnFailed"));
     	this.tooManyChests = colorConv.convert(languageData.getString("tooManyChests"));
     	this.alreadyFound = colorConv.convert(languageData.getString("alreadyFound"));

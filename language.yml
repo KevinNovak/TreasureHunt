@@ -6,6 +6,8 @@ announceTime: '&e[&6TreasureHunt&e] &fA {RARITY} chest will disappear in &7{TIME
 chestDespawned: '&e[&6TreasureHunt&e] &fA {RARITY} chest has faded without being found!'
 chestFound: '&e[&6TreasureHunt&e] &b{PLAYER} &fhas struck {RARITY} treasure!'
 
+closestPlayer: '&7You are the closest player to a treasure chest.'
+notClosestPlayer: '&7You are no longer the closest player to a treasure chest.'
 chestSpawnFailed: '&cFailed to spawn a treasure chest after max attempts.'
 tooManyChests: '&cThe maximum number of chests are already spawned!'
 alreadyFound: '&7This chest has already been found by &b{PLAYER}&7!'
