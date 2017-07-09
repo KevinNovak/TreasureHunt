@@ -26,11 +26,11 @@ public class LootGenerator {
 	int bufferPercentage = 0;
 	
 	LootGenerator(File[] files, int maxFitItemAttempts, int defaultItemWeight, int bufferPercentage) {
-		this.setTreasureChestTypes(files);
-		this.setupWeights();
 		this.maxFitItemAttempts = maxFitItemAttempts;
 		this.defaultItemWeight = defaultItemWeight;
 		this.bufferPercentage = bufferPercentage;
+		this.setTreasureChestTypes(files);
+		this.setupWeights();
 	}
 	
 	List<TreasureChestType> getTreasureChestTypes() {
