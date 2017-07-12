@@ -66,7 +66,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
 	private LanguageManager langMan = new LanguageManager(this);
 	private TimeConverter timeConv;
 	private LootGenerator lootGen;
-	private HelpMenu helpMenu = new HelpMenu(this.perm, this.langMan);
+	private CommandMenu commandMenu = new CommandMenu(this.perm, this.langMan);
 	
     // ======================
     // Enable
@@ -706,7 +706,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
         if(cmd.getName().equalsIgnoreCase("th")) {
             // th
         	if (args.length == 0) {
-            	helpMenu.print(player, 1);
+        		commandMenu.print(player, 1);
             	return true;
             } else if (args.length > 0) {
         		// th start
@@ -762,7 +762,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
         				return true;
             		}
             	} else {
-            		helpMenu.print(player, 1);
+            		commandMenu.print(player, 1);
             		return true;
             	}
             }

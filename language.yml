@@ -20,8 +20,8 @@ huntItem:
   anotherWorld: '&7The closest chest is in another world!'
   noChests: '&7No word of treasure has been heard.'
   
-helpMenu:
-  header: ' &e---------- &6Treasure Hunt &e- &6Help &e----------'
+commandMenu:
+  header: ' &e-------- &6Treasure Hunt &e- &6Commands &e--------'
   command:
     help: '&b/th help &7- View treasure hunt help.'
     chests: '&b/th chests &7- Show available treasure chests.'
@@ -30,7 +30,7 @@ helpMenu:
     despawn: '&b/th despawn &7- Despawn all treasure chests.'
   morePages: ' &7Type &6/th {PAGE} &7for more.'
   noCommands: ' &7You are not allowed to use commands.'
-  footer: ' &e----------------------------------------'
+  footer: ' &e------------------------------------'
   
 chestList:
   header: ' &e--------- &6Treasure Hunt &e- &6Chests &e---------'

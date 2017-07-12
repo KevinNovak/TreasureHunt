@@ -12,7 +12,7 @@ public class LanguageManager {
 	public String chestSpawned, announceTime, chestDespawned, chestFound;
 	public String closestPlayer, notClosestPlayer, chestSpawnFailed, tooManyChests, alreadyFound, despawnedAllChests, noSpawnedChests, noPermission;
 	public String huntItemSendDistance, huntItemAnotherWorld, huntItemNoChests;
-	public String helpMenuHeader, helpMenuCommandHelp, helpMenuCommandChests, helpMenuCommandTop, helpMenuCommandStart, helpMenuCommandDespawn, helpMenuMorePages, helpMenuNoCommands, helpMenuFooter;
+	public String commandMenuHeader, commandMenuCommandHelp, commandMenuCommandChests, commandMenuCommandTop, commandMenuCommandStart, commandMenuCommandDespawn, commandMenuMorePages, commandMenuNoCommands, commandMenuFooter;
 	public String chestListHeader, chestListChestLine, chestListMorePages, chestListNoChests, chestListFooter;
 	public String topHuntersHeader, topHuntersHunterLine, topHuntersMorePages, topHuntersNoHunters, topHuntersFooter;
 	public String day, days, hour, hours, minute, minutes, second, seconds;
@@ -49,15 +49,15 @@ public class LanguageManager {
     	this.huntItemAnotherWorld = colorConv.convert(languageData.getString("huntItem.anotherWorld"));
     	this.huntItemNoChests = colorConv.convert(languageData.getString("huntItem.noChests"));
    
-    	this.helpMenuHeader = colorConv.convert(languageData.getString("helpMenu.header"));
-    	this.helpMenuCommandHelp = colorConv.convert(languageData.getString("helpMenu.command.help"));
-    	this.helpMenuCommandChests = colorConv.convert(languageData.getString("helpMenu.command.chests"));
-    	this.helpMenuCommandTop = colorConv.convert(languageData.getString("helpMenu.command.top"));
-    	this.helpMenuCommandStart = colorConv.convert(languageData.getString("helpMenu.command.start"));
-    	this.helpMenuCommandDespawn = colorConv.convert(languageData.getString("helpMenu.command.despawn"));
-    	this.helpMenuMorePages = colorConv.convert(languageData.getString("helpMenu.morePages"));
-    	this.helpMenuNoCommands = colorConv.convert(languageData.getString("helpMenu.noCommands"));
-    	this.helpMenuFooter = colorConv.convert(languageData.getString("helpMenu.footer"));
+    	this.commandMenuHeader = colorConv.convert(languageData.getString("commandMenu.header"));
+    	this.commandMenuCommandHelp = colorConv.convert(languageData.getString("commandMenu.command.help"));
+    	this.commandMenuCommandChests = colorConv.convert(languageData.getString("commandMenu.command.chests"));
+    	this.commandMenuCommandTop = colorConv.convert(languageData.getString("commandMenu.command.top"));
+    	this.commandMenuCommandStart = colorConv.convert(languageData.getString("commandMenu.command.start"));
+    	this.commandMenuCommandDespawn = colorConv.convert(languageData.getString("commandMenu.command.despawn"));
+    	this.commandMenuMorePages = colorConv.convert(languageData.getString("commandMenu.morePages"));
+    	this.commandMenuNoCommands = colorConv.convert(languageData.getString("commandMenu.noCommands"));
+    	this.commandMenuFooter = colorConv.convert(languageData.getString("commandMenu.footer"));
     	
     	this.chestListHeader = colorConv.convert(languageData.getString("chestList.header"));
     	this.chestListChestLine = colorConv.convert(languageData.getString("chestList.chestLine"));
