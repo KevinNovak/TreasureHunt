@@ -17,6 +17,10 @@ public class HelpMenu {
 	public List<String> getAllowedCommandLines(Player player) {
 		List<String> commandLines = new ArrayList<String>();
 		
+		if (player.hasPermission(perm.help)) {
+			commandLines.add(langMan.helpMenuCommandHelp);
+		}
+		
 		if (player.hasPermission(perm.chests)) {
 			commandLines.add(langMan.helpMenuCommandChests);
 		}

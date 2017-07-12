@@ -14,6 +14,9 @@ permissions:
     treasurehunt.item:
         description: Use the treasure hunt item.
         default: true
+    treasurehunt.command.help:
+        description: View treasure hunt help.
+        default: true
     treasurehunt.command.chests:
         description: Show available treasure chests.
         default: true

@@ -23,6 +23,7 @@ huntItem:
 helpMenu:
   header: ' &e---------- &6Treasure Hunt &e- &6Help &e----------'
   command:
+    help: '&b/th help &7- View treasure hunt help.'
     chests: '&b/th chests &7- Show available treasure chests.'
     top: '&b/th top &7- Show top treasure hunters.'
     start: '&b/th start &7- Start a treasure hunt.'
