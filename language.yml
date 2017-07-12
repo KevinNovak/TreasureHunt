@@ -30,8 +30,17 @@ commandMenu:
     despawn: '&b/th despawn &7- Despawn all treasure chests.'
   morePages: ' &7Type &6/th {PAGE} &7for more.'
   noCommands: ' &7You are not allowed to use commands.'
-  footer: ' &e------------------------------------'
-  
+  footer: ' &e----------------------------------------'
+
+help:
+  header: ' &e---------- &6Treasure Hunt &e- &6Help &e----------'
+  lines:
+  - ''
+  - ''
+  - ''
+  morePages: ' &7Type &6/th help {PAGE} &7for more.'
+  footer: ' &e----------------------------------------'
+
 chestList:
   header: ' &e--------- &6Treasure Hunt &e- &6Chests &e---------'
   chestLine: ' &8{RANK}. {RARITY} &8- &7{TIME}'
