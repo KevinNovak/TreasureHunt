@@ -369,6 +369,25 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     	return randLocation;
     }    
     
+    void printHelp(Player player, int pageNum) {
+		if (pageNum < 1 || pageNum > Math.ceil((double)hunters.size()/5)) {
+			pageNum = 1;
+		}
+    	
+    	player.sendMessage(langMan.helpHeader);
+    	int numLines = langMan.helpLines.size();
+    	if (numLines > 0) {
+        	for (int i=5*(pageNum-1); i<numLines && i<(5*pageNum); i++) {
+        		player.sendMessage(langMan.helpLines.get(i));
+        	}
+			if (numLines > 5*pageNum) {
+				int nextPageNum = pageNum + 1;
+				player.sendMessage(langMan.helpMorePages.replace("{PAGE}", Integer.toString(nextPageNum)));
+			}
+    	}
+    	player.sendMessage(langMan.topHuntersFooter);
+    }
+    
     void printChests(Player player, int pageNum) {
 		List<TreasureChest> availableChests = getAvailableChests();
     	
@@ -709,7 +728,6 @@ public class TreasureHunt extends JavaPlugin implements Listener{
         		commandMenu.print(player, 1);
             	return true;
             } else if (args.length > 0) {
-        		// th start
         		if (args[0].equalsIgnoreCase("start")) {
         			if (player.hasPermission(perm.start)) {
                     	if (this.getAvailableChests().size() < maxChests) {
@@ -724,8 +742,21 @@ public class TreasureHunt extends JavaPlugin implements Listener{
         				return true;
         			}
             	}
-        		// th top
-        		else if (args[0].equalsIgnoreCase("top")) {
+        		else if (args[0].equalsIgnoreCase("help")) {
+        			if (player.hasPermission(perm.help)) {
+                		int pageNum = 1;
+                		if (args.length >= 2) {
+                    		if (tryParse(args[1]) != null) {
+                    			pageNum = tryParse(args[1]);
+                    		}
+                		}
+                		printHelp(player, pageNum);
+                		return true;
+        			} else {
+        				player.sendMessage(langMan.noPermission);
+        				return true;
+        			}
+            	} else if (args[0].equalsIgnoreCase("top")) {
         			if (player.hasPermission(perm.top)) {
                 		int pageNum = 1;
                 		if (args.length >= 2) {
@@ -747,7 +778,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
                     			pageNum = tryParse(args[1]);
                     		}
                 		}
-                		printChests(player, pageNum);
+                		this.printChests(player, pageNum);
                 		return true;
             		} else {
         				player.sendMessage(langMan.noPermission);

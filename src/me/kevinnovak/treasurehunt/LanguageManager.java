@@ -63,10 +63,9 @@ public class LanguageManager {
     	this.commandMenuFooter = colorConv.convert(languageData.getString("commandMenu.footer"));
     	
     	this.helpHeader = colorConv.convert(languageData.getString("help.header"));
-    	List<String> helpLines = colorConv.convert(languageData.getStringList("help.lines"));
+		this.helpLines = colorConv.convert(languageData.getStringList("help.lines"));
     	this.helpMorePages = colorConv.convert(languageData.getString("help.morePages"));
     	this.helpFooter = colorConv.convert(languageData.getString("help.footer"));
-    	
     	this.chestListHeader = colorConv.convert(languageData.getString("chestList.header"));
     	this.chestListChestLine = colorConv.convert(languageData.getString("chestList.chestLine"));
     	this.chestListMorePages = colorConv.convert(languageData.getString("chestList.morePages"));
