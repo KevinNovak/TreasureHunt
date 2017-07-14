@@ -1,0 +1,20 @@
+# Commands file for TreasureHunt
+# Created by KevinNovak
+
+help:
+- 'help'
+- '?'
+
+list:
+- 'list'
+- 'chest'
+- 'chests'
+
+top:
+- 'top'
+
+start:
+- 'start'
+
+despawn:
+- 'despawn'
