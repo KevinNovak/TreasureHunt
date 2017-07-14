@@ -35,10 +35,10 @@ commandMenu:
 help:
   header: ' &e---------- &6Treasure Hunt &e- &6Help &e----------'
   lines:
-  - '&7 To hunt for treasure, obtain a map and make'
-  - '&7 sure it is filled out. Hold the map and left click'
-  - '&7 to show the distance between you and the'
-  - '&7 closest treasure chest.'
+  - ' &7To hunt for treasure, obtain a map and make'
+  - ' &7sure it is filled out. Hold the map and left click'
+  - ' &7to show the distance between you and the'
+  - ' &7closest treasure chest.'
   morePages: ' &7Type &6/th help {PAGE} &7for more.'
   footer: ' &e----------------------------------------'
 
