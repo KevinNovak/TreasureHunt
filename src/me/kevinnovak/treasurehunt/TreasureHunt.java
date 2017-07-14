@@ -728,21 +728,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
         		commandMenu.print(player, 1);
             	return true;
             } else if (args.length > 0) {
-        		if (args[0].equalsIgnoreCase("start")) {
-        			if (player.hasPermission(perm.start)) {
-                    	if (this.getAvailableChests().size() < maxChests) {
-                        	startHunt(player);
-                        	return true;
-                    	} else {
-                    		player.sendMessage(langMan.tooManyChests);
-                        	return true;
-                    	}
-        			} else {
-        				player.sendMessage(langMan.noPermission);
-        				return true;
-        			}
-            	}
-        		else if (args[0].equalsIgnoreCase("help")) {
+            	if (args[0].equalsIgnoreCase("help")) {
         			if (player.hasPermission(perm.help)) {
                 		int pageNum = 1;
                 		if (args.length >= 2) {
@@ -751,20 +737,6 @@ public class TreasureHunt extends JavaPlugin implements Listener{
                     		}
                 		}
                 		printHelp(player, pageNum);
-                		return true;
-        			} else {
-        				player.sendMessage(langMan.noPermission);
-        				return true;
-        			}
-            	} else if (args[0].equalsIgnoreCase("top")) {
-        			if (player.hasPermission(perm.top)) {
-                		int pageNum = 1;
-                		if (args.length >= 2) {
-                    		if (tryParse(args[1]) != null) {
-                    			pageNum = tryParse(args[1]);
-                    		}
-                		}
-                		printTopHunters(player, pageNum);
                 		return true;
         			} else {
         				player.sendMessage(langMan.noPermission);
@@ -784,6 +756,33 @@ public class TreasureHunt extends JavaPlugin implements Listener{
         				player.sendMessage(langMan.noPermission);
         				return true;
             		}
+            	} else if (args[0].equalsIgnoreCase("top")) {
+        			if (player.hasPermission(perm.top)) {
+                		int pageNum = 1;
+                		if (args.length >= 2) {
+                    		if (tryParse(args[1]) != null) {
+                    			pageNum = tryParse(args[1]);
+                    		}
+                		}
+                		printTopHunters(player, pageNum);
+                		return true;
+        			} else {
+        				player.sendMessage(langMan.noPermission);
+        				return true;
+        			}
+            	} else if (args[0].equalsIgnoreCase("start")) {
+        			if (player.hasPermission(perm.start)) {
+                    	if (this.getAvailableChests().size() < maxChests) {
+                        	startHunt(player);
+                        	return true;
+                    	} else {
+                    		player.sendMessage(langMan.tooManyChests);
+                        	return true;
+                    	}
+        			} else {
+        				player.sendMessage(langMan.noPermission);
+        				return true;
+        			}
             	} else if (args[0].equalsIgnoreCase("despawn")) {
             		if (player.hasPermission(perm.despawn)) {
             			this.despawnAllChests(player);
