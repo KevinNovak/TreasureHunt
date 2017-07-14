@@ -1,6 +1,7 @@
 package me.kevinnovak.treasurehunt;
 
 import java.io.File;
+import java.util.List;
 
 import org.bukkit.configuration.file.YamlConfiguration;
 
@@ -13,6 +14,8 @@ public class LanguageManager {
 	public String closestPlayer, notClosestPlayer, chestSpawnFailed, tooManyChests, alreadyFound, despawnedAllChests, noSpawnedChests, noPermission;
 	public String huntItemSendDistance, huntItemAnotherWorld, huntItemNoChests;
 	public String commandMenuHeader, commandMenuCommandHelp, commandMenuCommandChests, commandMenuCommandTop, commandMenuCommandStart, commandMenuCommandDespawn, commandMenuMorePages, commandMenuNoCommands, commandMenuFooter;
+	public String helpHeader, helpMorePages, helpFooter;
+	public List<String> helpLines;
 	public String chestListHeader, chestListChestLine, chestListMorePages, chestListNoChests, chestListFooter;
 	public String topHuntersHeader, topHuntersHunterLine, topHuntersMorePages, topHuntersNoHunters, topHuntersFooter;
 	public String day, days, hour, hours, minute, minutes, second, seconds;
@@ -58,6 +61,11 @@ public class LanguageManager {
     	this.commandMenuMorePages = colorConv.convert(languageData.getString("commandMenu.morePages"));
     	this.commandMenuNoCommands = colorConv.convert(languageData.getString("commandMenu.noCommands"));
     	this.commandMenuFooter = colorConv.convert(languageData.getString("commandMenu.footer"));
+    	
+    	this.helpHeader = colorConv.convert(languageData.getString("help.header"));
+    	List<String> helpLines = colorConv.convert(languageData.getStringList("help.lines"));
+    	this.helpMorePages = colorConv.convert(languageData.getString("help.morePages"));
+    	this.helpFooter = colorConv.convert(languageData.getString("help.footer"));
     	
     	this.chestListHeader = colorConv.convert(languageData.getString("chestList.header"));
     	this.chestListChestLine = colorConv.convert(languageData.getString("chestList.chestLine"));

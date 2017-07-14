@@ -35,9 +35,9 @@ commandMenu:
 help:
   header: ' &e---------- &6Treasure Hunt &e- &6Help &e----------'
   lines:
-  - ''
-  - ''
-  - ''
+  - 'Line 1'
+  - 'Line 2'
+  - 'Line 3'
   morePages: ' &7Type &6/th help {PAGE} &7for more.'
   footer: ' &e----------------------------------------'
 
