@@ -45,7 +45,7 @@ help:
 chestList:
   header: ' &e--------- &6Treasure Hunt &e- &6Chests &e---------'
   chestLine: ' &8{RANK}. {RARITY} &8- &7{TIME}'
-  morePages: ' &7Type &6/th chests {PAGE} &7for more.'
+  morePages: ' &7Type &6/th list {PAGE} &7for more.'
   noChests: ' &7No word of treasure has been heard.'
   footer: ' &e----------------------------------------'
   
