@@ -1,47 +1,17 @@
-# Windows image file caches
-Thumbs.db
-ehthumbs.db
+# Ignore everything
+*
 
-# Folder config file
-Desktop.ini
+# But not these files...
+!*.java
+!*.yml
+!*.txt
+# etc...
 
-# Recycle Bin used on file shares
-$RECYCLE.BIN/
+# ...even if they are in subdirectories
+!*/
 
-# Windows Installer files
-*.cab
-*.msi
-*.msm
-*.msp
+# Ignore these folders
+/bin/
 
-# Windows shortcuts
-*.lnk
+# Added by Github Desktop
 
-# =========================
-# Operating System Files
-# =========================
-
-# OSX
-# =========================
-
-.DS_Store
-.AppleDouble
-.LSOverride
-
-# Thumbnails
-._*
-
-# Files that might appear in the root of a volume
-.DocumentRevisions-V100
-.fseventsd
-.Spotlight-V100
-.TemporaryItems
-.Trashes
-.VolumeIcon.icns
-
-# Directories potentially created on remote AFP share
-.AppleDB
-.AppleDesktop
-Network Trash Folder
-Temporary Items
-.apdisk
