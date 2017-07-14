@@ -64,6 +64,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
 	private int spawnTimer = 0, closestPlayerTimer = 0;
 	private PermissionManager perm = new PermissionManager();
 	private LanguageManager langMan = new LanguageManager(this);
+	private CommandManager cmdMan = new CommandManager(this);
 	private TimeConverter timeConv;
 	private LootGenerator lootGen;
 	private CommandMenu commandMenu = new CommandMenu(this.perm, this.langMan);
@@ -75,6 +76,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
         this.saveDefaultConfig();
         this.loadConfig();
         this.loadLanguageFile();
+        this.loadCommandsFile();
         this.copyTreasureFiles();
         this.loadChestsFromFile();
         this.loadHuntersFromFile();
@@ -104,6 +106,10 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     void loadLanguageFile() {
     	langMan.load();
     	timeConv = new TimeConverter(langMan.day, langMan.days, langMan.hour, langMan.hours, langMan.minute, langMan.minutes, langMan.second, langMan.seconds);
+    }
+    
+    void loadCommandsFile() {
+    	cmdMan.load();
     }
     
     @SuppressWarnings("deprecation")
