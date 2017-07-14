@@ -734,73 +734,91 @@ public class TreasureHunt extends JavaPlugin implements Listener{
         		commandMenu.print(player, 1);
             	return true;
             } else if (args.length > 0) {
-            	if (args[0].equalsIgnoreCase("help")) {
-        			if (player.hasPermission(perm.help)) {
-                		int pageNum = 1;
-                		if (args.length >= 2) {
-                    		if (tryParse(args[1]) != null) {
-                    			pageNum = tryParse(args[1]);
+            	for (String helpCommand : cmdMan.helpCommands) {
+            		if (args[0].equalsIgnoreCase(helpCommand)) {
+            			if (player.hasPermission(perm.help)) {
+                    		int pageNum = 1;
+                    		if (args.length >= 2) {
+                        		if (tryParse(args[1]) != null) {
+                        			pageNum = tryParse(args[1]);
+                        		}
                     		}
-                		}
-                		printHelp(player, pageNum);
-                		return true;
-        			} else {
-        				player.sendMessage(langMan.noPermission);
-        				return true;
-        			}
-            	} else if (args[0].equalsIgnoreCase("list")) {
-            		if (player.hasPermission(perm.list)) {
-                		int pageNum = 1;
-                		if (args.length >= 2) {
-                    		if (tryParse(args[1]) != null) {
-                    			pageNum = tryParse(args[1]);
-                    		}
-                		}
-                		this.printChests(player, pageNum);
-                		return true;
-            		} else {
-        				player.sendMessage(langMan.noPermission);
-        				return true;
-            		}
-            	} else if (args[0].equalsIgnoreCase("top")) {
-        			if (player.hasPermission(perm.top)) {
-                		int pageNum = 1;
-                		if (args.length >= 2) {
-                    		if (tryParse(args[1]) != null) {
-                    			pageNum = tryParse(args[1]);
-                    		}
-                		}
-                		printTopHunters(player, pageNum);
-                		return true;
-        			} else {
-        				player.sendMessage(langMan.noPermission);
-        				return true;
-        			}
-            	} else if (args[0].equalsIgnoreCase("start")) {
-        			if (player.hasPermission(perm.start)) {
-                    	if (this.getAvailableChests().size() < maxChests) {
-                        	startHunt(player);
-                        	return true;
-                    	} else {
-                    		player.sendMessage(langMan.tooManyChests);
-                        	return true;
-                    	}
-        			} else {
-        				player.sendMessage(langMan.noPermission);
-        				return true;
-        			}
-            	} else if (args[0].equalsIgnoreCase("despawn")) {
-            		if (player.hasPermission(perm.despawn)) {
-            			this.despawnAllChests(player);
-            			return true;
-            		} else {
-            			player.sendMessage(langMan.noPermission);
-        				return true;
-            		}
-            	} else {
-            		commandMenu.print(player, 1);
-            		return true;
+                    		printHelp(player, pageNum);
+                    		return true;
+            			} else {
+            				player.sendMessage(langMan.noPermission);
+            				return true;
+            			}
+                	}
             	}
+            
+            	for (String listCommand : cmdMan.listCommands) {
+            		if (args[0].equalsIgnoreCase(listCommand)) {
+                		if (player.hasPermission(perm.list)) {
+                    		int pageNum = 1;
+                    		if (args.length >= 2) {
+                        		if (tryParse(args[1]) != null) {
+                        			pageNum = tryParse(args[1]);
+                        		}
+                    		}
+                    		this.printChests(player, pageNum);
+                    		return true;
+                		} else {
+            				player.sendMessage(langMan.noPermission);
+            				return true;
+                		}
+            		}
+            	}
+            	
+            	for (String topCommand : cmdMan.topCommands) {
+            		if (args[0].equalsIgnoreCase(topCommand)) {
+            			if (player.hasPermission(perm.top)) {
+                    		int pageNum = 1;
+                    		if (args.length >= 2) {
+                        		if (tryParse(args[1]) != null) {
+                        			pageNum = tryParse(args[1]);
+                        		}
+                    		}
+                    		printTopHunters(player, pageNum);
+                    		return true;
+            			} else {
+            				player.sendMessage(langMan.noPermission);
+            				return true;
+            			}
+                	}
+            	}
+            	
+            	for (String startCommand : cmdMan.startCommands) {
+            		if (args[0].equalsIgnoreCase(startCommand)) {
+            			if (player.hasPermission(perm.start)) {
+                        	if (this.getAvailableChests().size() < maxChests) {
+                            	startHunt(player);
+                            	return true;
+                        	} else {
+                        		player.sendMessage(langMan.tooManyChests);
+                            	return true;
+                        	}
+            			} else {
+            				player.sendMessage(langMan.noPermission);
+            				return true;
+            			}
+                	}
+            	}
+            	
+            	for (String despawnCommand : cmdMan.despawnCommands) {
+            		if (args[0].equalsIgnoreCase(despawnCommand)) {
+                		if (player.hasPermission(perm.despawn)) {
+                			this.despawnAllChests(player);
+                			return true;
+                		} else {
+                			player.sendMessage(langMan.noPermission);
+            				return true;
+                		}
+                	}
+            	}
+            	
+        		commandMenu.print(player, 1);
+        		return true;
             }
         }
         
