@@ -38,7 +38,7 @@ help:
   - '&7 To hunt for treasure, obtain a map and make'
   - '&7 sure it is filled out. Hold the map and left click'
   - '&7 to show the distance between you and the'
-  - '&7 closest chest.'
+  - '&7 closest treasure chest.'
   morePages: ' &7Type &6/th help {PAGE} &7for more.'
   footer: ' &e----------------------------------------'
 
