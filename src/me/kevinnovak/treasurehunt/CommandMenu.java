@@ -21,8 +21,8 @@ public class CommandMenu {
 			commandLines.add(langMan.commandMenuCommandHelp);
 		}
 		
-		if (player.hasPermission(perm.chests)) {
-			commandLines.add(langMan.commandMenuCommandChests);
+		if (player.hasPermission(perm.list)) {
+			commandLines.add(langMan.commandMenuCommandList);
 		}
 		
 		if (player.hasPermission(perm.top)) {

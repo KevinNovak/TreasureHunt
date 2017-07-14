@@ -742,8 +742,8 @@ public class TreasureHunt extends JavaPlugin implements Listener{
         				player.sendMessage(langMan.noPermission);
         				return true;
         			}
-            	} else if (args[0].equalsIgnoreCase("chests")) {
-            		if (player.hasPermission(perm.chests)) {
+            	} else if (args[0].equalsIgnoreCase("list")) {
+            		if (player.hasPermission(perm.list)) {
                 		int pageNum = 1;
                 		if (args.length >= 2) {
                     		if (tryParse(args[1]) != null) {
