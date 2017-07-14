@@ -12,9 +12,13 @@ list:
 
 top:
 - 'top'
+- 'rank'
+- 'ranks'
 
 start:
 - 'start'
+- 'spawn'
 
 despawn:
 - 'despawn'
+- 'remove'
