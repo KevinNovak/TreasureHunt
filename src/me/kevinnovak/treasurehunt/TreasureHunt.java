@@ -338,26 +338,32 @@ public class TreasureHunt extends JavaPlugin implements Listener{
         		int randY = randLocation.getBlockY();
         		int randZ = randLocation.getBlockZ();
         		
-        		Material blockAboveMaterial = new Location(world, randX, randY+1, randZ).getBlock().getType();
-        		Material blockBelowMaterial = new Location(world, randX, randY-1, randZ).getBlock().getType();
+        		Block blockAbove = new Location(world, randX, randY+1, randZ).getBlock();
+        		Block blockBelow = new Location(world, randX, randY-1, randZ).getBlock();
         		
-        		for (Material material : this.spawnUnder) {
-        			if (randLocation.getBlock().getType() == material) {
-        				if (blockAboveMaterial == material) {
-        					if (blockBelowMaterial != material) {
-        						boolean forbidden = false;
-        						for (Integer itemID : dontSpawnOn) {
-        							if (blockBelowMaterial == Material.getMaterial(itemID)) {
-        								forbidden = true;
-        							}
-        						}
-        						if (!forbidden) {
-            						return randLocation;
-        						}
-        					}
-        				}
-        			}
+        		if (blockAbove != null & blockBelow != null) {
+            		Material blockAboveMaterial = new Location(world, randX, randY+1, randZ).getBlock().getType();
+            		Material blockBelowMaterial = new Location(world, randX, randY-1, randZ).getBlock().getType();
+            		
+            		for (Material material : this.spawnUnder) {
+            			if (randLocation.getBlock().getType() == material) {
+            				if (blockAboveMaterial == material) {
+            					if (blockBelowMaterial != material) {
+            						boolean forbidden = false;
+            						for (Integer itemID : dontSpawnOn) {
+            							if (blockBelowMaterial == Material.getMaterial(itemID)) {
+            								forbidden = true;
+            							}
+            						}
+            						if (!forbidden) {
+                						return randLocation;
+            						}
+            					}
+            				}
+            			}
+            		}
         		}
+        	
     			randLocation.subtract(0, 1, 0);
     			attempt++;
     		}
