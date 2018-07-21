@@ -49,6 +49,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
 	private int spawnInterval, chestDuration, openedChestDuration;
 	private boolean announceTimeEnabled;
 	private List<Integer> announceTimeAtRemainingTimes;
+	private boolean closestPlayerEnabled;
 	private int closestPlayerInterval;
 	private int minPlayersOnline, maxChests;
 	private int maxSpawnAttempts, maxFitItemAttempts;
@@ -133,7 +134,8 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     	this.openedChestDuration = getConfig().getInt("openedChestDuration");
     	this.announceTimeEnabled = getConfig().getBoolean("announceTime.enabled");
     	this.announceTimeAtRemainingTimes = getConfig().getIntegerList("announceTime.atRemainingTimes");
-    	this.closestPlayerInterval = getConfig().getInt("closestPlayerInterval");
+    	this.closestPlayerEnabled = getConfig().getBoolean("closestPlayer.enabled");
+    	this.closestPlayerInterval = getConfig().getInt("closestPlayer.interval");
     	
     	this.minPlayersOnline = getConfig().getInt("minPlayersOnline");
     	this.maxChests = getConfig().getInt("maxChests");
@@ -531,11 +533,13 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     			}
     		}
     	}
-    	for (Player oldClosestPlayer : oldClosestPlayers) {
-    		oldClosestPlayer.sendMessage(langMan.notClosestPlayer);
-    	}
-    	for (Player newClosestPlayer: newClosestPlayers) {
-			newClosestPlayer.sendMessage(langMan.closestPlayer);
+    	if (closestPlayerEnabled) {
+        	for (Player oldClosestPlayer : oldClosestPlayers) {
+        		oldClosestPlayer.sendMessage(langMan.notClosestPlayer);
+        	}
+        	for (Player newClosestPlayer: newClosestPlayers) {
+    			newClosestPlayer.sendMessage(langMan.closestPlayer);
+        	}
     	}
     }
     
