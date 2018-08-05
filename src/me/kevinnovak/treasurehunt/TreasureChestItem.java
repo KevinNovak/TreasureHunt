@@ -1,10 +1,10 @@
 package me.kevinnovak.treasurehunt;
 
+import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
 public class TreasureChestItem {
-	@SuppressWarnings("deprecation")
-	ItemStack item = new ItemStack(0);
+	ItemStack item = new ItemStack(Material.AIR);
 	int value = 0;
 	int weight = 0;
 	

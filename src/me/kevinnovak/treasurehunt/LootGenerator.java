@@ -49,15 +49,10 @@ public class LootGenerator {
 			if (data.isSet("items")) {
 				ConfigurationSection itemsData = data.getConfigurationSection("items");
 				for (String key : itemsData.getKeys(false)) {
-					if (itemsData.isSet(key + ".id") && itemsData.isSet(key + ".value")) {
+					if (itemsData.isSet(key + ".name") && itemsData.isSet(key + ".value")) {
 						// get id and data
-						String itemIDString = itemsData.getString(key + ".id");
-						String[] itemIDArray = itemIDString.split("-");
-						int itemID = Integer.parseInt(itemIDArray[0]);
-						int itemData = 0;
-						if (itemIDArray.length > 1) {
-							itemData = Integer.parseInt(itemIDArray[1]);
-						}
+						String itemName = itemsData.getString(key + ".name").toUpperCase();
+						Material itemMaterial = Material.getMaterial(itemName);
 						
 						// get value
 						int itemValue = itemsData.getInt(key + ".value");
@@ -74,7 +69,7 @@ public class LootGenerator {
 							itemWeight = itemsData.getInt(key + ".weight");
 						}
 						
-						ItemStack item = new ItemStack(itemID, itemAmount, (byte) itemData);
+						ItemStack item = new ItemStack(itemMaterial, itemAmount);
 						
 						// add enchantments
 						if (itemsData.isSet(key + ".enchantments")) {

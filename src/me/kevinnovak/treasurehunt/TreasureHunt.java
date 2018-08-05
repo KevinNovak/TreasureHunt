@@ -56,7 +56,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
 	private int defaultItemWeight; 
 	private int bufferPercentage;
 	private List<Material> spawnUnder = new ArrayList<Material>();
-	private List<Integer> dontSpawnOn;
+	private List<Material> dontSpawnOn = new ArrayList<Material>();
 	private boolean protectAgainstBreak, protectAgainstBurn, protectAgainstExplode;
 	
 	// Plugin
@@ -113,11 +113,12 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     	cmdMan.load();
     }
     
-    @SuppressWarnings("deprecation")
-	void loadConfig() {
+	void loadConfig() {		
         this.log("Loading main config.");
     	
-    	this.huntItem = new ItemStack(getConfig().getInt("huntItem"));
+        Material huntMaterial = Material.getMaterial(getConfig().getString("huntItem"));
+        
+    	this.huntItem = new ItemStack(huntMaterial);
     	
     	String worldString = getConfig().getString("huntArea.world");
     	this.world = getServer().getWorld(worldString);
@@ -149,18 +150,23 @@ public class TreasureHunt extends JavaPlugin implements Listener{
 
     	if(getConfig().getBoolean("spawnUnder.air")) {
     		this.spawnUnder.add(Material.AIR);
+    		this.spawnUnder.add(Material.CAVE_AIR);
     	}
     	if(getConfig().getBoolean("spawnUnder.water")) {
-    		this.spawnUnder.add(Material.STATIONARY_WATER);
+    		this.spawnUnder.add(Material.WATER);
     	}
     	if(getConfig().getBoolean("spawnUnder.lava")) {
-    		this.spawnUnder.add(Material.STATIONARY_LAVA);
+    		this.spawnUnder.add(Material.LAVA);
     	}
     	if (this.spawnUnder.size() == 0) {
     		this.spawnUnder.add(Material.AIR);
+    		this.spawnUnder.add(Material.CAVE_AIR);
     	}
     	
-    	this.dontSpawnOn = getConfig().getIntegerList("dontSpawnOn");
+    	List<String> dontSpawnOnStrings = getConfig().getStringList("dontSpawnOn");
+    	for (String dontSpawnOnString : dontSpawnOnStrings) {
+    		this.dontSpawnOn.add(Material.getMaterial(dontSpawnOnString));
+    	}
     	
     	this.protectAgainstBreak = getConfig().getBoolean("protectAgainst.break");
     	this.protectAgainstBurn = getConfig().getBoolean("protectAgainst.burn");
@@ -327,7 +333,6 @@ public class TreasureHunt extends JavaPlugin implements Listener{
 		}
     }
     
-    @SuppressWarnings("deprecation")
 	Location getTreasureLocation() {
     	Location randLocation;
     	
@@ -348,12 +353,13 @@ public class TreasureHunt extends JavaPlugin implements Listener{
             		Material blockBelowMaterial = new Location(world, randX, randY-1, randZ).getBlock().getType();
             		
             		for (Material material : this.spawnUnder) {
+            			this.log(randLocation.getBlock().getType().name() + " - " + material.name());
             			if (randLocation.getBlock().getType() == material) {
             				if (blockAboveMaterial == material) {
             					if (blockBelowMaterial != material) {
             						boolean forbidden = false;
-            						for (Integer itemID : dontSpawnOn) {
-            							if (blockBelowMaterial == Material.getMaterial(itemID)) {
+            						for (Material dontSpawnOnMaterial : dontSpawnOn) {
+            							if (blockBelowMaterial == dontSpawnOnMaterial) {
             								forbidden = true;
             							}
             						}
