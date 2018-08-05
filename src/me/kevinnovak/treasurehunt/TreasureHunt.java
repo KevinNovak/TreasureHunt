@@ -353,7 +353,6 @@ public class TreasureHunt extends JavaPlugin implements Listener{
             		Material blockBelowMaterial = new Location(world, randX, randY-1, randZ).getBlock().getType();
             		
             		for (Material material : this.spawnUnder) {
-            			this.log(randLocation.getBlock().getType().name() + " - " + material.name());
             			if (randLocation.getBlock().getType() == material) {
             				if (blockAboveMaterial == material) {
             					if (blockBelowMaterial != material) {
