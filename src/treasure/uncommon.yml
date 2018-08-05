@@ -7,155 +7,155 @@ value: 1000
 inheritance:
 - 'common'
 items:
-  stonebrick:
-    id: 98-3
+  chiseled_stone_bricks:
+    name: CHISELED_STONE_BRICKS
     amount: 32
     value: 90
-  slime:
-    id: 165
+  slime_block:
+    name: SLIME_BLOCK
     amount: 4
     value: 100
-  magma:
-    id: 213
+  magma_block:
+    name: MAGMA_BLOCK
     amount: 32
     value: 100
   obsidian:
-    id: 49
+    name: OBSIDIAN
     amount: 8
     value: 160
   bookshelf:
-    id: 47
+    name: BOOKSHELF
     amount: 5
     value: 100
   end_rod:
-    id: 198
+    name: END_ROD
     amount: 8
     value: 80
   nether_wart:
-    id: 372
+    name: NETHER_WART
     amount: 16
     value: 60
   magma_cream:
-    id: 378
+    name: MAGMA_CREAM
     amount: 64
     value: 50
   ghast_tear:
-    id: 370
+    name: GHAST_TEAR
     amount: 8
     value: 100
-  speckled_melon:
-    id: 382
+  glistering_melon_slice:
+    name: GLISTERING_MELON_SLICE
     amount: 8
     value: 20
   blaze_powder:
-    id: 377
+    name: BLAZE_POWDER
     amount: 8
     value: 60
   brewing_stand:
-    id: 117
+    name: BREWING_STAND
     value: 40
   cauldron:
-    id: 380
+    name: CAULDRON
     value: 70
-  fish:
-    id: 349-3
+  pufferfish:
+    name: PUFFERFISH
     amount: 8
     value: 80
   white_shulker_box:
-    id: 219
+    name: WHITE_SHULKER_BOX
     value: 20
     weight: 6
   orange_shulker_box:
-    id: 220
+    name: ORANGE_SHULKER_BOX
     value: 20
     weight: 6
   magenta_shulker_box:
-    id: 221
+    name: MAGENTA_SHULKER_BOX
     value: 20
     weight: 6
   light_blue_shulker_box:
-    id: 222
+    name: LIGHT_BLUE_SHULKER_BOX
     value: 20
     weight: 6
   yellow_shulker_box:
-    id: 223
+    name: YELLOW_SHULKER_BOX
     value: 20
     weight: 6
   lime_shulker_box:
-    id: 224
+    name: LIME_SHULKER_BOX
     value: 20
     weight: 6
   pink_shulker_box:
-    id: 225
+    name: PINK_SHULKER_BOX
     value: 20
     weight: 6
   gray_shulker_box:
-    id: 226
+    name: GRAY_SHULKER_BOX
     value: 20
     weight: 6
-  silver_shulker_box:
-    id: 227
+  light_gray_shulker_box:
+    name: LIGHT_GRAY_SHULKER_BOX
     value: 20
     weight: 6
   cyan_shulker_box:
-    id: 228
+    name: CYAN_SHULKER_BOX
     value: 20
     weight: 6
   purple_shulker_box:
-    id: 229
+    name: PURPLE_SHULKER_BOX
     value: 20
     weight: 6
   blue_shulker_box:
-    id: 230
+    name: BLUE_SHULKER_BOX
     value: 20
     weight: 6
   brown_shulker_box:
-    id: 231
+    name: BROWN_SHULKER_BOX
     value: 20
     weight: 6
   green_shulker_box:
-    id: 232
+    name: GREEN_SHULKER_BOX
     value: 20
     weight: 6
   red_shulker_box:
-    id: 233
+    name: RED_SHULKER_BOX
     value: 20
     weight: 6
   black_shulker_box:
-    id: 234
+    name: BLACK_SHULKER_BOX
     value: 20
     weight: 6
   piston:
-    id: 33
+    name: PISTON
     value: 22
   elytra:
-    id: 443
+    name: ELYTRA
     value: 200
   ender_pearl:
-    id: 368
+    name: ENDER_PEARL
     amount: 4
     value: 120
   shield:
-    id: 442
+    name: SHIELD
     amount: 1
     value: 14
   iron_helmet:
-    id: 306
+    name: IRON_HELMET
     value: 50
   iron_chestplate:
-    id: 307
+    name: IRON_CHESTPLATE
     value: 80
   iron_leggings:
-    id: 308
+    name: IRON_LEGGINGS
     value: 70
   iron_boots:
-    id: 309
+    name: IRON_BOOTS
     value: 40
   iron_ingot:
-    id: 265
+    name: IRON_INGOT
     amount: 8
     value: 80
   gold_ingot:
-    id: 266
+    name: GOLD_INGOT
     amount: 8
     value: 80

@@ -9,71 +9,56 @@ inheritance:
 - 'common'
 items:
   enchanting_table:
-    id: 116
+    name: ENCHANTING_TABLE
     value: 330
   ender_chest:
-    id: 130
+    name: ENDER_CHEST
     value: 200
-  swiftness_potion:
-    id: 373-8258
-    value: 100
-  invisible_potion:
-    id: 373-8270
-    value: 100
-  water_breathing_potion:
-    id: 373-8269
-    value: 100
-  health_potion:
-    id: 373-8229
-    value: 100
-  strength_potion:
-    id: 373-8265
-    value: 100
   golden_apple:
-    id: 322
+    name: GOLDEN_APPLE
     value: 84
   rabbit_foot:
-    id: 414
+    name: RABBIT_FOOT
     value: 100
   golden_carrot:
-    id: 396
+    name: GOLDEN_CARROT
     amount: 8
     value: 70
   beacon:
-    id: 138
+    name: BEACON
     value: 100
   ender_eye:
-    id: 381
+    name: ENDER_EYE
     amount: 8
     value: 380
   diamond_hoe:
-    id: 293
+    name: DIAMOND_HOE
     value: 240
   diamond_axe:
-    id: 279
+    name: DIAMOND_AXE
     value: 360
   diamond_shovel:
-    id: 277
+    name: DIAMOND_SHOVEL
     value: 120
   diamond_pickaxe:
-    id: 278
+    name: DIAMOND_PICKAXE
     value: 360
   diamond_sword:
-    id: 276
+    name: DIAMOND_SWORD
     value: 240
-  lapis:
-    id: 351-4
+  lapis_lazuli:
+    name: LAPIS_LAZULI
     amount: 16
     value: 200
   emerald:
-    id: 388
+    name: EMERALD
     amount: 2
     value: 200
   redstone_block:
-    id: 152
+    name: REDSTONE_BLOCK
     amount: 4
     value: 224
   diamond:
-    id: 264
+    name: DIAMOND
     amount: 2
     value: 240

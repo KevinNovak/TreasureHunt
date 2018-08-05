@@ -9,28 +9,28 @@ inheritance:
 - 'rare'
 items:
   enchanted_golden_apple:
-    id: 322-1
+    name: ENCHANTED_GOLDEN_APPLE
     value: 730
-  spawn_mooshroom:
-    id: 383-96
+  mooshroom_spawn_egg:
+    name: MOOSHROOM_SPAWN_EGG
     value: 2000
-  spawn_guardian:
-    id: 383-68
+  guardian_spawn_egg:
+    name: GUARDIAN_SPAWN_EGG
     value: 2000
-  spawn_villager:
-    id: 383-120
+  villager_spawn_egg:
+    name: VILLAGER_SPAWN_EGG
     value: 4000
   gold_block:
-    id: 41
+    name: GOLD_BLOCK
     amount: 8
     value: 720
   iron_block:
-    id: 42
+    name: IRON_BLOCK
     amount: 8
     value: 720
   emerald_block:
-    id: 133
+    name: EMERALD_BLOCK
     value: 900
   diamond_block:
-    id: 57
+    name: DIAMOND_BLOCK
     value: 1080

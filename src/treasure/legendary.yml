@@ -9,54 +9,54 @@ inheritance:
 - 'uncommon'
 items:
   dragon_breath:
-    id: 437
+    name: DRAGON_BREATH
     amount: 8
     value: 160
   totem_of_undying:
-    id: 449
+    name: TOTEM_OF_UNDYING
     value: 1000
   experience_bottle:
-    id: 384
+    name: EXPERIENCE_BOTTLE
     amount: 16
     value: 1000
-  spawn_squid:
-    id: 383-94
+  squid_spawn_egg:
+    name: SQUID_SPAWN_EGG
     value: 1000
-  spawn_rabbit:
-    id: 383-101
+  rabbit_spawn_egg:
+    name: RABBIT_SPAWN_EGG
     value: 1000
-  spawn_wolf:
-    id: 383-95
+  wolf_spawn_egg:
+    name: WOLF_SPAWN_EGG
     value: 1000
-  spawn_cow:
-    id: 383-92
+  cow_spawn_egg:
+    name: COW_SPAWN_EGG
     value: 1000
-  spawn_pig:
-    id: 383-90
+  pig_spawn_egg:
+    name: PIG_SPAWN_EGG
     value: 1000
-  spawn_sheep:
-    id: 383-91
+  sheep_spawn_egg:
+    name: SHEEP_SPAWN_EGG
     value: 1000
-  spawn_ocelot:
-    id: 383-98
+  ocelot_spawn_egg:
+    name: OCELOT_SPAWN_EGG
     value: 1000
   diamond_helmet:
-    id: 310
+    name: DIAMOND_HELMET
     value: 600
   diamond_chestplate:
-    id: 311
+    name: DIAMOND_CHESTPLATE
     value: 960
   diamond_leggings:
-    id: 312
+    name: DIAMOND_LEGGINGS
     value: 840
   diamond_boots:
-    id: 313
+    name: DIAMOND_BOOTS
     value: 480
   coal_block:
-    id: 173
+    name: COAL_BLOCK
     amount: 8
     value: 400
   lapis_block:
-    id: 22
+    name: LAPIS_BLOCK
     amount: 4
     value: 456
