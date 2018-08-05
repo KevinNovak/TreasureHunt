@@ -13,3 +13,194 @@ items:
     name: BREAD
     amount: 16
     value: 48
+  sponge:
+    name: 19
+    amount: 32
+    value: 40
+  soul_sand:
+    name: 88
+    amount: 16
+    value: 40
+  sea_lantern:
+    name: 169
+    amount: 8
+    value: 60
+  white_glazed_terracotta:
+    name: 235
+    amount: 32
+    value: 60
+    weight: 6
+  orange_glazed_terracotta:
+    name: 236
+    amount: 32
+    value: 60
+    weight: 6
+  magenta_glazed_terracotta:
+    name: 237
+    amount: 32
+    value: 60
+    weight: 6
+  light_blue_glazed_terracotta:
+    name: 238
+    amount: 32
+    value: 60
+    weight: 6
+  yellow_glazed_terracotta:
+    name: 239
+    amount: 32
+    value: 60
+    weight: 6
+  lime_glazed_terracotta:
+    name: 240
+    amount: 32
+    value: 60
+    weight: 6
+  pink_glazed_terracotta:
+    name: 241
+    amount: 32
+    value: 60
+    weight: 6
+  gray_glazed_terracotta:
+    name: 242
+    amount: 32
+    value: 60
+    weight: 6
+  light_gray_glazed_terracotta:
+    name: 243
+    amount: 32
+    value: 60
+    weight: 6
+  cyan_glazed_terracotta:
+    name: 244
+    amount: 32
+    value: 60
+    weight: 6
+  purple_glazed_terracotta:
+    name: 245
+    amount: 32
+    value: 60
+    weight: 6
+  blue_glazed_terracotta:
+    name: 246
+    amount: 32
+    value: 60
+    weight: 6
+  brown_glazed_terracotta:
+    name: 247
+    amount: 32
+    value: 60
+    weight: 6
+  green_glazed_terracotta:
+    name: 248
+    amount: 32
+    value: 60
+    weight: 6
+  red_glazed_terracotta:
+    name: 249
+    amount: 32
+    value: 60
+    weight: 6
+  black_glazed_terracotta:
+    name: 250
+    amount: 32
+    value: 60
+    weight: 6
+  cooked_beef:
+    name: 364
+    amount: 16
+    value: 80
+  melon:
+    name: 360
+    amount: 64
+    value: 50
+  cake:
+    name: 354
+    value: 20
+  saddle:
+    name: 329
+    value: 50
+  cactus:
+    name: 81
+    amount: 16
+    value: 20
+  leather:
+    name: 334
+    amount: 16
+    value: 32
+  string:
+    name: 287
+    amount: 64
+    value: 14
+  book:
+    name: 340
+    amount: 8
+    value: 40
+  slime_ball:
+    name: 341
+    amount: 32
+    value: 90
+  glowstone_dust:
+    name: 348
+    amount: 16
+    value: 40
+  gunpowder:
+    name: 289
+    amount: 16
+    value: 40
+  potato:
+    name: 142
+    amount: 16
+    value: 32
+  carrot:
+    name: 391
+    amount: 16
+    value: 32
+  reeds:
+    name: 338
+    amount: 32
+    value: 30
+  beetroot_seeds:
+    name: 435
+    amount: 16
+    value: 16
+  melon_seeds:
+    name: 362
+    amount: 16
+    value: 16
+  wheat_seeds:
+    name: 295
+    amount: 16
+    value: 16
+  fermented_spnameer_eye:
+    name: 376
+    amount: 8
+    value: 24
+  lava_bucket:
+    name: 327
+    value: 60
+  armor_stand:
+    name: 416
+    value: 20
+  iron_hoe:
+    name: 292
+    value: 20
+  iron_axe:
+    name: 258
+    value: 30
+  iron_shovel:
+    name: 256
+    value: 10
+  iron_pickaxe:
+    name: 257
+    value: 30
+  iron_sword:
+    name: 267
+    value: 20
+  coal:
+    name: 263
+    amount: 8
+    value: 40
+  redstone:
+    name: 331
+    amount: 8
+    value: 50
