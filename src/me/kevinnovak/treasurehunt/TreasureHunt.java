@@ -75,15 +75,18 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     // ======================
     public void onEnable() {
         this.saveDefaultConfig();
-        this.loadConfig();
-        this.loadLanguageFile();
-        this.loadCommandsFile();
-        this.copyTreasureFiles();
-        this.loadChestsFromFile();
-        this.loadHuntersFromFile();
-        this.registerEvents();
-        this.startTimerThread();
-        this.log("Plugin enabled!");
+        if (this.loadConfig()) {
+            this.loadLanguageFile();
+            this.loadCommandsFile();
+            this.copyTreasureFiles();
+            this.loadChestsFromFile();
+            this.loadHuntersFromFile();
+            this.registerEvents();
+            this.startTimerThread();
+            this.log("Plugin enabled!");
+        } else {
+        	Bukkit.getPluginManager().disablePlugin(this);
+        }
     }
     
     // ======================
@@ -97,6 +100,10 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     
     void log(String info) {
     	Bukkit.getServer().getLogger().info(langMan.consolePrefix + ChatColor.stripColor(info));
+    }
+    
+    void warn(String message) {
+    	Bukkit.getServer().getLogger().warning(langMan.consolePrefix + ChatColor.stripColor(message));
     }
     
     void registerEvents() {
@@ -113,7 +120,7 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     	cmdMan.load();
     }
     
-	void loadConfig() {		
+	boolean loadConfig() {		
         this.log("Loading main config.");
     	
         Material huntMaterial = Material.getMaterial(getConfig().getString("huntItem"));
@@ -122,6 +129,11 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     	
     	String worldString = getConfig().getString("huntArea.world");
     	this.world = getServer().getWorld(worldString);
+    	
+    	if (this.world == null) {
+    		this.warn("Could not find a world with the name '" + worldString + "'. Disabling plugin.");
+    		return false;
+    	}
     	
     	this.minX = getConfig().getInt("huntArea.x-Range.min");
     	this.maxX = getConfig().getInt("huntArea.x-Range.max");
@@ -171,6 +183,8 @@ public class TreasureHunt extends JavaPlugin implements Listener{
     	this.protectAgainstBreak = getConfig().getBoolean("protectAgainst.break");
     	this.protectAgainstBurn = getConfig().getBoolean("protectAgainst.burn");
     	this.protectAgainstExplode = getConfig().getBoolean("protectAgainst.explode");
+    	
+    	return true;
     }
     
     void copyTreasureFiles() {
