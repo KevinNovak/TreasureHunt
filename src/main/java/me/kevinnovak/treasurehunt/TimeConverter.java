@@ -1,60 +1,60 @@
 package me.kevinnovak.treasurehunt;
 
 public class TimeConverter {
-	private String day, days, hour, hours, minute, minutes, second, seconds;
-	
-	public TimeConverter(String day, String days, String hour, String hours, String minute, String minutes, String second, String seconds) {
-		this.day = day;
-		this.days = days;
-		this.hour = hour;
-		this.hours = hours;
-		this.minute = minute;
-		this.minutes = minutes;
-		this.second = second;
-		this.seconds = seconds;
-	}
-	
+    private String day, days, hour, hours, minute, minutes, second, seconds;
+
+    public TimeConverter(String day, String days, String hour, String hours, String minute, String minutes, String second, String seconds) {
+        this.day = day;
+        this.days = days;
+        this.hour = hour;
+        this.hours = hours;
+        this.minute = minute;
+        this.minutes = minutes;
+        this.second = second;
+        this.seconds = seconds;
+    }
+
     String friendlyTime(int initSeconds) {
-    	if (initSeconds == 0) {
-    		return "0 " + this.seconds;
-    	}
-    	
+        if (initSeconds == 0) {
+            return "0 " + this.seconds;
+        }
+
         String init = "";
-        
+
         // days
-        if ((initSeconds/86400) >= 1) {
-            int days = initSeconds/86400;
-            initSeconds = initSeconds%86400;
+        if ((initSeconds / 86400) >= 1) {
+            int days = initSeconds / 86400;
+            initSeconds = initSeconds % 86400;
             if (days > 1) {
                 init = init + " " + days + " " + this.days;
             } else {
                 init = init + " " + days + " " + this.day;
             }
         }
-        
+
 
         // hours
-        else if ((initSeconds/3600) >= 1) {
-            int hours = initSeconds/3600;
-            initSeconds = initSeconds%3600;
+        else if ((initSeconds / 3600) >= 1) {
+            int hours = initSeconds / 3600;
+            initSeconds = initSeconds % 3600;
             if (hours > 1) {
                 init = init + " " + hours + " " + this.hours;
             } else {
                 init = init + " " + hours + " " + this.hour;
             }
         }
-        
+
         // minutes
-        else if ((initSeconds/60) >= 1) {
-            int minutes = initSeconds/60;
-            initSeconds = initSeconds%60;
+        else if ((initSeconds / 60) >= 1) {
+            int minutes = initSeconds / 60;
+            initSeconds = initSeconds % 60;
             if (minutes > 1) {
                 init = init + " " + minutes + " " + this.minutes;
             } else {
                 init = init + " " + minutes + " " + this.minute;
             }
         }
-        
+
         // seconds
         else if (initSeconds >= 1) {
             if (initSeconds > 1) {
@@ -63,7 +63,7 @@ public class TimeConverter {
                 init = init + " " + initSeconds + " " + this.second;
             }
         }
-        
+
         // remove the initial space
         if (init.length() > 0) {
             init = init.substring(1, init.length());

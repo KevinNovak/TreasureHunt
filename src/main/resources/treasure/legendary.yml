@@ -5,8 +5,8 @@ name: '&bLegendary'
 weight: 7
 value: 3000
 inheritance:
-- 'rare'
-- 'uncommon'
+  - 'rare'
+  - 'uncommon'
 items:
   dragon_breath:
     name: DRAGON_BREATH

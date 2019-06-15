@@ -5,7 +5,7 @@ name: '&bUncommon'
 weight: 20
 value: 1000
 inheritance:
-- 'common'
+  - 'common'
 items:
   chiseled_stone_bricks:
     name: CHISELED_STONE_BRICKS

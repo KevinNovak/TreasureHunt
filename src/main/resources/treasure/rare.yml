@@ -5,8 +5,8 @@ name: '&bRare'
 weight: 10
 value: 2000
 inheritance:
-- 'uncommon'
-- 'common'
+  - 'uncommon'
+  - 'common'
 items:
   enchanting_table:
     name: ENCHANTING_TABLE

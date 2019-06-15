@@ -19,7 +19,7 @@ huntItem:
   sendDistance: '&7The closest chest is &6{DISTANCE} &7blocks away.'
   anotherWorld: '&7The closest chest is in another world!'
   noChests: '&7No word of treasure has been heard.'
-  
+
 commandMenu:
   header: ' &e-------- &6Treasure Hunt &e- &6Commands &e--------'
   command:
@@ -35,10 +35,10 @@ commandMenu:
 help:
   header: ' &e---------- &6Treasure Hunt &e- &6Help &e----------'
   lines:
-  - ' &7To hunt for treasure, obtain a map and make'
-  - ' &7sure it is filled out. Hold the map and left click'
-  - ' &7to show the distance between you and the'
-  - ' &7closest treasure chest.'
+    - ' &7To hunt for treasure, obtain a map and make'
+    - ' &7sure it is filled out. Hold the map and left click'
+    - ' &7to show the distance between you and the'
+    - ' &7closest treasure chest.'
   morePages: ' &7Type &6/th help {PAGE} &7for more.'
   footer: ' &e----------------------------------------'
 
@@ -48,14 +48,14 @@ chestList:
   morePages: ' &7Type &6/th list {PAGE} &7for more.'
   noChests: ' &7No word of treasure has been heard.'
   footer: ' &e----------------------------------------'
-  
+
 topHunters:
   header: ' &e------- &6Treasure Hunt &e- &6Top Hunters &e-------'
   hunterLine: ' &8{RANK}. &b{PLAYER} &8- &7{CHESTS} chests'
   morePages: ' &7Type &6/th top {PAGE} &7for more.'
   noHunters: '&7 No one has found a treasure!'
   footer: ' &e----------------------------------------'
-  
+
 time:
   day: 'day'
   days: 'days'
@@ -65,7 +65,7 @@ time:
   minutes: 'minutes'
   second: 'second'
   seconds: 'seconds'
-  
+
 console:
   chestSpawned: 'A {RARITY} chest spawned at {LOCATION}.'
   chestSpawnFailed: 'Failed to spawn a treasure chest after max attempts.'

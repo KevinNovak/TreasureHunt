@@ -1,0 +1,32 @@
+name: TreasureHunt
+version: 1.1.0
+main: me.kevinnovak.treasurehunt.TreasureHunt
+author: KevinNovak
+description: Hunt for treasure!
+api-version: 1.14
+
+commands:
+  th:
+    usage: /<command>
+    description: List all TreasureHunt commands.
+    aliases: [treasurehunt]
+
+permissions:
+  treasurehunt.item:
+    description: Use the treasure hunt item.
+    default: true
+  treasurehunt.command.help:
+    description: View treasure hunt help.
+    default: true
+  treasurehunt.command.list:
+    description: Show available treasure chests.
+    default: true
+  treasurehunt.command.top:
+    description: Show top treasure hunters.
+    default: true
+  treasurehunt.command.start:
+    description: Start a treasure hunt.
+    default: op
+  treasurehunt.command.despawn:
+    description: Despawn all treasure chests.
+    default: op
