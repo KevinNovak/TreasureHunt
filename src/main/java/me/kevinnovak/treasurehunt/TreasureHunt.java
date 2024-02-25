@@ -23,7 +23,7 @@ import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class TreasureHunt extends JavaPlugin implements Listener {
+public final class TreasureHunt extends JavaPlugin implements Listener {
     // Files
     File chestsFile = new File(getDataFolder() + "/data/chests.yml");
     FileConfiguration chestsData = YamlConfiguration.loadConfiguration(chestsFile);
@@ -61,6 +61,7 @@ public class TreasureHunt extends JavaPlugin implements Listener {
     // ======================
     // Enable
     // ======================
+    @Override
     public void onEnable() {
         this.saveDefaultConfig();
         if (this.loadConfig()) {
@@ -80,6 +81,7 @@ public class TreasureHunt extends JavaPlugin implements Listener {
     // ======================
     // Disable
     // ======================
+    @Override
     public void onDisable() {
         this.saveChestsToFile();
         this.saveHuntersToFile();
