@@ -19,7 +19,7 @@ public class LanguageManager {
     public String chestListHeader, chestListChestLine, chestListMorePages, chestListNoChests, chestListFooter;
     public String topHuntersHeader, topHuntersHunterLine, topHuntersMorePages, topHuntersNoHunters, topHuntersFooter;
     public String day, days, hour, hours, minute, minutes, second, seconds;
-    public String consoleChestSpawned, consoleChestSpawnFailed, consoleAnnounceTime, consoleChestDespawned, consoleChestFound;
+    public String consoleChestSpawned, consoleChestSpawnFailed, consoleAnnounceTime, consoleChestDespawned, consoleChestFound, consoleCommandNotAllowed;
 
     public LanguageManager(TreasureHunt plugin) {
         this.plugin = plugin;
@@ -92,5 +92,6 @@ public class LanguageManager {
         this.consoleAnnounceTime = colorConv.convert(languageData.getString("console.announceTime"));
         this.consoleChestDespawned = colorConv.convert(languageData.getString("console.chestDespawned"));
         this.consoleChestFound = colorConv.convert(languageData.getString("console.chestFound"));
+        this.consoleCommandNotAllowed = colorConv.convert(languageData.getString("console.commandNotAllowed"));
     }
 }

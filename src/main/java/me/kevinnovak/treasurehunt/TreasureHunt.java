@@ -735,7 +735,7 @@ public final class TreasureHunt extends JavaPlugin implements Listener {
         // ======================
         // if command sender is the console, let them know, cancel command
         if (!(sender instanceof Player)) {
-            // TO-DO: send message to console
+            sender.sendMessage(langMan.consolePrefix + langMan.consoleCommandNotAllowed);
             return true;
         }
         Player player = (Player) sender;
