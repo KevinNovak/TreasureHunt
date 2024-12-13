@@ -106,3 +106,5 @@ protectAgainst:
   break: true
   burn: true
   explode: true
+
+notifyAdminsOnChestSpawnFail: true
