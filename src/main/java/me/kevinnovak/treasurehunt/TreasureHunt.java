@@ -319,8 +319,9 @@ public final class TreasureHunt extends JavaPlugin implements Listener {
                     Bukkit.getOnlinePlayers().stream()
                             .filter(p -> p.hasPermission(perm.start))
                             .forEach(p -> p.sendMessage(langMan.chestSpawnFailed));
-                else  // Notify only the sender
-                    sender.sendMessage(langMan.chestSpawnFailed);
+                else
+                    if (sender != null)  // Notify only the sender
+                            sender.sendMessage(langMan.chestSpawnFailed);
 
                 this.log(langMan.consoleChestSpawnFailed);  // Log the failure regardless
             } else {
