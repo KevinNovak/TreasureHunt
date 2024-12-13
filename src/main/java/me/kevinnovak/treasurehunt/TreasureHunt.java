@@ -46,6 +46,7 @@ public final class TreasureHunt extends JavaPlugin implements Listener {
     private List<Material> spawnUnder = new ArrayList<Material>();
     private List<Material> dontSpawnOn = new ArrayList<Material>();
     private boolean protectAgainstBreak, protectAgainstBurn, protectAgainstExplode;
+    private boolean notifyAdminsOnChestSpawnFail;
 
     // Plugin
     private List<TreasureChest> chests = new ArrayList<TreasureChest>();
@@ -173,6 +174,8 @@ public final class TreasureHunt extends JavaPlugin implements Listener {
         this.protectAgainstBreak = getConfig().getBoolean("protectAgainst.break");
         this.protectAgainstBurn = getConfig().getBoolean("protectAgainst.burn");
         this.protectAgainstExplode = getConfig().getBoolean("protectAgainst.explode");
+
+        this.notifyAdminsOnChestSpawnFail = getConfig().getBoolean("notifyAdminsOnChestSpawnFail");
 
         return true;
     }
@@ -312,11 +315,15 @@ public final class TreasureHunt extends JavaPlugin implements Listener {
         if (this.getAvailableChests().size() < maxChests) {
             Location treasureLocation = getTreasureLocation();
             if (treasureLocation.getBlockX() == -1 && treasureLocation.getBlockY() == -1 && treasureLocation.getBlockZ() == -1) {
-                // TO-DO: Annouce to only admins
-                if (sender != null) {
-                    sender.sendMessage(langMan.chestSpawnFailed);
-                }
-                this.log(langMan.consoleChestSpawnFailed);
+                if (this.notifyAdminsOnChestSpawnFail)  // Notify all admins
+                    Bukkit.getOnlinePlayers().stream()
+                            .filter(p -> p.hasPermission(perm.start))
+                            .forEach(p -> p.sendMessage(langMan.chestSpawnFailed));
+                else
+                    if (sender != null)  // Notify only the sender
+                            sender.sendMessage(langMan.chestSpawnFailed);
+
+                this.log(langMan.consoleChestSpawnFailed);  // Log the failure regardless
             } else {
                 UUID id = UUID.randomUUID();
 
@@ -735,7 +742,7 @@ public final class TreasureHunt extends JavaPlugin implements Listener {
         // ======================
         // if command sender is the console, let them know, cancel command
         if (!(sender instanceof Player)) {
-            // TO-DO: send message to console
+            sender.sendMessage(langMan.consolePrefix + langMan.consoleCommandNotAllowed);
             return true;
         }
         Player player = (Player) sender;

@@ -72,3 +72,4 @@ console:
   announceTime: 'The {RARITY} chest at {LOCATION} will disappear in {TIME}.'
   chestDespawned: 'The {RARITY} chest at {LOCATION} disappeared without being found.'
   chestFound: '{PLAYER} found a {RARITY} treasure at {LOCATION}.'
+  commandNotAllowed: 'An in-game player must use this command.'
